@@ -1674,6 +1674,7 @@ function renderCart(){
       <div class="cimg"><img src="${p.img}" alt="${p.n}" loading="lazy"></div>
       <div style="flex:1;min-width:0">
         <div class="cin2">${p.n}</div>
+        ${item.size ? `<div style="font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--or);margin-top:.15rem">Taille : ${item.size}</div>` : ''}
         <div class="cip">${p.p}</div>
         <div style="display:flex;align-items:center;gap:.6rem;margin-top:.5rem">
           <button onclick="cartQty(${i},-1)" style="background:rgba(201,169,110,.08);border:1px solid rgba(201,169,110,.2);color:var(--or);width:24px;height:24px;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center" aria-label="Diminuer">−</button>
@@ -2255,12 +2256,37 @@ function handleNewsletter(e){
   document.body.style.overflow='hidden';
 }
 
+// ─── SIZE SELECTION ───────────────────────────────────────────────────────────
+function selectSize(btn, size){
+  document.querySelectorAll('#qv-size-btns button').forEach(b=>{
+    b.style.background='transparent';
+    b.style.color='var(--ivoire)';
+    b.style.fontWeight='400';
+  });
+  btn.style.background='var(--or)';
+  btn.style.color='var(--noir)';
+  btn.style.fontWeight='600';
+  window._qvSelectedSize = size;
+}
+
 // ─── CART ACTIONS ─────────────────────────────────────────────────────────────
 function addCart(){
   const idx=currentQVIdx;
-  const existing=cartItems.find(i=>i.idx===idx);
+  const p=prods[idx];
+  // Validate size selection
+  if(p.sizes && p.sizes.length){
+    if(!window._qvSelectedSize){
+      toast(currentLang==='en'?'Please select a size':'Veuillez choisir une taille');
+      // Highlight size selector
+      const wrap=document.getElementById('qv-sizes');
+      if(wrap){ wrap.style.outline='1px solid #e74c3c'; setTimeout(()=>{ wrap.style.outline=''; },1500); }
+      return;
+    }
+  }
+  const size = window._qvSelectedSize || null;
+  const existing=cartItems.find(i=>i.idx===idx && i.size===size);
   if(existing){ existing.qty++; }
-  else { cartItems.push({idx,qty:1}); }
+  else { cartItems.push({idx,qty:1,size}); }
   saveCart(); closeQV();
   renderCart();
   toast('Pièce ajoutée au panier ✦');
@@ -2365,14 +2391,14 @@ function sendResetLink(){
 // ─── PRODUCTS ─────────────────────────────────────────────────────────────────
 let currentQVIdx = 0;
 const prods=[
-  {img:'Boubou brodé doré.png',n:"Boubou Brodé d'Or",o:'Dakar, Sénégal',p:'285 000 FCFA',b:'Rare',d:"Pièce d'exception tissée à la main selon des techniques transmises depuis trois siècles dans les ateliers dakarois.",m:"Soie & fil d'or",a:'Maître Mbaye',stock:2},
-  {img:'Masque Baoulé sculpé.png',n:'Masque Sculpté Baoulé',o:"Abidjan, Côte d'Ivoire",p:'420 000 FCFA',b:'Nouveau',d:"Œuvre sacrée taillée dans l'ébène par un maître sculpteur baoulé. Chaque détail révèle un dialogue entre l'humain et le divin.",m:'Ébène & pigments naturels',a:'Kofi Asante',stock:1},
-  {img:'Robe Kenté Royale.png',n:'Robe Kente Royale',o:'Accra, Ghana',p:'195 000 FCFA',b:'Rare',d:'Tissu kente royal tissé sur métier traditionnel, motifs exclusifs du royaume Ashanti.',m:'Soie & coton tissés',a:'Kwame Osei',stock:3},
-  {img:'Parures argentées.png',n:'Parure Berbère Argent',o:'Marrakech, Maroc',p:'145 000 FCFA',b:'Nouveau',d:'Parure en argent massif ciselé à la main, ornée de corail naturel et pierres précieuses du Grand Atlas.',m:'Argent massif, corail',a:'Fatima Benali',stock:5},
-  {img:'Sac en cuir Massai.png',n:'Sac Cuir Maasaï',o:'Nairobi, Kenya',p:'98 000 FCFA',b:'',d:"Sac en cuir de buffle tanné à la main selon les traditions maasaï, orné de broderies aux perles naturelles.",m:'Cuir de buffle, perles',a:'Siokapu Ole',stock:4},
-  {img:'Tapis berber ancestral.png',n:'Tapis Berbère Ancestral',o:'Fès, Maroc',p:'350 000 FCFA',b:'Rare',d:'Tapis noué à la main en laine naturelle teinte aux pigments végétaux. Six mois de travail par une maîtresse tisserande.',m:'Laine naturelle',a:'Zahra El Fassi',stock:1},
-  {img:'Djellaba Brodée.png',n:'Djellaba Brodée',o:'Tunis, Tunisie',p:'175 000 FCFA',b:'Nouveau',d:"Djellaba en lin blanc ivoire brodée à la main de fils d'argent selon les motifs andalous de la médina de Tunis.",m:"Lin & fils d'argent",a:'Leila Mansouri',stock:3},
-  {img:'Plateau Africain DG.jpg',n:'Plateau Africain Signature',o:'Niamey, Niger',p:'680 000 FCFA',b:'Rare',d:"Plateau décoratif sculpté et laqué, édition unique signée par la collection signature de la maison.",m:'Bois noble & laque naturelle',a:'Amadou Binta Diallo',stock:1}
+  {img:'Boubou brodé doré.png',n:"Boubou Brodé d'Or",o:'Dakar, Sénégal',p:'285 000 FCFA',b:'Rare',d:"Pièce d'exception tissée à la main selon des techniques transmises depuis trois siècles dans les ateliers dakarois.",m:"Soie & fil d'or",a:'Maître Mbaye',stock:2,sizes:['S','M','L','XL','XXL']},
+  {img:'Masque Baoulé sculpé.png',n:'Masque Sculpté Baoulé',o:"Abidjan, Côte d'Ivoire",p:'420 000 FCFA',b:'Nouveau',d:"Œuvre sacrée taillée dans l'ébène par un maître sculpteur baoulé. Chaque détail révèle un dialogue entre l'humain et le divin.",m:'Ébène & pigments naturels',a:'Kofi Asante',stock:1,sizes:null},
+  {img:'Robe Kenté Royale.png',n:'Robe Kente Royale',o:'Accra, Ghana',p:'195 000 FCFA',b:'Rare',d:'Tissu kente royal tissé sur métier traditionnel, motifs exclusifs du royaume Ashanti.',m:'Soie & coton tissés',a:'Kwame Osei',stock:3,sizes:['XS','S','M','L','XL']},
+  {img:'Parures argentées.png',n:'Parure Berbère Argent',o:'Marrakech, Maroc',p:'145 000 FCFA',b:'Nouveau',d:'Parure en argent massif ciselé à la main, ornée de corail naturel et pierres précieuses du Grand Atlas.',m:'Argent massif, corail',a:'Fatima Benali',stock:5,sizes:null},
+  {img:'Sac en cuir Massai.png',n:'Sac Cuir Maasaï',o:'Nairobi, Kenya',p:'98 000 FCFA',b:'',d:"Sac en cuir de buffle tanné à la main selon les traditions maasaï, orné de broderies aux perles naturelles.",m:'Cuir de buffle, perles',a:'Siokapu Ole',stock:4,sizes:null},
+  {img:'Tapis berber ancestral.png',n:'Tapis Berbère Ancestral',o:'Fès, Maroc',p:'350 000 FCFA',b:'Rare',d:'Tapis noué à la main en laine naturelle teinte aux pigments végétaux. Six mois de travail par une maîtresse tisserande.',m:'Laine naturelle',a:'Zahra El Fassi',stock:1,sizes:null},
+  {img:'Djellaba Brodée.png',n:'Djellaba Brodée',o:'Tunis, Tunisie',p:'175 000 FCFA',b:'Nouveau',d:"Djellaba en lin blanc ivoire brodée à la main de fils d'argent selon les motifs andalous de la médina de Tunis.",m:"Lin & fils d'argent",a:'Leila Mansouri',stock:3,sizes:['S','M','L','XL']},
+  {img:'Plateau Africain DG.jpg',n:'Plateau Africain Signature',o:'Niamey, Niger',p:'680 000 FCFA',b:'Rare',d:"Plateau décoratif sculpté et laqué, édition unique signée par la collection signature de la maison.",m:'Bois noble & laque naturelle',a:'Amadou Binta Diallo',stock:1,sizes:null}
 ];
 
 function openQV(idx){
@@ -2403,6 +2429,27 @@ function openQV(idx){
   } else {
     stockEl.style.display='none';
   }
+  // Sélecteur de tailles
+  let sizesWrap=document.getElementById('qv-sizes');
+  if(!sizesWrap){
+    sizesWrap=document.createElement('div');
+    sizesWrap.id='qv-sizes';
+    sizesWrap.style.cssText='margin-top:1rem';
+    stockEl.insertAdjacentElement('afterend',sizesWrap);
+  }
+  if(p.sizes && p.sizes.length){
+    sizesWrap.innerHTML=`
+      <div style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or);margin-bottom:.5rem">${currentLang==='en'?'Select size':'Choisir la taille'}</div>
+      <div id="qv-size-btns" style="display:flex;gap:.4rem;flex-wrap:wrap">
+        ${p.sizes.map(s=>`<button onclick="selectSize(this,'${s}')" style="padding:.3rem .75rem;border:1px solid var(--or);background:transparent;color:var(--ivoire);font-family:var(--fb);font-size:.7rem;letter-spacing:.1em;cursor:pointer;text-transform:uppercase;transition:all .2s" data-size="${s}">${s}</button>`).join('')}
+      </div>
+    `;
+    sizesWrap.style.display='block';
+  } else {
+    sizesWrap.innerHTML='';
+    sizesWrap.style.display='none';
+  }
+  window._qvSelectedSize = null;
   document.getElementById('qv').classList.add('open');
   setAriaHidden('qv',false);
 }
@@ -4304,7 +4351,7 @@ function switchDocsTab(btn,sec){
 // ── Client doc generators ─────────────────────────────────────────────────────
 function getDemoOrderData(){
   const ordItems=cartItems.length?cartItems.map(ci=>({
-    name:prods[ci.idx].n,origin:prods[ci.idx].o.split(',')[1]?.trim()||'Afrique',
+    name:prods[ci.idx].n+(ci.size?` — Taille ${ci.size}`:''),origin:prods[ci.idx].o.split(',')[1]?.trim()||'Afrique',
     qty:ci.qty,price:parseInt(prods[ci.idx].p.replace(/\s/g,'').replace('FCFA',''))
   })):[{name:"Boubou Brodé d'Or",origin:'Sénégal',qty:1,price:285000},{name:'Parure Berbère Argent',origin:'Maroc',qty:1,price:145000}];
   const sub=ordItems.reduce((s,i)=>s+i.price*i.qty,0);
@@ -4582,7 +4629,8 @@ function buildOrderSummaryText(){
   const lines = cartItems.map(ci => {
     const p = prods[ci.idx];
     const num = cartPriceNum(p.p);
-    return `${p.n} x${ci.qty} — ${(num*ci.qty).toLocaleString('fr-FR').replace(/[  ]/g,' ')} FCFA`;
+    const sizeStr = ci.size ? ` (Taille: ${ci.size})` : '';
+    return `${p.n}${sizeStr} x${ci.qty} — ${(num*ci.qty).toLocaleString('fr-FR').replace(/[  ]/g,' ')} FCFA`;
   });
   const total = cartItems.reduce((s,ci)=>s+cartPriceNum(prods[ci.idx].p)*ci.qty,0);
   lines.push(`Total : ${total.toLocaleString('fr-FR').replace(/[  ]/g,' ')} FCFA`);
