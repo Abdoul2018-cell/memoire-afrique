@@ -1,0 +1,27 @@
+{
+  "name": "Mémoire d'Afrique",
+  "short_name": "MDA",
+  "description": "Mode & Artisanat Africain d'Exception",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0806",
+  "theme_color": "#0a0806",
+  "orientation": "portrait-primary",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "/Couverture Mode Femme.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["shopping", "lifestyle"],
+  "screenshots": [
+    {
+      "src": "/Couverture Mode Femme.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
