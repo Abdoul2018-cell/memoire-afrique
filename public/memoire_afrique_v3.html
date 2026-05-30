@@ -684,6 +684,13 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
 </head>
 <body>
 
+<!-- BANDEAU PROMO -->
+<div id="promo-banner" style="background:linear-gradient(90deg,var(--cacao),#3d1f0a,var(--cacao));border-bottom:1px solid rgba(201,169,110,.2);padding:.45rem 1rem;text-align:center;position:relative;z-index:200;display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap">
+  <span style="font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,246,240,.75)">✦ Offre de lancement — <strong style="color:var(--or)">−15% avec le code LUXE15</strong> · Expire dans</span>
+  <span id="promo-countdown" style="font-family:var(--fb);font-size:.7rem;font-weight:500;color:var(--or);letter-spacing:.12em;background:rgba(201,169,110,.1);padding:.2rem .6rem;border:1px solid rgba(201,169,110,.25)">00:00:00</span>
+  <button onclick="document.getElementById('promo-banner').style.display='none'" style="position:absolute;right:.8rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(250,246,240,.3);cursor:pointer;font-size:.75rem;line-height:1;padding:.2rem" aria-label="Fermer">✕</button>
+</div>
+
 <!-- LOADER -->
 <div id="loader" role="status" aria-label="Chargement">
   <div class="llogo">Mémoire d'Afrique</div>
@@ -978,6 +985,15 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Niamey, Niger</div>
       <div class="pp">680 000 FCFA</div>
     </article>
+  </div>
+</section>
+
+<!-- VUS RÉCEMMENT -->
+<section id="recently-viewed-section" style="background:#080605;padding:3.5rem 1rem;display:none">
+  <div class="rv" style="max-width:1200px;margin:0 auto">
+    <p class="sl" style="font-size:.58rem;letter-spacing:.22em">Vos Dernières Consultations</p>
+    <h3 style="font-family:var(--fd);font-size:1.4rem;font-weight:300;font-style:italic;color:var(--ivoire);margin-bottom:2rem">Pièces <em>récemment vues</em></h3>
+    <div id="recently-viewed-grid" style="display:flex;gap:1.2rem;overflow-x:auto;padding-bottom:.5rem;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.2) transparent"></div>
   </div>
 </section>
 
@@ -1343,6 +1359,41 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
         <button onclick="applyPromo()" style="background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.3);color:var(--or);font-family:var(--fb);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.55rem .9rem;cursor:pointer;transition:background .2s" onmouseover="this.style.background='rgba(201,169,110,.2)'" onmouseout="this.style.background='rgba(201,169,110,.1)'">Appliquer</button>
       </div>
       <div id="promo-msg" style="font-size:.6rem;letter-spacing:.1em;margin-top:.4rem;min-height:1rem"></div>
+      <!-- Estimation livraison -->
+      <div style="margin-top:1rem;padding:.9rem;background:rgba(201,169,110,.04);border:1px solid rgba(201,169,110,.12)">
+        <div style="font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(201,169,110,.55);margin-bottom:.6rem">🚚 Estimation de livraison</div>
+        <select id="delivery-country" onchange="updateDeliveryEstimate()"
+          style="width:100%;background:rgba(201,169,110,.06);border:1px solid rgba(201,169,110,.18);color:var(--ivoire);font-family:var(--fb);font-size:.65rem;padding:.5rem .7rem;outline:none;cursor:pointer;appearance:none;margin-bottom:.5rem">
+          <option value="">— Choisir votre pays —</option>
+          <optgroup label="Afrique de l'Ouest">
+            <option value="ne">Niger</option>
+            <option value="sn">Sénégal</option>
+            <option value="ci">Côte d'Ivoire</option>
+            <option value="ml">Mali</option>
+            <option value="bf">Burkina Faso</option>
+            <option value="gh">Ghana</option>
+            <option value="ng">Nigeria</option>
+            <option value="bj">Bénin</option>
+            <option value="tg">Togo</option>
+          </optgroup>
+          <optgroup label="Afrique du Nord & Est">
+            <option value="ma">Maroc</option>
+            <option value="tn">Tunisie</option>
+            <option value="dz">Algérie</option>
+            <option value="eg">Égypte</option>
+            <option value="ke">Kenya</option>
+          </optgroup>
+          <optgroup label="Europe & Monde">
+            <option value="fr">France</option>
+            <option value="be">Belgique</option>
+            <option value="ch">Suisse</option>
+            <option value="ca">Canada</option>
+            <option value="us">États-Unis</option>
+            <option value="other">Autre pays</option>
+          </optgroup>
+        </select>
+        <div id="delivery-estimate" style="font-size:.63rem;color:rgba(201,169,110,.7);min-height:1.2rem"></div>
+      </div>
       <p style="font-size:.65rem;font-weight:300;color:rgba(201,169,110,.55);line-height:1.75;margin-top:.6rem" data-i18n="pay_secure_note">
         Toutes les transactions sont chiffrées SSL. Vos données ne sont jamais stockées.
       </p>
@@ -2648,6 +2699,7 @@ const prods=[
 
 function openQV(idx){
   currentQVIdx = idx;
+  trackRecentlyViewed(idx);
   const p=prods[idx];
   const mainImg=document.getElementById('qvimg');
   mainImg.src=p.img;
@@ -4850,6 +4902,70 @@ document.addEventListener('keydown', e=>{
   if(e.key === 'Escape') closePayModal();
 }, true);
 
+// ─── BANDEAU PROMO COUNTDOWN ──────────────────────────────────────────────────
+(function initCountdown(){
+  const DURATION_H = 24;
+  let expiry;
+  try{
+    expiry = parseInt(localStorage.getItem('mda_promo_exp')||'0');
+    if(!expiry || Date.now() > expiry){
+      expiry = Date.now() + DURATION_H * 3600 * 1000;
+      localStorage.setItem('mda_promo_exp', String(expiry));
+    }
+  }catch(e){ expiry = Date.now() + DURATION_H * 3600 * 1000; }
+
+  const el = document.getElementById('promo-countdown');
+  const banner = document.getElementById('promo-banner');
+
+  function tick(){
+    const diff = expiry - Date.now();
+    if(diff <= 0){
+      if(banner) banner.style.display='none';
+      return;
+    }
+    const h = String(Math.floor(diff/3600000)).padStart(2,'0');
+    const m = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    const s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+    if(el) el.textContent = `${h}:${m}:${s}`;
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+// ─── ESTIMATION LIVRAISON ─────────────────────────────────────────────────────
+const DELIVERY_ZONES = {
+  ne:    { delay:'2–5 jours ouvrables',   cost:'Offerte dès 200 000 FCFA', flag:'🇳🇪' },
+  sn:    { delay:'5–8 jours ouvrables',   cost:'15 000 FCFA',              flag:'🇸🇳' },
+  ci:    { delay:'5–8 jours ouvrables',   cost:'15 000 FCFA',              flag:'🇨🇮' },
+  ml:    { delay:'6–10 jours ouvrables',  cost:'15 000 FCFA',              flag:'🇲🇱' },
+  bf:    { delay:'6–10 jours ouvrables',  cost:'15 000 FCFA',              flag:'🇧🇫' },
+  gh:    { delay:'7–12 jours ouvrables',  cost:'18 000 FCFA',              flag:'🇬🇭' },
+  ng:    { delay:'7–12 jours ouvrables',  cost:'18 000 FCFA',              flag:'🇳🇬' },
+  bj:    { delay:'5–8 jours ouvrables',   cost:'15 000 FCFA',              flag:'🇧🇯' },
+  tg:    { delay:'5–8 jours ouvrables',   cost:'15 000 FCFA',              flag:'🇹🇬' },
+  ma:    { delay:'8–14 jours ouvrables',  cost:'22 000 FCFA',              flag:'🇲🇦' },
+  tn:    { delay:'8–14 jours ouvrables',  cost:'22 000 FCFA',              flag:'🇹🇳' },
+  dz:    { delay:'8–14 jours ouvrables',  cost:'22 000 FCFA',              flag:'🇩🇿' },
+  eg:    { delay:'10–16 jours ouvrables', cost:'25 000 FCFA',              flag:'🇪🇬' },
+  ke:    { delay:'10–14 jours ouvrables', cost:'25 000 FCFA',              flag:'🇰🇪' },
+  fr:    { delay:'14–21 jours ouvrables', cost:'35 000 FCFA',              flag:'🇫🇷' },
+  be:    { delay:'14–21 jours ouvrables', cost:'35 000 FCFA',              flag:'🇧🇪' },
+  ch:    { delay:'14–21 jours ouvrables', cost:'35 000 FCFA',              flag:'🇨🇭' },
+  ca:    { delay:'18–25 jours ouvrables', cost:'45 000 FCFA',              flag:'🇨🇦' },
+  us:    { delay:'18–25 jours ouvrables', cost:'45 000 FCFA',              flag:'🇺🇸' },
+  other: { delay:'21–30 jours ouvrables', cost:'Nous contacter',           flag:'🌍' },
+};
+
+function updateDeliveryEstimate(){
+  const country = document.getElementById('delivery-country')?.value;
+  const el      = document.getElementById('delivery-estimate');
+  if(!el) return;
+  if(!country){ el.textContent=''; return; }
+  const zone = DELIVERY_ZONES[country];
+  if(!zone){ el.textContent=''; return; }
+  el.innerHTML = `${zone.flag} <strong style="color:var(--ivoire)">${zone.delay}</strong> · Frais : <strong style="color:var(--or)">${zone.cost}</strong>`;
+}
+
 // ─── CODE PROMO ───────────────────────────────────────────────────────────────
 const PROMO_CODES = {
   'MDA-BIENVENUE5': { type:'pct', value:5,  label:'-5% bienvenue' },
@@ -5439,6 +5555,40 @@ function fallbackCopy(url, btn){
     toast('Lien copié dans le presse-papiers ✦');
     setTimeout(()=>{ if(btn){ btn.innerHTML=orig; btn.style.color=''; } }, 2000);
   }).catch(()=>toast('Lien : memoire-afrique-phi.vercel.app'));
+}
+
+// ─── PRODUITS RÉCEMMENT VUS ───────────────────────────────────────────────────
+function trackRecentlyViewed(idx){
+  try{
+    let rv = JSON.parse(sessionStorage.getItem('mda_rv')||'[]');
+    rv = rv.filter(i=>i!==idx);
+    rv.unshift(idx);
+    rv = rv.slice(0,6);
+    sessionStorage.setItem('mda_rv', JSON.stringify(rv));
+    renderRecentlyViewed();
+  }catch(e){}
+}
+
+function renderRecentlyViewed(){
+  try{
+    const rv = JSON.parse(sessionStorage.getItem('mda_rv')||'[]');
+    const section = document.getElementById('recently-viewed-section');
+    const grid    = document.getElementById('recently-viewed-grid');
+    if(!section || !grid) return;
+    // Afficher seulement si au moins 2 produits vus
+    if(rv.length < 2){ section.style.display='none'; return; }
+    section.style.display='block';
+    grid.innerHTML = rv.map(idx=>{
+      const p = prods[idx];
+      return `<div onclick="closeQV();openQV(${idx})" style="flex-shrink:0;width:160px;cursor:pointer;transition:transform .3s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+        <div style="aspect-ratio:3/4;overflow:hidden;background:var(--cacao);margin-bottom:.6rem">
+          <img src="${p.img}" alt="${p.n}" style="width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .5s" loading="lazy">
+        </div>
+        <div style="font-family:var(--fd);font-size:.82rem;font-style:italic;color:var(--ivoire);margin-bottom:.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.n}</div>
+        <div style="font-family:var(--fd);font-size:.75rem;color:var(--or)">${p.p}</div>
+      </div>`;
+    }).join('');
+  }catch(e){}
 }
 
 // ─── EXIT INTENT POPUP ────────────────────────────────────────────────────────
