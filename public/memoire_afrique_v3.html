@@ -696,7 +696,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
 
 <!-- NAV -->
 <nav role="navigation" aria-label="Navigation principale">
-  <a href="#hero" class="nlogo" onclick="if(lenis)lenis.scrollTo(0,{duration:1.6});return false" aria-label="Mémoire d'Afrique — Accueil">
+  <a href="#hero" class="nlogo" id="nlogo-link" aria-label="Mémoire d'Afrique — Accueil">
     <img src="logo mémoires d'Afrique Canva.png" alt="Mémoire d'Afrique" class="nlogo-img" id="mdaLogoEl" onerror="this.style.display='none'">
     <span class="nlogo-text">Mémoire d'Afrique</span>
   </a>
@@ -711,7 +711,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     <button class="ni" onclick="openDocs()" aria-label="Mes Documents" title="Mes Documents" id="docs-nav-btn">⬚</button>
     <button class="ni" onclick="openAI()" aria-label="Agents IA" title="Agents IA">◈</button>
     <button class="ni" onclick="openLogin()" aria-label="Connexion" title="Connexion">◯</button>
-    <button class="ni" onclick="openAdmin()" aria-label="Administration" title="Admin">⬡</button>
+    <button class="ni" id="admin-btn" onclick="openAdmin()" aria-label="Administration" title="Admin" style="display:none">⬡</button>
     <button class="ni" onclick="openCart()" aria-label="Panier" title="Panier" style="position:relative">▢<span class="cbadge" id="cc" aria-label="2 articles">2</span></button>
     <button class="ni nmob" onclick="openMNav()" aria-label="Menu">☰</button>
     <div class="ntoggle">
@@ -1075,6 +1075,41 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
   </div>
 </section>
 
+<!-- AVIS CLIENTS -->
+<section id="testimonials" style="background:linear-gradient(180deg,#0a0806,#080605);padding:5rem 1rem" aria-label="Avis clients">
+  <div class="rv" style="text-align:center;margin-bottom:3rem">
+    <p class="sl">Ils nous font confiance</p>
+    <h2 class="st">Paroles de <em>clients</em></h2>
+    <div class="sd" style="margin:0 auto"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto">
+    <div style="background:rgba(201,169,110,.04);border:1px solid rgba(201,169,110,.12);padding:1.8rem;position:relative">
+      <div style="color:var(--or);font-size:1.4rem;margin-bottom:1rem">★★★★★</div>
+      <p style="font-size:.78rem;font-weight:300;color:rgba(250,246,240,.6);line-height:1.9;font-style:italic;margin-bottom:1.2rem">"Le Boubou Brodé d'Or est d'une qualité exceptionnelle. La finesse du travail artisanal est visible à chaque détail. Je suis fière de porter une telle pièce."</p>
+      <div style="display:flex;align-items:center;gap:.8rem">
+        <div style="width:36px;height:36px;background:rgba(201,169,110,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);color:var(--or);font-style:italic">F</div>
+        <div><div style="font-size:.68rem;color:var(--ivoire);letter-spacing:.08em">Fatou Keita</div><div style="font-size:.55rem;color:rgba(201,169,110,.4);margin-top:.2rem">Dakar, Sénégal</div></div>
+      </div>
+    </div>
+    <div style="background:rgba(201,169,110,.04);border:1px solid rgba(201,169,110,.12);padding:1.8rem;position:relative">
+      <div style="color:var(--or);font-size:1.4rem;margin-bottom:1rem">★★★★★</div>
+      <p style="font-size:.78rem;font-weight:300;color:rgba(250,246,240,.6);line-height:1.9;font-style:italic;margin-bottom:1.2rem">"J'ai offert le Masque Baoulé à mon père pour ses 60 ans. Il n'en revenait pas. L'emballage premium et le certificat d'authenticité ont rendu le cadeau encore plus spécial."</p>
+      <div style="display:flex;align-items:center;gap:.8rem">
+        <div style="width:36px;height:36px;background:rgba(201,169,110,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);color:var(--or);font-style:italic">K</div>
+        <div><div style="font-size:.68rem;color:var(--ivoire);letter-spacing:.08em">Kofi Mensah</div><div style="font-size:.55rem;color:rgba(201,169,110,.4);margin-top:.2rem">Accra, Ghana</div></div>
+      </div>
+    </div>
+    <div style="background:rgba(201,169,110,.04);border:1px solid rgba(201,169,110,.12);padding:1.8rem;position:relative">
+      <div style="color:var(--or);font-size:1.4rem;margin-bottom:1rem">★★★★★</div>
+      <p style="font-size:.78rem;font-weight:300;color:rgba(250,246,240,.6);line-height:1.9;font-style:italic;margin-bottom:1.2rem">"La livraison était rapide et soignée. La Parure Berbère est magnifique — exactement comme sur les photos. Mémoire d'Afrique, c'est la référence du luxe africain authentique."</p>
+      <div style="display:flex;align-items:center;gap:.8rem">
+        <div style="width:36px;height:36px;background:rgba(201,169,110,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);color:var(--or);font-style:italic">A</div>
+        <div><div style="font-size:.68rem;color:var(--ivoire);letter-spacing:.08em">Amina Traoré</div><div style="font-size:.55rem;color:rgba(201,169,110,.4);margin-top:.2rem">Abidjan, Côte d'Ivoire</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact" style="background:linear-gradient(180deg,#080605,#0a0806)" aria-label="Contact">
   <div class="rv">
@@ -1138,6 +1173,43 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     </div>
   </div>
 </section>
+
+<!-- NEWSLETTER -->
+<section style="background:linear-gradient(135deg,#0f0a07,#1a0f07);border-top:1px solid rgba(201,169,110,.12);border-bottom:1px solid rgba(201,169,110,.12);padding:3.5rem 1rem" aria-label="Newsletter">
+  <div style="max-width:560px;margin:0 auto;text-align:center">
+    <div style="font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(201,169,110,.5);margin-bottom:.8rem">Rejoindre la Maison</div>
+    <h3 style="font-family:var(--fd);font-size:1.9rem;font-style:italic;color:var(--ivoire);margin-bottom:.6rem">−5% sur votre première commande</h3>
+    <p style="font-size:.75rem;font-weight:300;color:rgba(250,246,240,.45);line-height:1.8;margin-bottom:1.8rem">Inscrivez-vous à la newsletter Mémoire d'Afrique et recevez immédiatement un code de bienvenue, ainsi que nos actualités, nouvelles collections et offres exclusives.</p>
+    <form id="nl-form" onsubmit="handleNewsletter(event)" style="display:flex;gap:.6rem;max-width:420px;margin:0 auto" novalidate>
+      <input type="email" id="nl-email" placeholder="votre@email.com" required autocomplete="email"
+        style="flex:1;background:transparent;border:none;border-bottom:1px solid rgba(201,169,110,.3);padding:.75rem 0;color:var(--ivoire);font-family:var(--fb);font-size:.85rem;font-weight:300;outline:none;letter-spacing:.06em;transition:border-color .3s"
+        onfocus="this.style.borderColor='var(--or)'" onblur="this.style.borderColor='rgba(201,169,110,.3)'">
+      <button type="submit" class="bp" style="padding:.75rem 1.6rem;font-size:.6rem;white-space:nowrap">S'inscrire</button>
+    </form>
+    <p style="font-size:.56rem;color:rgba(250,246,240,.2);margin-top:1rem;letter-spacing:.1em">Pas de spam. Désinscription en un clic.</p>
+  </div>
+</section>
+
+<!-- MODALE CODE PROMO NEWSLETTER -->
+<div id="nl-modal" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(10,8,6,.93);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1rem" role="dialog" aria-label="Code promo bienvenue">
+  <div style="background:#0f0a07;border:1px solid rgba(201,169,110,.25);max-width:400px;width:100%;padding:2.5rem 2rem;text-align:center;position:relative">
+    <button onclick="document.getElementById('nl-modal').style.display='none'" style="position:absolute;top:.8rem;right:1rem;background:none;border:none;color:rgba(201,169,110,.4);font-size:1.1rem;cursor:pointer">✕</button>
+    <div style="font-size:2rem;margin-bottom:1rem">✦</div>
+    <h3 style="font-family:var(--fd);font-size:1.5rem;font-style:italic;color:var(--or);margin-bottom:.5rem">Bienvenue dans la Maison</h3>
+    <p style="font-size:.72rem;color:rgba(250,246,240,.5);margin-bottom:1.5rem;line-height:1.7">Votre code de bienvenue vous a été envoyé. Utilisez-le lors de votre prochaine commande :</p>
+    <div style="background:rgba(201,169,110,.08);border:1px solid rgba(201,169,110,.2);padding:1rem 1.5rem;margin-bottom:1.5rem">
+      <div style="font-family:monospace;font-size:1.6rem;color:var(--or);letter-spacing:.2em" id="nl-code">MDA-BIENVENUE5</div>
+      <div style="font-size:.55rem;color:rgba(201,169,110,.4);margin-top:.3rem;letter-spacing:.12em">−5% SUR VOTRE PREMIÈRE COMMANDE</div>
+    </div>
+    <button onclick="navigator.clipboard&&navigator.clipboard.writeText('MDA-BIENVENUE5');toast('Code copié ✦')" class="bp" style="width:100%;padding:.9rem">Copier le code</button>
+  </div>
+</div>
+
+<!-- WHATSAPP FLOTTANT -->
+<a href="https://wa.me/22778000922?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20vos%20pi%C3%A8ces." target="_blank" rel="noopener" id="wa-float" aria-label="Nous contacter sur WhatsApp" title="Contacter sur WhatsApp" style="position:fixed;bottom:2rem;right:1.5rem;z-index:999;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .25s,box-shadow .25s;text-decoration:none">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<style>#wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.55)}</style>
 
 <footer role="contentinfo">
   <div class="fg4">
@@ -1561,10 +1633,12 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
 
 <script>
 // ─── CART STATE ───────────────────────────────────────────────────────────────
-const cartItems = [
-  {idx:0, qty:1},
-  {idx:3, qty:1}
-];
+const cartItems = (()=>{
+  try{ const s=localStorage.getItem('mda_cart'); return s?JSON.parse(s):[]; }
+  catch(e){ return []; }
+})();
+
+function saveCart(){ try{ localStorage.setItem('mda_cart', JSON.stringify(cartItems)); }catch(e){} }
 
 function cartPriceNum(p){ return parseInt(p.replace(/\s/g,'').replace('FCFA','').trim()) }
 
@@ -1618,12 +1692,12 @@ function renderCart(){
 
 function cartQty(i, delta){
   cartItems[i].qty = Math.max(1, cartItems[i].qty + delta);
-  renderCart();
+  saveCart(); renderCart();
 }
 function cartRemove(i){
   const name = prods[cartItems[i].idx].n;
   cartItems.splice(i, 1);
-  renderCart();
+  saveCart(); renderCart();
   toast(name + ' retiré du panier');
 }
 /* checkout() défini plus bas (ligne ~4341) — cette entrée supprimée pour éviter le double */
@@ -1762,6 +1836,27 @@ function openAI(){document.getElementById('aid').classList.add('open');document.
 function closeAI(){document.getElementById('aid').classList.remove('open');document.getElementById('ov').classList.remove('show');setAriaHidden('aid',true);document.body.style.overflow=''}
 function closeQV(){document.getElementById('qv').classList.remove('open');setAriaHidden('qv',true)}
 function closeAll(){closeAdmin();closeCart();closeAI();closeQV();closeInfoModal();closePdfPreview();closePayModal();document.getElementById('ov').classList.remove('show');document.body.style.overflow=''}
+
+// ─── SECRET ADMIN ACCESS (5 clics sur le logo) ───────────────────────────────
+let _adminClicks=0, _adminTimer=null;
+document.addEventListener('DOMContentLoaded',()=>{
+  const logo=document.getElementById('nlogo-link');
+  if(logo){
+    logo.addEventListener('click', e=>{
+      if(lenis) lenis.scrollTo(0,{duration:1.6});
+      e.preventDefault();
+      _adminClicks++;
+      clearTimeout(_adminTimer);
+      if(_adminClicks>=5){
+        _adminClicks=0;
+        const btn=document.getElementById('admin-btn');
+        if(btn){ btn.style.display=''; toast('Mode admin activé ✦'); }
+      } else {
+        _adminTimer=setTimeout(()=>{ _adminClicks=0; }, 2000);
+      }
+    });
+  }
+});
 function openMNav(){document.getElementById('mnav').classList.add('open');document.body.style.overflow='hidden'}
 function closeMNav(){document.getElementById('mnav').classList.remove('open');document.body.style.overflow=''}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAll();closeMNav();closeLogin()}});
@@ -2143,13 +2238,30 @@ function handleForm(e){
   e.target.reset();
 }
 
+function handleNewsletter(e){
+  e.preventDefault();
+  const email=document.getElementById('nl-email').value.trim();
+  if(!email){ toast('Veuillez saisir votre email'); return; }
+  // Vérification si déjà inscrit
+  try{
+    const subs=JSON.parse(localStorage.getItem('mda_nl')||'[]');
+    if(subs.includes(email)){ toast('Vous êtes déjà inscrit(e) à notre newsletter ✦'); return; }
+    subs.push(email);
+    localStorage.setItem('mda_nl', JSON.stringify(subs));
+  }catch(e){}
+  document.getElementById('nl-form').reset();
+  const modal=document.getElementById('nl-modal');
+  modal.style.display='flex';
+  document.body.style.overflow='hidden';
+}
+
 // ─── CART ACTIONS ─────────────────────────────────────────────────────────────
 function addCart(){
   const idx=currentQVIdx;
   const existing=cartItems.find(i=>i.idx===idx);
   if(existing){ existing.qty++; }
   else { cartItems.push({idx,qty:1}); }
-  closeQV();
+  saveCart(); closeQV();
   renderCart();
   toast('Pièce ajoutée au panier ✦');
   setTimeout(openCart,400);
@@ -2253,14 +2365,14 @@ function sendResetLink(){
 // ─── PRODUCTS ─────────────────────────────────────────────────────────────────
 let currentQVIdx = 0;
 const prods=[
-  {img:'Boubou brodé doré.png',n:"Boubou Brodé d'Or",o:'Dakar, Sénégal',p:'285 000 FCFA',b:'Rare',d:"Pièce d'exception tissée à la main selon des techniques transmises depuis trois siècles dans les ateliers dakarois.",m:"Soie & fil d'or",a:'Maître Mbaye'},
-  {img:'Masque Baoulé sculpé.png',n:'Masque Sculpté Baoulé',o:"Abidjan, Côte d'Ivoire",p:'420 000 FCFA',b:'Nouveau',d:"Œuvre sacrée taillée dans l'ébène par un maître sculpteur baoulé. Chaque détail révèle un dialogue entre l'humain et le divin.",m:'Ébène & pigments naturels',a:'Kofi Asante'},
-  {img:'Robe Kenté Royale.png',n:'Robe Kente Royale',o:'Accra, Ghana',p:'195 000 FCFA',b:'Rare',d:'Tissu kente royal tissé sur métier traditionnel, motifs exclusifs du royaume Ashanti.',m:'Soie & coton tissés',a:'Kwame Osei'},
-  {img:'Parures argentées.png',n:'Parure Berbère Argent',o:'Marrakech, Maroc',p:'145 000 FCFA',b:'Nouveau',d:'Parure en argent massif ciselé à la main, ornée de corail naturel et pierres précieuses du Grand Atlas.',m:'Argent massif, corail',a:'Fatima Benali'},
-  {img:'Sac en cuir Massai.png',n:'Sac Cuir Maasaï',o:'Nairobi, Kenya',p:'98 000 FCFA',b:'',d:"Sac en cuir de buffle tanné à la main selon les traditions maasaï, orné de broderies aux perles naturelles.",m:'Cuir de buffle, perles',a:'Siokapu Ole'},
-  {img:'Tapis berber ancestral.png',n:'Tapis Berbère Ancestral',o:'Fès, Maroc',p:'350 000 FCFA',b:'Rare',d:'Tapis noué à la main en laine naturelle teinte aux pigments végétaux. Six mois de travail par une maîtresse tisserande.',m:'Laine naturelle',a:'Zahra El Fassi'},
-  {img:'Djellaba Brodée.png',n:'Djellaba Brodée',o:'Tunis, Tunisie',p:'175 000 FCFA',b:'Nouveau',d:"Djellaba en lin blanc ivoire brodée à la main de fils d'argent selon les motifs andalous de la médina de Tunis.",m:"Lin & fils d'argent",a:'Leila Mansouri'},
-  {img:'Plateau Africain DG.jpg',n:'Plateau Africain Signature',o:'Niamey, Niger',p:'680 000 FCFA',b:'Rare',d:"Plateau décoratif sculpté et laqué, édition unique signée par la collection signature de la maison.",m:'Bois noble & laque naturelle',a:'Amadou Binta Diallo'}
+  {img:'Boubou brodé doré.png',n:"Boubou Brodé d'Or",o:'Dakar, Sénégal',p:'285 000 FCFA',b:'Rare',d:"Pièce d'exception tissée à la main selon des techniques transmises depuis trois siècles dans les ateliers dakarois.",m:"Soie & fil d'or",a:'Maître Mbaye',stock:2},
+  {img:'Masque Baoulé sculpé.png',n:'Masque Sculpté Baoulé',o:"Abidjan, Côte d'Ivoire",p:'420 000 FCFA',b:'Nouveau',d:"Œuvre sacrée taillée dans l'ébène par un maître sculpteur baoulé. Chaque détail révèle un dialogue entre l'humain et le divin.",m:'Ébène & pigments naturels',a:'Kofi Asante',stock:1},
+  {img:'Robe Kenté Royale.png',n:'Robe Kente Royale',o:'Accra, Ghana',p:'195 000 FCFA',b:'Rare',d:'Tissu kente royal tissé sur métier traditionnel, motifs exclusifs du royaume Ashanti.',m:'Soie & coton tissés',a:'Kwame Osei',stock:3},
+  {img:'Parures argentées.png',n:'Parure Berbère Argent',o:'Marrakech, Maroc',p:'145 000 FCFA',b:'Nouveau',d:'Parure en argent massif ciselé à la main, ornée de corail naturel et pierres précieuses du Grand Atlas.',m:'Argent massif, corail',a:'Fatima Benali',stock:5},
+  {img:'Sac en cuir Massai.png',n:'Sac Cuir Maasaï',o:'Nairobi, Kenya',p:'98 000 FCFA',b:'',d:"Sac en cuir de buffle tanné à la main selon les traditions maasaï, orné de broderies aux perles naturelles.",m:'Cuir de buffle, perles',a:'Siokapu Ole',stock:4},
+  {img:'Tapis berber ancestral.png',n:'Tapis Berbère Ancestral',o:'Fès, Maroc',p:'350 000 FCFA',b:'Rare',d:'Tapis noué à la main en laine naturelle teinte aux pigments végétaux. Six mois de travail par une maîtresse tisserande.',m:'Laine naturelle',a:'Zahra El Fassi',stock:1},
+  {img:'Djellaba Brodée.png',n:'Djellaba Brodée',o:'Tunis, Tunisie',p:'175 000 FCFA',b:'Nouveau',d:"Djellaba en lin blanc ivoire brodée à la main de fils d'argent selon les motifs andalous de la médina de Tunis.",m:"Lin & fils d'argent",a:'Leila Mansouri',stock:3},
+  {img:'Plateau Africain DG.jpg',n:'Plateau Africain Signature',o:'Niamey, Niger',p:'680 000 FCFA',b:'Rare',d:"Plateau décoratif sculpté et laqué, édition unique signée par la collection signature de la maison.",m:'Bois noble & laque naturelle',a:'Amadou Binta Diallo',stock:1}
 ];
 
 function openQV(idx){
@@ -2277,6 +2389,20 @@ function openQV(idx){
   const b=document.getElementById('qvbg');
   if(p.b){b.style.display='inline-block';b.textContent=p.b;b.className='bk '+(p.b==='Rare'?'br':'bn')}
   else b.style.display='none';
+  // Compteur stock
+  let stockEl=document.getElementById('qv-stock');
+  if(!stockEl){
+    stockEl=document.createElement('div');
+    stockEl.id='qv-stock';
+    stockEl.style.cssText='font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;margin-top:.5rem';
+    document.getElementById('qvp').insertAdjacentElement('afterend',stockEl);
+  }
+  if(p.stock<=3){
+    stockEl.innerHTML=`<span style="color:#e74c3c">● Plus que ${p.stock} en stock</span>`;
+    stockEl.style.display='block';
+  } else {
+    stockEl.style.display='none';
+  }
   document.getElementById('qv').classList.add('open');
   setAriaHidden('qv',false);
 }
@@ -4424,6 +4550,14 @@ function payStepNext(){
   if(payStep===1){ showPayStep(2); return; }
   if(payStep===2){
     if(!selectedMethod){ toast(currentLang==='en'?'Please select a payment method':'Veuillez choisir un moyen de paiement'); return; }
+    // Validation téléphone obligatoire pour MyNITA et Amana
+    if(selectedMethod==='nita'||selectedMethod==='amana'){
+      const phoneId = selectedMethod==='nita'?'nita-phone':'amana-phone';
+      const phoneVal = (document.getElementById(phoneId)?.value||'').trim();
+      if(!phoneVal || phoneVal.replace(/\D/g,'').length < 8){
+        toast(currentLang==='en'?'Please enter a valid phone number':'Veuillez saisir un numéro de téléphone valide'); return;
+      }
+    }
     showPayStep(3);
   }
 }
