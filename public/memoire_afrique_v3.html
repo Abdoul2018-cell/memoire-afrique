@@ -624,6 +624,11 @@ body.light #loader{background:var(--noir)}
 .nbtn-lang span.active{color:var(--or);font-weight:500}
 .nbtn-lang .sep{opacity:.3}
 
+/* ─── WISHLIST MODAL ──────────────────────────── */
+#wlModal{position:fixed;inset:0;background:rgba(10,8,6,.88);z-index:310;display:none;align-items:flex-end;justify-content:center}
+#wlModal.open{display:flex}
+.wl-box{background:#0c0907;border:1px solid rgba(201,169,110,.2);border-bottom:none;width:100%;max-width:460px;max-height:85vh;display:flex;flex-direction:column}
+
 /* ─── ORDERS MODAL ────────────────────────────── */
 #ordersModal{display:none!important}
 #ordersModal.open{display:flex!important}
@@ -713,6 +718,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nic">
+    <button class="ni" onclick="openWishlist()" aria-label="Mes favoris" title="Mes favoris" style="position:relative">♡<span id="wl-badge" style="display:none;position:absolute;top:-3px;right:-4px;background:#e74c3c;color:#fff;font-size:.44rem;font-weight:700;min-width:14px;height:14px;border-radius:50%;align-items:center;justify-content:center;padding:0 2px"></span></button>
     <button class="ni" onclick="openOrders()" aria-label="Mes commandes" title="Mes commandes" id="orders-nav-btn" style="position:relative">◫<span id="orders-badge" style="display:none;position:absolute;top:-3px;right:-4px;background:var(--or);color:var(--noir);font-size:.44rem;font-weight:700;min-width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 2px"></span></button>
     <button class="ni" onclick="openDocs()" aria-label="Mes Documents" title="Mes Documents" id="docs-nav-btn">⬚</button>
     <button class="ni" onclick="openAI()" aria-label="Agents IA" title="Agents IA">◈</button>
@@ -2209,13 +2215,115 @@ function filterAndGoto(cat){
   setTimeout(()=>gotoSec('products'), 80);
 }
 
-// ─── WISHLIST & MISC ──────────────────────────────────────────────────────────
+// ─── WISHLIST ─────────────────────────────────────────────────────────────────
+const wishlist = (()=>{ try{ return new Set(JSON.parse(localStorage.getItem('mda_wl')||'[]')); }catch(e){ return new Set(); } })();
+function saveWl(){ try{ localStorage.setItem('mda_wl', JSON.stringify([...wishlist])); }catch(e){} }
+
 function wl(btn){
-  const adding=btn.textContent.includes('♡');
-  btn.textContent=adding?'♥ Sauvegardé':'♡';
-  btn.style.color=adding?'#e74c3c':'';
-  toast(adding?'Ajouté à la wishlist ♥':'Retiré de la wishlist');
+  // Trouver l'index produit depuis le bouton
+  const article = btn.closest('article.pc');
+  let idx = article ? parseInt(article.getAttribute('onclick').match(/openQV\((\d+)\)/)?.[1]) : null;
+  // Si bouton dans la QV
+  if(idx === null || isNaN(idx)) idx = currentQVIdx;
+  if(idx === null || isNaN(idx)) return;
+  const inWl = wishlist.has(idx);
+  if(inWl){ wishlist.delete(idx); }
+  else { wishlist.add(idx); }
+  saveWl();
+  syncWlUI();
+  toast(inWl ? 'Retiré des favoris' : 'Ajouté aux favoris ♥');
+  updateWlBadge();
 }
+
+function syncWlUI(){
+  // Sync toutes les cartes produits
+  document.querySelectorAll('article.pc').forEach(art=>{
+    const m = art.getAttribute('onclick')?.match(/openQV\((\d+)\)/);
+    if(!m) return;
+    const idx = parseInt(m[1]);
+    const btn = art.querySelector('.pwl');
+    if(!btn) return;
+    if(wishlist.has(idx)){ btn.textContent='♥'; btn.style.color='#e74c3c'; }
+    else { btn.textContent='♡'; btn.style.color=''; }
+  });
+  // Sync bouton QV
+  const qvWlBtn = document.querySelector('.qvac .bs');
+  if(qvWlBtn){
+    const isFr = currentLang==='fr';
+    if(wishlist.has(currentQVIdx)){
+      qvWlBtn.textContent = isFr ? '♥ Sauvegardé dans les favoris' : '♥ Saved to wishlist';
+      qvWlBtn.style.color='#e74c3c';
+    } else {
+      qvWlBtn.textContent = isFr ? '♡ Ajouter à la wishlist' : '♡ Add to wishlist';
+      qvWlBtn.style.color='';
+    }
+  }
+}
+
+function updateWlBadge(){
+  const badge = document.getElementById('wl-badge');
+  if(!badge) return;
+  if(wishlist.size > 0){ badge.textContent = String(wishlist.size); badge.style.display='flex'; }
+  else { badge.style.display='none'; }
+}
+
+function openWishlist(){
+  renderWishlist();
+  const m = document.getElementById('wlModal');
+  m.classList.add('open');
+  setAriaHidden('wlModal', false);
+  document.body.style.overflow = 'hidden';
+}
+function closeWishlist(){
+  const m = document.getElementById('wlModal');
+  m.classList.remove('open');
+  setAriaHidden('wlModal', true);
+  document.body.style.overflow = '';
+}
+
+function renderWishlist(){
+  const isFr = currentLang === 'fr';
+  const body = document.getElementById('wl-body');
+  const items = [...wishlist];
+  if(items.length === 0){
+    body.innerHTML = `
+      <div style="text-align:center;padding:3rem 1rem;color:rgba(250,246,240,.35)">
+        <div style="font-size:2.5rem;margin-bottom:1rem">♡</div>
+        <div style="font-family:var(--fd);font-size:1.1rem;font-style:italic;margin-bottom:.5rem">${isFr?'Votre liste de favoris est vide':'Your wishlist is empty'}</div>
+        <div style="font-size:.65rem;letter-spacing:.1em">${isFr?'Cliquez sur ♡ sur un produit pour le sauvegarder':'Click ♡ on any product to save it'}</div>
+      </div>`;
+    return;
+  }
+  body.innerHTML = items.map(idx => {
+    const p = prods[idx];
+    return `
+    <div style="display:flex;gap:.9rem;padding:.9rem 0;border-bottom:1px solid rgba(201,169,110,.1);align-items:center">
+      <div style="width:64px;height:80px;flex-shrink:0;overflow:hidden;background:var(--cacao)">
+        <img src="${p.img}" alt="${p.n}" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+      </div>
+      <div style="flex:1;min-width:0">
+        <div style="font-family:var(--fd);font-size:.95rem;font-style:italic;color:var(--ivoire);margin-bottom:.2rem">${p.n}</div>
+        <div style="font-size:.58rem;letter-spacing:.12em;color:rgba(201,169,110,.5);margin-bottom:.4rem">${p.o}</div>
+        <div style="font-family:var(--fd);font-size:1rem;color:var(--or)">${p.p}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end">
+        <button onclick="closeWishlist();setTimeout(()=>openQV(${idx}),200)" style="background:var(--or);border:none;color:var(--noir);font-family:var(--fb);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.4rem .75rem;cursor:pointer">${isFr?'Voir':'View'}</button>
+        <button onclick="removeFromWl(${idx})" style="background:none;border:none;color:rgba(250,246,240,.3);font-size:.72rem;cursor:pointer;transition:color .2s" onmouseover="this.style.color='#e74c3c'" onmouseout="this.style.color='rgba(250,246,240,.3)'" aria-label="Supprimer">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function removeFromWl(idx){
+  wishlist.delete(idx);
+  saveWl();
+  updateWlBadge();
+  syncWlUI();
+  renderWishlist();
+}
+
+// Init au chargement
+document.addEventListener('DOMContentLoaded', ()=>{ syncWlUI(); updateWlBadge(); });
 function tPw(){const p=document.getElementById('lpw');p.type=p.type==='password'?'text':'password'}
 
 // ─── FORMS ────────────────────────────────────────────────────────────────────
@@ -2472,6 +2580,7 @@ function openQV(idx){
     sizesWrap.style.display='none';
   }
   window._qvSelectedSize = null;
+  syncWlUI();
   document.getElementById('qv').classList.add('open');
   setAriaHidden('qv',false);
 }
@@ -4988,6 +5097,21 @@ function toggleOrderDetail(idx){
 // Init badge on load
 document.addEventListener('DOMContentLoaded', updateOrdersBadge);
 </script>
+
+<!-- ── Wishlist Modal ────────────────────────────────────────────────── -->
+<div id="wlModal" role="dialog" aria-modal="true" aria-label="Mes favoris" aria-hidden="true"
+  onclick="if(event.target===this)closeWishlist()">
+  <div class="wl-box">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.4rem;border-bottom:1px solid rgba(201,169,110,.12)">
+      <div>
+        <div style="font-family:var(--fd);font-size:1.15rem;font-style:italic;color:var(--ivoire)">Mes Favoris</div>
+        <div style="font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,169,110,.5);margin-top:.2rem">Pièces sauvegardées</div>
+      </div>
+      <button onclick="closeWishlist()" style="background:none;border:none;color:rgba(250,246,240,.4);font-size:1rem;cursor:pointer;padding:.3rem" aria-label="Fermer">✕</button>
+    </div>
+    <div id="wl-body" style="overflow-y:auto;padding:.2rem 1.2rem;flex:1;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.2) transparent"></div>
+  </div>
+</div>
 
 <!-- ── Orders Modal ─────────────────────────────────────────────────── -->
 <div id="ordersModal" role="dialog" aria-modal="true" aria-label="Mes commandes" aria-hidden="true"
