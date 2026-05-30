@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Select-String -Path \"C:\\\\Users\\\\HP\\\\Desktop\\\\04_Memoires_Afrique\\\\mémoires d'afrique\\\\public\\\\memoire_afrique_v3.html\" -Pattern \"</aside>\")",
+      "Bash(Select-Object LineNumber, Line)",
+      "Bash(python -c ' *)",
+      "mcp__Claude_Preview__preview_start",
+      "mcp__Claude_in_Chrome__list_connected_browsers",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(ls \"/mnt/c/Users/HP/Desktop/04_Memoires_Afrique/mémoires d'afrique/public/\")",
+      "Bash(ls \"C:\\\\Users\\\\HP\\\\Desktop\\\\04_Memoires_Afrique\\\\mémoires d'afrique\\\\\")",
+      "PowerShell(vercel --version 2>&1)",
+      "PowerShell(node --version 2>&1)",
+      "PowerShell(npm --version 2>&1)",
+      "PowerShell(Get-Command vercel -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source; \\(npm bin -g\\) 2>&1)"
+    ]
+  }
+}

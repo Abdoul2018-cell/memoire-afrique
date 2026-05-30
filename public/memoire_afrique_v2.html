@@ -1,0 +1,750 @@
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--or:#c9a96e;--orl:#e8d5a3;--noir:#0a0806;--cacao:#2d1a0e;--ivoire:#faf6f0;--sable:#e8dcc8;--terre:#8b4513;--fd:'Cormorant Garamond',serif;--fb:'Jost',sans-serif}
+body{background:var(--noir);color:var(--ivoire);font-family:var(--fb);overflow-x:hidden}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap');
+
+nav{position:sticky;top:0;width:100%;z-index:100;padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:68px;background:rgba(10,8,6,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,110,.15)}
+.nlogo{font-family:var(--fd);font-size:1.5rem;font-weight:300;letter-spacing:.12em;color:var(--or);text-decoration:none;font-style:italic}
+.nlinks{display:flex;gap:2rem;list-style:none}
+.nlinks a{font-size:.68rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--sable);text-decoration:none;transition:color .3s;position:relative}
+.nlinks a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--or);transition:width .4s}
+.nlinks a:hover{color:var(--or)}
+.nlinks a:hover::after{width:100%}
+.nic{display:flex;gap:1.2rem;align-items:center}
+.ni{background:none;border:none;color:var(--sable);cursor:pointer;font-size:.95rem;transition:color .3s;position:relative;padding:4px}
+.ni:hover{color:var(--or)}
+.cbadge{position:absolute;top:-6px;right:-6px;background:var(--or);color:var(--noir);border-radius:50%;width:15px;height:15px;font-size:8px;display:flex;align-items:center;justify-content:center;font-weight:500}
+
+/* HERO */
+#hero{height:92vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--noir)}
+#hcv{position:absolute;inset:0;width:100%;height:100%}
+.hmotif{position:absolute;inset:0;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23c9a96e' stroke-width='0.6'%3E%3Crect x='8' y='8' width='64' height='64'/%3E%3Crect x='20' y='20' width='40' height='40'/%3E%3Cline x1='8' y1='8' x2='40' y2='40'/%3E%3Cline x1='72' y1='8' x2='40' y2='40'/%3E%3Cline x1='8' y1='72' x2='40' y2='40'/%3E%3Cline x1='72' y1='72' x2='40' y2='40'/%3E%3Ccircle cx='40' cy='40' r='10'/%3E%3C/g%3E%3C/svg%3E");background-size:80px 80px}
+.hvig{position:absolute;inset:0;background:radial-gradient(ellipse 75% 75% at 50% 50%,transparent 25%,rgba(10,8,6,.75) 100%)}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);animation:opulse 7s ease-in-out infinite alternate;pointer-events:none}
+.o1{width:420px;height:420px;background:radial-gradient(ellipse,rgba(201,169,110,.09),transparent 70%);top:-8%;right:-4%}
+.o2{width:320px;height:320px;background:radial-gradient(ellipse,rgba(139,69,19,.12),transparent 70%);bottom:-8%;left:-4%;animation-delay:-3.5s}
+.o3{width:240px;height:240px;background:radial-gradient(ellipse,rgba(205,127,50,.07),transparent 70%);top:35%;left:12%;animation-delay:-1.8s}
+@keyframes opulse{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.18);opacity:1}}
+.hcont{position:relative;z-index:2;text-align:center;max-width:860px;padding:0 2rem}
+.hbadge{display:inline-block;border:1px solid rgba(201,169,110,.35);padding:.35rem 1.4rem;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-bottom:2.2rem;animation:fup 1s .2s both}
+.htitle{font-family:var(--fd);font-size:clamp(3.2rem,7.5vw,6.5rem);font-weight:300;line-height:1.06;color:var(--ivoire);margin-bottom:1.4rem;animation:fup 1s .4s both}
+.htitle em{color:var(--or);font-style:italic}
+.hsub{font-size:.8rem;font-weight:300;letter-spacing:.07em;line-height:1.92;color:rgba(250,246,240,.6);max-width:530px;margin:0 auto 2.8rem;animation:fup 1s .6s both}
+.hctas{display:flex;gap:1.4rem;justify-content:center;flex-wrap:wrap;animation:fup 1s .8s both}
+.bp{background:var(--or);color:var(--noir);border:none;padding:.9rem 2.3rem;font-family:var(--fb);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .35s;position:relative;overflow:hidden}
+.bp::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.14);transform:translateX(-100%);transition:transform .4s}
+.bp:hover::before{transform:translateX(0)}
+.bs{background:transparent;color:var(--or);border:1px solid rgba(201,169,110,.42);padding:.9rem 2.3rem;font-family:var(--fb);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .35s}
+.bs:hover{background:rgba(201,169,110,.07);border-color:var(--or)}
+.hscroll{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.45rem;opacity:.42}
+.scl{width:1px;height:52px;background:linear-gradient(to bottom,var(--or),transparent);animation:scd 2s ease-in-out infinite}
+.hscroll span{font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--or)}
+@keyframes scd{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.01%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@keyframes fup{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+
+/* MARQUEE */
+.mwrap{background:var(--or);overflow:hidden;padding:.62rem 0}
+.mtrack{display:flex;white-space:nowrap;animation:marq 22s linear infinite}
+.mtrack span{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--noir);padding:0 2.8rem}
+@keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding:6rem 5%}
+.sl{font-size:.56rem;letter-spacing:.35em;text-transform:uppercase;color:var(--or);margin-bottom:.85rem;opacity:.78}
+.st{font-family:var(--fd);font-size:clamp(2rem,3.8vw,3.2rem);font-weight:300;line-height:1.15;color:var(--ivoire)}
+.st em{color:var(--or);font-style:italic}
+.sd{width:55px;height:1px;background:linear-gradient(to right,var(--or),transparent);margin:1.3rem 0 2.6rem}
+.rv{opacity:0;transform:translateY(36px);transition:opacity .75s,transform .75s}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}
+
+/* COLLECTIONS */
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:3.5rem}
+.cc{position:relative;overflow:hidden;aspect-ratio:3/4;cursor:pointer}
+.cc.lg{grid-row:span 2;aspect-ratio:auto}
+.ccbg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:transform .6s}
+.cc:hover .ccbg{transform:scale(1.07)}
+.ccov{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,6,.88),rgba(10,8,6,.14) 58%,transparent);transition:opacity .4s}
+.cc:hover .ccov{opacity:.68}
+.ccinfo{position:absolute;bottom:1.8rem;left:1.8rem;right:1.8rem}
+.ccn{font-family:var(--fd);font-size:1.48rem;font-weight:300;color:var(--ivoire);font-style:italic;margin-bottom:.28rem}
+.ccc{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);opacity:.78}
+.ccl{display:inline-block;margin-top:.85rem;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);text-decoration:none;padding-bottom:2px;border-bottom:1px solid rgba(201,169,110,.28);opacity:0;transform:translateY(7px);transition:all .4s}
+.cc:hover .ccl{opacity:1;transform:translateY(0)}
+.cv1{background:linear-gradient(135deg,#1a0f07,#3c1f0f)}.cv2{background:linear-gradient(135deg,#0d1a0d,#193819)}.cv3{background:linear-gradient(135deg,#1a1007,#3c2700)}.cv4{background:linear-gradient(135deg,#0a0a1a,#191939)}.cv5{background:linear-gradient(135deg,#1a0a0a,#3c1919)}.cv6{background:linear-gradient(135deg,#1a1507,#3c2f0f)}
+
+/* PRODUITS */
+.pfilters{display:flex;gap:.65rem;margin-bottom:2.6rem;flex-wrap:wrap}
+.pfb{background:transparent;border:1px solid rgba(201,169,110,.17);color:rgba(250,246,240,.52);padding:.42rem 1rem;font-family:var(--fb);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.pfb.act,.pfb:hover{background:rgba(201,169,110,.09);border-color:var(--or);color:var(--or)}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+.pc{cursor:pointer}
+.pi{position:relative;overflow:hidden;aspect-ratio:3/4;margin-bottom:.85rem}
+.pv{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3.5rem;transition:transform .6s}
+.pc:hover .pv{transform:scale(1.06)}
+.pbrow{position:absolute;top:.85rem;left:.85rem;display:flex;flex-direction:column;gap:.32rem}
+.bk{font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .5rem}
+.br{background:rgba(201,169,110,.88);color:var(--noir)}
+.bn{background:rgba(139,69,19,.88);color:var(--ivoire)}
+.pact{position:absolute;bottom:.85rem;left:.85rem;right:.85rem;display:flex;gap:.42rem;opacity:0;transform:translateY(8px);transition:all .4s}
+.pc:hover .pact{opacity:1;transform:translateY(0)}
+.pwl{background:rgba(10,8,6,.7);border:1px solid rgba(201,169,110,.26);color:var(--or);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.88rem;flex-shrink:0;backdrop-filter:blur(8px);transition:all .3s}
+.pqv{flex:1;background:rgba(10,8,6,.78);border:1px solid rgba(201,169,110,.26);color:var(--ivoire);font-family:var(--fb);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(8px);transition:all .3s}
+.pqv:hover{background:rgba(201,169,110,.13);color:var(--or)}
+.pn{font-family:var(--fd);font-size:.98rem;font-weight:400;color:var(--ivoire);margin-bottom:.16rem;font-style:italic}
+.po{font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(201,169,110,.58);margin-bottom:.42rem}
+.pp{font-size:.8rem;font-weight:300;color:var(--or)}
+.pb1{background:linear-gradient(160deg,#2d1a0e,#1a0f07)}.pb2{background:linear-gradient(160deg,#1a1a2e,#0d0d1a)}.pb3{background:linear-gradient(160deg,#2e1a1a,#1a0d0d)}.pb4{background:linear-gradient(160deg,#1a2e1a,#0d1a0d)}.pb5{background:linear-gradient(160deg,#2e2a1a,#1a1507)}.pb6{background:linear-gradient(160deg,#1a1a1a,#0d0d0d)}.pb7{background:linear-gradient(160deg,#2e1a2e,#1a0d1a)}.pb8{background:linear-gradient(160deg,#2e2e1a,#1a1a0d)}
+
+/* GALERIE */
+.gg{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(3,170px);gap:3px;margin-top:2.8rem}
+.gi{overflow:hidden;position:relative;cursor:pointer}
+.gi:nth-child(1){grid-column:span 5;grid-row:span 2}
+.gi:nth-child(2){grid-column:span 4}
+.gi:nth-child(3){grid-column:span 3}
+.gi:nth-child(4){grid-column:span 4}
+.gi:nth-child(5){grid-column:span 3;grid-row:span 2}
+.gi:nth-child(6){grid-column:span 4}
+.gi:nth-child(7){grid-column:span 5}
+.gi:nth-child(8){grid-column:span 7}
+.gbg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;transition:transform .7s}
+.gi:hover .gbg{transform:scale(1.08)}
+.gov{position:absolute;inset:0;background:rgba(10,8,6,0);transition:background .4s}
+.gi:hover .gov{background:rgba(10,8,6,.3)}
+.gcap{position:absolute;bottom:.9rem;left:.9rem;opacity:0;transform:translateY(5px);transition:all .4s;font-family:var(--fd);font-style:italic;color:var(--or);font-size:.85rem}
+.gi:hover .gcap{opacity:1;transform:translateY(0)}
+.gb1{background:linear-gradient(135deg,#2d1a0e,#8b4513,#c9a96e)}.gb2{background:linear-gradient(135deg,#1a1507,#4a3b1a)}.gb3{background:linear-gradient(135deg,#0d1a0d,#1a3a1a)}.gb4{background:linear-gradient(135deg,#1a0a0a,#4a1a1a)}.gb5{background:linear-gradient(135deg,#0a0a1a,#1a1a4a)}.gb6{background:linear-gradient(135deg,#1a150a,#4a3a1a)}.gb7{background:linear-gradient(135deg,#0d0a1a,#2d1a4a)}.gb8{background:linear-gradient(135deg,#0a1a0a,#1a4a2a)}
+
+/* DIRECTRICE */
+#dir{background:linear-gradient(135deg,#0a0806,#140e09,#0a0806);position:relative;overflow:hidden}
+.dpat{position:absolute;inset:0;opacity:.028;background-image:repeating-conic-gradient(var(--or) 0%,transparent .5%,transparent 50%);background-size:36px 36px}
+.dinn{display:grid;grid-template-columns:1fr 1.5fr;gap:5.5rem;align-items:center;position:relative;z-index:1}
+.dpframe{width:100%;padding-bottom:128%;background:linear-gradient(160deg,#2d1a0e,#1a0f07);position:relative;overflow:hidden}
+.dpart{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9rem;opacity:.52}
+.dpacc{position:absolute;bottom:-1px;left:-1px;right:-1px;height:38%;background:linear-gradient(to top,rgba(201,169,110,.13),transparent)}
+.dpbrd{position:absolute;top:1.4rem;left:1.4rem;right:-1.4rem;bottom:-1.4rem;border:1px solid rgba(201,169,110,.2);pointer-events:none}
+.dqm{font-family:var(--fd);font-size:6.5rem;color:var(--or);opacity:.12;line-height:.55;margin-bottom:.9rem;font-style:italic}
+.dq{font-family:var(--fd);font-size:1.25rem;font-weight:300;line-height:1.72;color:var(--ivoire);font-style:italic;margin-bottom:1.6rem}
+.dq em{color:var(--or)}
+.dt{font-size:.78rem;font-weight:300;line-height:1.92;color:rgba(250,246,240,.56);margin-bottom:1.6rem}
+.dsig{font-family:var(--fd);font-size:1.68rem;font-weight:300;color:var(--or);font-style:italic;margin-top:1.3rem}
+.drl{font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(201,169,110,.52);margin-top:.28rem}
+
+/* LIVRAISON */
+.lgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.8rem;margin-top:2.8rem}
+.lc{border:1px solid rgba(201,169,110,.13);padding:2.8rem;position:relative;overflow:hidden;transition:border-color .4s}
+.lc:hover{border-color:rgba(201,169,110,.36)}
+.lico{width:50px;height:50px;border:1px solid rgba(201,169,110,.26);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.6rem;color:var(--or)}
+.lt{font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:var(--or);margin-bottom:.65rem}
+.ld{font-family:var(--fd);font-size:2.3rem;font-weight:300;color:var(--ivoire);font-style:italic;line-height:1}
+.lu{font-size:.7rem;font-weight:300;color:rgba(250,246,240,.45);letter-spacing:.09em;margin-top:.42rem}
+.ldesc{font-size:.72rem;font-weight:300;color:rgba(250,246,240,.45);margin-top:1.3rem;line-height:1.7}
+
+/* PAIEMENTS */
+.pgr{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:2.8rem}
+.pay{border:1px solid rgba(201,169,110,.17);padding:.72rem 1.3rem;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,246,240,.46);transition:all .4s;cursor:default}
+.pay:hover,.pay.ft{border-color:rgba(201,169,110,.36);color:var(--or)}
+
+/* CONTACT */
+.cinn{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;margin-top:3.5rem}
+.ciblock{display:flex;flex-direction:column;gap:2.2rem}
+.cit{display:flex;gap:1.3rem;align-items:flex-start}
+.cico{width:40px;height:40px;border:1px solid rgba(201,169,110,.2);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;color:var(--or)}
+.clb{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:.32rem;opacity:.78}
+.cvl{font-size:.8rem;font-weight:300;color:var(--ivoire);line-height:1.6}
+.cvl a{color:var(--sable);text-decoration:none;transition:color .3s}
+.cvl a:hover{color:var(--or)}
+.csoc{display:flex;gap:.85rem;margin-top:1.6rem}
+.sla{width:36px;height:36px;border:1px solid rgba(201,169,110,.17);display:flex;align-items:center;justify-content:center;color:rgba(250,246,240,.45);text-decoration:none;font-size:.68rem;transition:all .3s}
+.sla:hover{border-color:var(--or);color:var(--or);background:rgba(201,169,110,.06)}
+.cbtns{display:flex;gap:.65rem;flex-wrap:wrap}
+.cbt{background:transparent;border:1px solid rgba(201,169,110,.26);color:var(--or);padding:.62rem 1.2rem;font-family:var(--fb);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-flex;align-items:center;gap:.42rem}
+.cbt:hover{background:rgba(201,169,110,.08);border-color:var(--or)}
+.cbwa{border-color:rgba(37,211,102,.32);color:#25d366}
+.cbwa:hover{background:rgba(37,211,102,.06);border-color:#25d366}
+.cform{display:flex;flex-direction:column;gap:1.1rem}
+.fg{display:flex;flex-direction:column;gap:.42rem}
+.flb{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,169,110,.62)}
+.fi{background:transparent;border:none;border-bottom:1px solid rgba(201,169,110,.17);padding:.72rem 0;color:var(--ivoire);font-family:var(--fb);font-size:.8rem;font-weight:300;outline:none;transition:border-color .3s;width:100%}
+.fi:focus{border-color:var(--or)}
+.fi::placeholder{color:rgba(250,246,240,.2)}
+.fta{background:transparent;border:1px solid rgba(201,169,110,.17);padding:.85rem;color:var(--ivoire);font-family:var(--fb);font-size:.8rem;font-weight:300;outline:none;resize:none;height:105px;transition:border-color .3s;width:100%}
+.fta:focus{border-color:var(--or)}
+.fta::placeholder{color:rgba(250,246,240,.2)}
+
+/* FOOTER */
+footer{background:#030201;border-top:1px solid rgba(201,169,110,.1);padding:3.8rem 5% 1.8rem}
+.fg4{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3.5rem;margin-bottom:2.8rem}
+.flogo{font-family:var(--fd);font-size:1.68rem;font-weight:300;color:var(--or);font-style:italic;margin-bottom:.85rem}
+.ftag{font-size:.68rem;font-weight:300;color:rgba(250,246,240,.36);line-height:1.8;max-width:245px}
+.fh{font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:var(--or);margin-bottom:1.3rem;opacity:.78}
+.flinks{list-style:none;display:flex;flex-direction:column;gap:.72rem}
+.flinks a{font-size:.7rem;font-weight:300;color:rgba(250,246,240,.4);text-decoration:none;transition:color .3s}
+.flinks a:hover{color:var(--or)}
+.fbot{display:flex;justify-content:space-between;align-items:center;padding-top:1.8rem;border-top:1px solid rgba(201,169,110,.1);font-size:.58rem;letter-spacing:.09em;color:rgba(250,246,240,.2)}
+
+/* PANELS */
+#adm,#cart,#aid{position:fixed;top:0;height:100vh;background:#0a0806;z-index:200;transition:transform .5s ease;overflow-y:auto}
+#adm{right:0;width:468px;transform:translateX(100%);border-left:1px solid rgba(201,169,110,.17)}
+#adm.open{transform:translateX(0)}
+#cart{right:0;width:385px;transform:translateX(100%);border-left:1px solid rgba(201,169,110,.17);display:flex;flex-direction:column}
+#cart.open{transform:translateX(0)}
+#aid{left:0;width:505px;transform:translateX(-100%);border-right:1px solid rgba(201,169,110,.17)}
+#aid.open{transform:translateX(0)}
+.ph{padding:1.8rem 2rem;border-bottom:1px solid rgba(201,169,110,.11);display:flex;justify-content:space-between;align-items:center}
+.pt{font-family:var(--fd);font-size:1.28rem;color:var(--or);font-style:italic}
+.pc2{background:none;border:none;color:rgba(250,246,240,.42);font-size:1.1rem;cursor:pointer;transition:color .3s}
+.pc2:hover{color:var(--or)}
+.au{padding:1.3rem 2rem;background:rgba(201,169,110,.05);border-bottom:1px solid rgba(201,169,110,.1)}
+.abg{display:inline-block;background:linear-gradient(90deg,#8b4513,#c9a96e);color:var(--noir);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;padding:.18rem .62rem;margin-bottom:.65rem}
+.an{font-family:var(--fd);font-size:1.1rem;color:var(--ivoire);font-style:italic}
+.aid2{font-size:.56rem;letter-spacing:.13em;color:rgba(201,169,110,.45);margin-top:.18rem}
+.anav{padding:1.3rem 2rem;display:flex;flex-direction:column;gap:.42rem}
+.ani{display:flex;align-items:center;gap:.85rem;padding:.8rem .95rem;border:1px solid transparent;cursor:pointer;transition:all .3s;color:rgba(250,246,240,.52);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase}
+.ani:hover,.ani.act{background:rgba(201,169,110,.05);border-color:rgba(201,169,110,.17);color:var(--or)}
+.aico{font-size:.9rem;width:16px;text-align:center}
+.ast{padding:1.3rem 2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
+.asc{background:rgba(201,169,110,.04);border:1px solid rgba(201,169,110,.1);padding:1rem;text-align:center}
+.asv{font-family:var(--fd);font-size:1.55rem;font-weight:300;color:var(--or);font-style:italic}
+.asl{font-size:.54rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(250,246,240,.35);margin-top:.22rem}
+.carth{padding:1.8rem 2rem;border-bottom:1px solid rgba(201,169,110,.11);display:flex;justify-content:space-between;align-items:center}
+.cartt{font-family:var(--fd);font-size:1.2rem;color:var(--ivoire);font-style:italic}
+.citems{flex:1;overflow-y:auto;padding:1.3rem 2rem}
+.ci{display:flex;gap:.85rem;padding:.85rem 0;border-bottom:1px solid rgba(201,169,110,.07)}
+.cimg{width:58px;height:72px;background:var(--cacao);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+.cin2{font-family:var(--fd);font-size:.85rem;font-style:italic;color:var(--ivoire)}
+.cip{font-size:.7rem;color:var(--or);margin-top:.26rem}
+.ciq{font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(250,246,240,.35);margin-top:.16rem}
+.cartf{padding:1.8rem 2rem;border-top:1px solid rgba(201,169,110,.11)}
+.ctot{display:flex;justify-content:space-between;margin-bottom:1.3rem}
+.ctl{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,246,240,.42)}
+.ctp{font-family:var(--fd);font-size:1.1rem;color:var(--or);font-style:italic}
+.bco{width:100%;background:var(--or);color:var(--noir);border:none;padding:.88rem;font-family:var(--fb);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.bco:hover{background:var(--orl)}
+
+/* LOGIN */
+#lm{position:fixed;inset:0;background:rgba(10,8,6,.97);z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s}
+#lm.open{opacity:1;pointer-events:all}
+.lb{width:405px;padding:3.2rem;border:1px solid rgba(201,169,110,.17);background:#0c0907;position:relative}
+.ll{font-family:var(--fd);font-size:1.82rem;font-weight:300;color:var(--or);font-style:italic;text-align:center;margin-bottom:.42rem}
+.ls{font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(201,169,110,.45);text-align:center;margin-bottom:2.2rem}
+.lf{display:flex;flex-direction:column;gap:1.3rem}
+.liw{position:relative}
+.lin{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(201,169,110,.17);padding:.72rem 0;color:var(--ivoire);font-family:var(--fb);font-size:.8rem;font-weight:300;outline:none;transition:border-color .3s}
+.lin:focus{border-color:var(--or)}
+.lin::placeholder{color:rgba(250,246,240,.17)}
+.llab{position:absolute;top:.72rem;left:0;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,169,110,.45);transition:all .3s;pointer-events:none}
+.lin:focus~.llab,.lin:not(:placeholder-shown)~.llab{top:-.72rem;font-size:.46rem;color:var(--or)}
+.pwt{position:absolute;right:0;top:.72rem;background:none;border:none;color:rgba(201,169,110,.42);cursor:pointer;font-size:.72rem;transition:color .3s}
+.pwt:hover{color:var(--or)}
+.bln{width:100%;background:var(--or);color:var(--noir);border:none;padding:.92rem;font-family:var(--fb);font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;transition:all .4s}
+.bln:hover{background:var(--orl)}
+.lclose{position:absolute;top:1.3rem;right:1.3rem;background:none;border:none;color:rgba(250,246,240,.26);font-size:1.1rem;cursor:pointer;transition:color .3s}
+.lclose:hover{color:var(--or)}
+.llnks{display:flex;justify-content:space-between;font-size:.6rem;color:rgba(250,246,240,.28)}
+.llnks a{color:rgba(201,169,110,.52);text-decoration:none;transition:color .3s}
+.llnks a:hover{color:var(--or)}
+
+/* QUICKVIEW */
+#qv{position:fixed;inset:0;background:rgba(10,8,6,.9);z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s}
+#qv.open{opacity:1;pointer-events:all}
+.qvb{width:760px;max-width:90vw;display:grid;grid-template-columns:1fr 1fr;background:#0c0907;border:1px solid rgba(201,169,110,.17);max-height:90vh;overflow:hidden;position:relative}
+.qvg{background:var(--cacao);display:flex;align-items:center;justify-content:center;font-size:7rem;aspect-ratio:3/4}
+.qvi{padding:2.2rem;overflow-y:auto;display:flex;flex-direction:column;gap:.85rem}
+.qvn{font-family:var(--fd);font-size:1.68rem;font-weight:300;color:var(--ivoire);font-style:italic;line-height:1.2}
+.qvp{font-family:var(--fd);font-size:1.38rem;color:var(--or);font-style:italic}
+.qvd{font-size:.72rem;font-weight:300;color:rgba(250,246,240,.5);line-height:1.8}
+.qvdet{border-top:1px solid rgba(201,169,110,.1);padding-top:.85rem;display:flex;flex-direction:column;gap:.42rem}
+.qvdr{display:flex;justify-content:space-between;font-size:.66rem}
+.qvdk{color:rgba(250,246,240,.36);letter-spacing:.08em}
+.qvdv{color:var(--ivoire);font-weight:300}
+.qvac{display:flex;flex-direction:column;gap:.65rem;margin-top:auto}
+.bac{background:var(--or);color:var(--noir);border:none;padding:.92rem;font-family:var(--fb);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .3s;width:100%}
+.bac:hover{background:var(--orl)}
+.qvcl{position:absolute;top:.85rem;right:.85rem;background:none;border:none;color:rgba(250,246,240,.42);font-size:1.35rem;cursor:pointer;transition:color .3s;z-index:1}
+.qvcl:hover{color:var(--or)}
+
+/* OVERLAY */
+#ov{position:fixed;inset:0;background:rgba(10,8,6,.58);z-index:150;opacity:0;pointer-events:none;transition:opacity .4s;backdrop-filter:blur(4px)}
+#ov.show{opacity:1;pointer-events:all}
+.toast{position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%) translateY(78px);background:var(--or);color:var(--noir);padding:.72rem 1.8rem;font-size:.65rem;letter-spacing:.13em;text-transform:uppercase;z-index:500;transition:transform .4s;font-weight:400}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--noir);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s}
+#loader.hid{opacity:0;pointer-events:none}
+.llogo{font-family:var(--fd);font-size:2.6rem;font-weight:300;color:var(--or);font-style:italic;animation:lp 2s ease-in-out infinite}
+.lbar{width:190px;height:1px;background:rgba(201,169,110,.17);margin-top:1.8rem;position:relative;overflow:hidden}
+.lprog{position:absolute;top:0;left:0;height:100%;background:var(--or);animation:lf 2s ease-in-out forwards}
+@keyframes lp{0%,100%{opacity:.42}50%{opacity:1}}
+@keyframes lf{from{width:0}to{width:100%}}
+
+/* CHATBOT */
+#cbtn{position:fixed;bottom:2rem;right:2rem;z-index:400;width:56px;height:56px;background:var(--or);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--noir);transition:all .4s;animation:cpulse 3s ease-in-out infinite;box-shadow:0 0 0 0 rgba(201,169,110,.35)}
+#cbtn:hover{background:var(--orl);transform:scale(1.06)}
+@keyframes cpulse{0%,100%{box-shadow:0 0 0 0 rgba(201,169,110,.35)}50%{box-shadow:0 0 0 11px rgba(201,169,110,0)}}
+.cnotif{position:absolute;top:-4px;right:-4px;width:16px;height:16px;background:#e74c3c;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:500}
+#chatbox{position:fixed;bottom:5.2rem;right:2rem;z-index:400;width:370px;max-height:565px;background:rgba(11,8,6,.97);border:1px solid rgba(201,169,110,.2);display:flex;flex-direction:column;transform:translateY(18px) scale(.96);opacity:0;pointer-events:none;transition:all .38s ease;backdrop-filter:blur(22px)}
+#chatbox.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+.cbh{padding:1.1rem 1.3rem;border-bottom:1px solid rgba(201,169,110,.11);display:flex;align-items:center;gap:.85rem;flex-shrink:0}
+.cbav{width:36px;height:36px;border:1px solid rgba(201,169,110,.28);display:flex;align-items:center;justify-content:center;font-size:1rem;background:rgba(201,169,110,.06);flex-shrink:0;color:var(--or)}
+.cbname{font-family:var(--fd);font-size:1rem;color:var(--ivoire);font-style:italic}
+.cbst{font-size:.54rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(201,169,110,.52)}
+.cdot{width:6px;height:6px;background:#4ade80;border-radius:50%;display:inline-block;margin-right:3px;animation:dblink 2s infinite}
+@keyframes dblink{0%,100%{opacity:1}50%{opacity:.38}}
+.cbcl{margin-left:auto;background:none;border:none;color:rgba(250,246,240,.32);cursor:pointer;font-size:.95rem;transition:color .3s}
+.cbcl:hover{color:var(--or)}
+.cbmsgs{flex:1;overflow-y:auto;padding:.9rem 1.1rem;display:flex;flex-direction:column;gap:.72rem;scroll-behavior:smooth}
+.cbmsgs::-webkit-scrollbar{width:2px}
+.cbmsgs::-webkit-scrollbar-thumb{background:rgba(201,169,110,.28);border-radius:2px}
+.msg{max-width:84%;padding:.6rem .85rem;font-size:.74rem;font-weight:300;line-height:1.65;animation:msgin .32s ease}
+@keyframes msgin{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.msg.bot{background:rgba(201,169,110,.07);border:1px solid rgba(201,169,110,.11);color:var(--ivoire);align-self:flex-start;border-radius:0 7px 7px 7px}
+.msg.usr{background:var(--or);color:var(--noir);align-self:flex-end;border-radius:7px 0 7px 7px;font-weight:400}
+.mtime{font-size:.5rem;opacity:.4;margin-top:.24rem;display:block}
+.typing{display:flex;gap:3px;padding:.5rem .85rem;background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.1);align-self:flex-start;border-radius:0 7px 7px 7px}
+.typing span{width:6px;height:6px;background:rgba(201,169,110,.45);border-radius:50%;animation:tdot .85s ease-in-out infinite}
+.typing span:nth-child(2){animation-delay:.18s}
+.typing span:nth-child(3){animation-delay:.36s}
+@keyframes tdot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
+.cbsug{padding:.55rem 1.1rem;display:flex;gap:.4rem;flex-wrap:wrap;border-top:1px solid rgba(201,169,110,.07);flex-shrink:0}
+.sug{background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.14);color:rgba(201,169,110,.75);font-size:.56rem;letter-spacing:.08em;padding:.28rem .65rem;cursor:pointer;transition:all .3s}
+.sug:hover{background:rgba(201,169,110,.13);color:var(--or)}
+.cbinp{padding:.85rem 1.1rem;border-top:1px solid rgba(201,169,110,.11);display:flex;gap:.55rem;align-items:center;flex-shrink:0}
+.cbi{flex:1;background:transparent;border:none;border-bottom:1px solid rgba(201,169,110,.17);padding:.46rem 0;color:var(--ivoire);font-family:var(--fb);font-size:.74rem;font-weight:300;outline:none;transition:border-color .3s}
+.cbi:focus{border-color:var(--or)}
+.cbi::placeholder{color:rgba(250,246,240,.2)}
+.cbsend{background:var(--or);border:none;color:var(--noir);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.78rem;flex-shrink:0;transition:all .3s}
+.cbsend:hover{background:var(--orl)}
+
+/* AGENTS IA DASHBOARD */
+.adstat{display:grid;grid-template-columns:repeat(3,1fr);gap:.72rem;padding:1.2rem 2rem}
+.adsc{background:rgba(201,169,110,.04);border:1px solid rgba(201,169,110,.1);padding:.9rem;text-align:center}
+.adscv{font-family:var(--fd);font-size:1.45rem;color:var(--or);font-style:italic}
+.adscl{font-size:.5rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(250,246,240,.32);margin-top:.2rem}
+.agrid{padding:0 2rem 1.5rem;display:flex;flex-direction:column;gap:.9rem}
+.agc{border:1px solid rgba(201,169,110,.11);padding:1.1rem;position:relative;transition:border-color .3s}
+.agc:hover{border-color:rgba(201,169,110,.26)}
+.agc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px}
+.agc.on::before{background:var(--or)}
+.agc.off::before{background:rgba(201,169,110,.22)}
+.agh{display:flex;align-items:center;gap:.65rem;margin-bottom:.62rem}
+.agico{width:30px;height:30px;background:rgba(201,169,110,.06);border:1px solid rgba(201,169,110,.17);display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;color:var(--or)}
+.agname{font-size:.68rem;font-weight:400;color:var(--ivoire);letter-spacing:.07em}
+.agst{margin-left:auto;display:flex;align-items:center;gap:.3rem;font-size:.52rem;letter-spacing:.13em;text-transform:uppercase}
+.agdot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.agdot.on{background:#4ade80;animation:agp 2s infinite}
+.agdot.off{background:rgba(201,169,110,.28)}
+@keyframes agp{0%,100%{opacity:1}50%{opacity:.38}}
+.son{color:#4ade80}.soff{color:rgba(201,169,110,.42)}
+.agd{font-size:.64rem;font-weight:300;color:rgba(250,246,240,.42);line-height:1.6;margin-bottom:.85rem}
+.agm{display:flex;gap:1.1rem}
+.amv{font-family:var(--fd);font-size:.95rem;color:var(--or);font-style:italic}
+.aml{font-size:.5rem;letter-spacing:.11em;text-transform:uppercase;color:rgba(250,246,240,.28);margin-top:.13rem}
+.agbar{height:2px;background:rgba(201,169,110,.07);margin-top:.85rem;position:relative;overflow:hidden}
+.agfill{height:100%;background:linear-gradient(to right,var(--or),var(--orl));transition:width 1.5s ease}
+.agact{display:flex;gap:.45rem;margin-top:.85rem;flex-wrap:wrap}
+.aa{background:transparent;border:1px solid rgba(201,169,110,.13);color:rgba(201,169,110,.58);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .68rem;cursor:pointer;transition:all .3s}
+.aa:hover{border-color:var(--or);color:var(--or)}
+.aa.pr{background:rgba(201,169,110,.07);border-color:rgba(201,169,110,.22)}
+.warn-box{background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.11);padding:.62rem .85rem;font-size:.6rem;color:rgba(201,169,110,.68);line-height:1.58;margin:.45rem 0}
+.loglabel{font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--or);margin-bottom:.85rem;opacity:.75;padding:1rem 2rem 0}
+.logitem{display:flex;gap:.62rem;align-items:flex-start;padding:.45rem 2rem;border-bottom:1px solid rgba(201,169,110,.04)}
+.ldot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:.28rem}
+.ldot.ok{background:#4ade80}.ldot.warn{background:#facc15}.ldot.info{background:rgba(201,169,110,.58)}
+.ltext{font-size:.62rem;font-weight:300;color:rgba(250,246,240,.46);line-height:1.5;flex:1}
+.ltime{font-size:.5rem;color:rgba(250,246,240,.22);flex-shrink:0}
+@media(max-width:900px){.pgrid{grid-template-columns:repeat(2,1fr)}.dinn{grid-template-columns:1fr;gap:3rem}.fg4{grid-template-columns:1fr 1fr}.cinn{grid-template-columns:1fr}.cgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.nlinks{display:none}.pgrid{grid-template-columns:repeat(2,1fr)}.gg{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}.gi{grid-column:span 1!important;grid-row:span 1!important;aspect-ratio:1}.lgrid{grid-template-columns:1fr}.fg4{grid-template-columns:1fr}#chatbox{width:calc(100vw - 2rem);right:1rem}#adm,#cart,#aid{width:92vw}}
+</style>
+
+<div id="loader"><div class="llogo">Mémoire d'Afrique</div><div class="lbar"><div class="lprog"></div></div></div>
+<div id="ov" onclick="closeAll()"></div>
+<div class="toast" id="toast"></div>
+
+<nav>
+  <a href="#" class="nlogo">Mémoire d'Afrique</a>
+  <ul class="nlinks">
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#products">Boutique</a></li>
+    <li><a href="#gallery">Galerie</a></li>
+    <li><a href="#dir">Maison</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nic">
+    <button class="ni" onclick="openAI()" title="Agents IA">◈</button>
+    <button class="ni" onclick="openLogin()" title="Connexion">◯</button>
+    <button class="ni" onclick="openAdmin()" title="Admin">⬡</button>
+    <button class="ni" onclick="openCart()" title="Panier" style="position:relative">▢<span class="cbadge" id="cc">2</span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hcv"></canvas>
+  <div class="hmotif"></div>
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="hvig"></div>
+  <div class="hcont">
+    <div class="hbadge">Maison de Mode & Artisanat — Afrique Contemporaine</div>
+    <h1 class="htitle">Le geste<br><em>artisanal.</em></h1>
+    <p class="hsub">Découvrez une sélection de pièces rares façonnées par des artisans et artisanes des quatre coins de l'Afrique — un héritage vivant, une élégance intemporelle.</p>
+    <div class="hctas">
+      <button class="bp" onclick="gotoSec('collections')">Découvrir la collection</button>
+      <button class="bs" onclick="gotoSec('gallery')">Explorer l'univers</button>
+    </div>
+  </div>
+  <div class="hscroll"><span>Défiler</span><div class="scl"></div></div>
+</section>
+
+<div class="mwrap"><div class="mtrack"><span>Mode Africaine</span><span>✦</span><span>Artisanat d'Exception</span><span>✦</span><span>Pièces Rares</span><span>✦</span><span>Savoir-Faire Ancestral</span><span>✦</span><span>Collections Exclusives</span><span>✦</span><span>Héritage Culturel</span><span>✦</span><span>Mode Africaine</span><span>✦</span><span>Artisanat d'Exception</span><span>✦</span><span>Pièces Rares</span><span>✦</span><span>Savoir-Faire Ancestral</span><span>✦</span><span>Collections Exclusives</span><span>✦</span><span>Héritage Culturel</span><span>✦</span></div></div>
+
+<!-- COLLECTIONS -->
+<section id="collections" style="background:var(--noir)">
+  <div class="rv"><p class="sl">Nos Collections</p><h2 class="st">L'art de <em>l'élégance</em> africaine</h2><div class="sd"></div></div>
+  <div class="cgrid rv">
+    <div class="cc lg cv1" onclick="toast('Mode Femme — 48 pièces')"><div class="ccbg"><svg width="45%" height="45%" viewBox="0 0 200 300" fill="none"><ellipse cx="100" cy="75" rx="37" ry="47" fill="rgba(201,169,110,.32)" stroke="rgba(201,169,110,.52)" stroke-width="1"/><path d="M63 122Q53 197 43 277L157 277Q147 197 137 122" fill="rgba(201,169,110,.18)" stroke="rgba(201,169,110,.42)" stroke-width="1"/><path d="M73 135Q100 153 127 135" fill="none" stroke="rgba(201,169,110,.62)" stroke-width="1.5"/></svg></div><div class="ccov"></div><div class="ccinfo"><div class="ccn">Mode Femme</div><div class="ccc">48 pièces</div><a class="ccl" href="#">Découvrir →</a></div></div>
+    <div class="cc cv2" onclick="toast('Mode Homme — 32 pièces')"><div class="ccbg"><svg width="55%" height="55%" viewBox="0 0 200 200" fill="none"><rect x="70" y="20" width="60" height="57" rx="2" fill="rgba(201,169,110,.26)" stroke="rgba(201,169,110,.52)" stroke-width="1"/><path d="M50 77L70 77L70 177L130 177L130 77L150 77L157 97L157 137L150 137L150 177L50 177L50 137L43 137L43 97Z" fill="rgba(201,169,110,.17)" stroke="rgba(201,169,110,.42)" stroke-width="1"/></svg></div><div class="ccov"></div><div class="ccinfo"><div class="ccn">Mode Homme</div><div class="ccc">32 pièces</div><a class="ccl" href="#">Découvrir →</a></div></div>
+    <div class="cc cv3" onclick="toast('Accessoires — 65 pièces')"><div class="ccbg"><svg width="55%" height="55%" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="57" fill="none" stroke="rgba(201,169,110,.38)" stroke-width="1.5"/><circle cx="100" cy="100" r="37" fill="rgba(201,169,110,.12)" stroke="rgba(201,169,110,.43)" stroke-width="1"/><circle cx="100" cy="100" r="8" fill="rgba(201,169,110,.58)"/></svg></div><div class="ccov"></div><div class="ccinfo"><div class="ccn">Accessoires</div><div class="ccc">65 pièces</div><a class="ccl" href="#">Découvrir →</a></div></div>
+    <div class="cc cv4" onclick="toast('Artisanat d\'Art — 27 pièces')"><div class="ccbg"><svg width="55%" height="55%" viewBox="0 0 200 200" fill="none"><polygon points="100,20 177,77 148,167 52,167 23,77" fill="rgba(201,169,110,.17)" stroke="rgba(201,169,110,.43)" stroke-width="1"/><circle cx="100" cy="102" r="15" fill="rgba(201,169,110,.4)"/></svg></div><div class="ccov"></div><div class="ccinfo"><div class="ccn">Artisanat d'Art</div><div class="ccc">27 pièces</div><a class="ccl" href="#">Découvrir →</a></div></div>
+    <div class="cc cv5" onclick="toast('Pièces Rares — 12 pièces')"><div class="ccbg"><svg width="55%" height="55%" viewBox="0 0 200 200" fill="none"><path d="M100 18L119 68L169 68L130 98L144 150L100 120L56 150L70 98L31 68L81 68Z" fill="rgba(201,169,110,.28)" stroke="rgba(201,169,110,.58)" stroke-width="1.5"/></svg></div><div class="ccov"></div><div class="ccinfo"><div class="ccn">Pièces Rares</div><div class="ccc">12 pièces</div><a class="ccl" href="#">Découvrir →</a></div></div>
+    <div class="cc cv6" onclick="toast('Exclusives — 8 pièces')"><div class="ccbg"><svg width="55%" height="55%" viewBox="0 0 200 200" fill="none"><rect x="30" y="30" width="140" height="140" fill="none" stroke="rgba(201,169,110,.28)" stroke-width="1"/><rect x="55" y="55" width="90" height="90" fill="rgba(201,169,110,.11)" stroke="rgba(201,169,110,.36)" stroke-width="1"/><rect x="80" y="80" width="40" height="40" fill="rgba(201,169,110,.48)"/></svg></div><div class="ccov"></div><div class="ccinfo"><div class="ccn">Exclusives</div><div class="ccc">8 pièces</div><a class="ccl" href="#">Découvrir →</a></div></div>
+  </div>
+</section>
+
+<!-- PRODUITS -->
+<section id="products" style="background:linear-gradient(180deg,#080605,#0f0a07)">
+  <div class="rv"><p class="sl">La Boutique</p><h2 class="st">Pièces <em>d'exception</em></h2><div class="sd"></div></div>
+  <div class="pfilters rv"><button class="pfb act" onclick="setF(this)">Tout</button><button class="pfb" onclick="setF(this)">Mode Femme</button><button class="pfb" onclick="setF(this)">Mode Homme</button><button class="pfb" onclick="setF(this)">Accessoires</button><button class="pfb" onclick="setF(this)">Artisanat</button><button class="pfb" onclick="setF(this)">Pièces Rares</button></div>
+  <div class="pgrid rv">
+    <div class="pc" onclick="openQV(0)"><div class="pi pb1"><div class="pv">🪡</div><div class="pbrow"><span class="bk br">Rare</span></div><div class="pact"><button class="pwl" onclick="event.stopPropagation();wl(this)">♡</button><button class="pqv">Vue rapide</button></div></div><div class="pn">Boubou Brodé d'Or</div><div class="po">Dakar, Sénégal</div><div class="pp">285 000 FCFA</div></div>
+    <div class="pc" onclick="openQV(1)"><div class="pi pb2"><div class="pv">🏺</div><div class="pbrow"><span class="bk bn">Nouveau</span></div><div class="pact"><button class="pwl" onclick="event.stopPropagation();wl(this)">♡</button><button class="pqv">Vue rapide</button></div></div><div class="pn">Masque Sculpté Baoulé</div><div class="po">Abidjan, Côte d'Ivoire</div><div class="pp">420 000 FCFA</div></div>
+    <div class="pc" onclick="openQV(2)"><div class="pi pb3"><div class="pv">👘</div><div class="pbrow"><span class="bk br">Rare</span></div><div class="pact"><button class="pwl" onclick="event.stopPropagation();wl(this)">♡</button><button class="pqv">Vue rapide</button></div></div><div class="pn">Robe Kente Royale</div><div class="po">Accra, Ghana</div><div class="pp">195 000 FCFA</div></div>
+    <div class="pc" onclick="openQV(3)"><div class="pi pb4"><div class="pv">💍</div><div class="pbrow"><span class="bk bn">Nouveau</span></div><div class="pact"><button class="pwl" onclick="event.stopPropagation();wl(this)">♡</button><button class="pqv">Vue rapide</button></div></div><div class="pn">Parure Berbère Argent</div><div class="po">Marrakech, Maroc</div><div class="pp">145 000 FCFA</div></div>
+    <div class="pc" onclick="openQV(4)"><div class="pi pb5"><div class="pv">🎒</div><div class="pact"><button class="pwl" onclick="event.stopPropagation();wl(this)">♡</button><button class="pqv">Vue rapide</button></div></div><div class="pn">Sac Cuir Maasaï</div><div class="po">Nairobi, Kenya</div><div class="pp">98 000 FCFA</div></div>
+    <div class="pc" onclick="openQV(5)"><div class="pi pb6"><div class="pv">🪢</div><div class="pbrow"><span class="bk br">Rare</span></div><div class="pact"><button class="pwl" onclick="event.stopPropagation();wl(this)">♡</button><button class="pqv">Vue rapide</button></div></div><div class="pn">Tapis Berbère Ancestral</div><div class="po">Fès, Maroc</div><div class="pp">350 000 FCFA</div></div>
+    <div class="pc" onclick="openQV(6)"><div class="pi pb7"><div class="pv">👗</div><div class="pbrow"><span class="bk bn">Nouveau</span></div><div class="pact"><button class="pwl" onclick="event.stopPropagation();wl(this)">♡</button><button class="pqv">Vue rapide</button></div></div><div class="pn">Djellaba Brodée</div><div class="po">Tunis, Tunisie</div><div class="pp">175 000 FCFA</div></div>
+    <div class="pc" onclick="openQV(7)"><div class="pi pb8"><div class="pv">🛕</div><div class="pbrow"><span class="bk br">Rare</span></div><div class="pact"><button class="pwl" onclick="event.stopPropagation();wl(this)">♡</button><button class="pqv">Vue rapide</button></div></div><div class="pn">Statue Dogon Originale</div><div class="po">Bamako, Mali</div><div class="pp">680 000 FCFA</div></div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="gallery" style="background:#050402;padding-top:6rem;padding-bottom:6rem">
+  <div class="rv"><p class="sl">Galerie Artistique</p><h2 class="st">L'Afrique en <em>images</em></h2><div class="sd"></div></div>
+  <div class="gg rv">
+    <div class="gi"><div class="gbg gb1">🌅</div><div class="gov"></div><div class="gcap">Aurore du Sahel</div></div>
+    <div class="gi"><div class="gbg gb2">🏺</div><div class="gov"></div><div class="gcap">Argile ancestrale</div></div>
+    <div class="gi"><div class="gbg gb3">🌿</div><div class="gov"></div><div class="gcap">Fibres naturelles</div></div>
+    <div class="gi"><div class="gbg gb4">🎨</div><div class="gov"></div><div class="gcap">Pigments d'Éthiopie</div></div>
+    <div class="gi"><div class="gbg gb5">✨</div><div class="gov"></div><div class="gcap">Broderies du Nord</div></div>
+    <div class="gi"><div class="gbg gb6">🌾</div><div class="gov"></div><div class="gcap">Paille dorée</div></div>
+    <div class="gi"><div class="gbg gb7">🪔</div><div class="gov"></div><div class="gcap">Nuits de Tombouctou</div></div>
+    <div class="gi"><div class="gbg gb8">🌊</div><div class="gov"></div><div class="gcap">Côtes Atlantiques</div></div>
+  </div>
+</section>
+
+<!-- DIRECTRICE -->
+<section id="dir" style="background:linear-gradient(135deg,#0a0806,#140e09,#0a0806);position:relative;overflow:hidden">
+  <div class="dpat"></div>
+  <div class="dinn">
+    <div class="rv"><div class="dpframe"><div class="dpart">👤</div><div class="dpacc"></div></div><div class="dpbrd"></div></div>
+    <div class="rv rd2"><p class="sl">Mot de la Directrice Générale</p><div class="dqm">"</div><blockquote class="dq">L'Afrique n'est pas seulement un continent —<br>c'est un <em>univers de création</em>, de mémoire<br>et de beauté intemporelle.</blockquote><p class="dt">Mémoire d'Afrique est née d'une conviction profonde : les savoir-faire artisanaux africains méritent d'être célébrés avec l'exigence et le raffinement que leur talent ancestral requiert. Chaque pièce porte en elle des décennies de transmission, d'apprentissage et d'amour pour le geste juste.</p><p class="dt">Notre mission : créer un pont lumineux entre les créateurs du continent et les amateurs de beauté authentique à travers le monde. Pas simplement vendre — mais transmettre, honorer, perpétuer.</p><div class="dsig">Amadou Binta Diallo</div><div class="drl">Fondatrice & Directrice Générale — Mémoire d'Afrique</div></div>
+  </div>
+</section>
+
+<!-- LIVRAISON -->
+<section id="livraison" style="background:#070503">
+  <div class="rv" style="text-align:center;max-width:580px;margin:0 auto"><p class="sl">Livraison Mondiale</p><h2 class="st">Vos pièces, livrées avec <em>soin</em></h2><div class="sd" style="margin:1.3rem auto 0"></div></div>
+  <div class="lgrid rv">
+    <div class="lc"><div class="lico">📦</div><div class="lt">Livraison Nationale</div><div class="ld">7–14</div><div class="lu">jours ouvrables</div><div class="ldesc">Livraison soignée en emballage cadeau premium avec suivi en temps réel à chaque étape.</div></div>
+    <div class="lc"><div class="lico">✈️</div><div class="lt">Livraison Internationale</div><div class="ld">14–21</div><div class="lu">jours ouvrables</div><div class="ldesc">Expédition internationale assurée, emballage premium adapté aux longues distances.</div></div>
+  </div>
+</section>
+
+<!-- PAIEMENTS -->
+<section id="paiements" style="background:#050403;text-align:center">
+  <div class="rv"><p class="sl">Paiements Sécurisés</p><h2 class="st">Payez en <em>toute confiance</em></h2><div class="sd" style="margin:1.3rem auto 0"></div><p style="font-size:.72rem;color:rgba(250,246,240,.4);max-width:465px;margin:.85rem auto 0;line-height:1.8">Toutes vos transactions protégées par un chiffrement SSL de niveau bancaire</p></div>
+  <div class="pgr rv"><div class="pay ft">Nita</div><div class="pay ft">Amana</div><div class="pay">Virement Bancaire</div><div class="pay">Mastercard</div><div class="pay">Visa</div><div class="pay">PayPal</div></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:linear-gradient(180deg,#080605,#0a0806)">
+  <div class="rv"><p class="sl">Nous Rejoindre</p><h2 class="st">Entrons en <em>contact</em></h2><div class="sd"></div></div>
+  <div class="cinn">
+    <div class="ciblock rv">
+      <div class="cit"><div class="cico">📍</div><div><div class="clb">Adresse</div><div class="cvl"><br>Niamey, Niger</div></div></div>
+      <div class="cit"><div class="cico">📞</div><div><div class="clb">Téléphone</div><div class="cvl"><a href="tel:+22790000000">+227 78 00 09 22</a></div></div></div>
+      <div class="cit"><div class="cico">✉</div><div><div class="clb">Email</div><div class="cvl"><a href="mailto:contact@memoireafrique.com">contact@memoireafrique.com</a></div></div></div>
+      <div class="cit"><div class="cico">🕐</div><div><div class="clb">Horaires</div><div class="cvl">Lun–Sam : 9h–18h<br>Dimanche : Sur rendez-vous</div></div></div>
+      <div><div class="clb" style="margin-bottom:1rem">Réseaux Sociaux</div><div class="csoc"><a class="sla" href="#">IG</a><a class="sla" href="#">FB</a><a class="sla" href="#">TK</a><a class="sla" href="#">PT</a><a class="sla" href="#">LI</a></div></div>
+      <div class="cbtns"><a class="cbt" href="mailto:contact@memoireafrique.com">✉ Email</a><a class="cbt cbwa" href="https://wa.me/22778000922" target="_blank">💬 WhatsApp</a></div>
+    </div>
+    <div class="rv rd2">
+      <form class="cform" onsubmit="handleForm(event)">
+        <div class="fg"><label class="flb">Nom complet</label><input type="text" class="fi" placeholder="Amadou Diallo" required></div>
+        <div class="fg"><label class="flb">Email</label><input type="email" class="fi" placeholder="votre@email.com" required></div>
+        <div class="fg"><label class="flb">Sujet</label><input type="text" class="fi" placeholder="Renseignement..."></div>
+        <div class="fg"><label class="flb">Message</label><textarea class="fta" placeholder="Votre message..." required></textarea></div>
+        <button type="submit" class="bp" style="align-self:flex-start;padding:.9rem 2rem">Envoyer</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fg4">
+    <div><div class="flogo">Mémoire d'Afrique</div><div class="ftag">Une maison de mode et d'artisanat africain d'exception, célébrant le génie créateur du continent.</div></div>
+    <div><div class="fh">Collections</div><ul class="flinks"><li><a href="#">Mode Femme</a></li><li><a href="#">Mode Homme</a></li><li><a href="#">Accessoires</a></li><li><a href="#">Artisanat d'Art</a></li><li><a href="#">Pièces Rares</a></li></ul></div>
+    <div><div class="fh">Informations</div><ul class="flinks"><li><a href="#">Notre histoire</a></li><li><a href="#">Les artisans</a></li><li><a href="#">Livraison</a></li><li><a href="#">Retours</a></li><li><a href="#">FAQ</a></li></ul></div>
+    <div><div class="fh">Légal</div><ul class="flinks"><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">CGV</a></li><li><a href="#">Cookies</a></li></ul></div>
+  </div>
+  <div class="fbot"><span>© 2026 Mémoire d'Afrique — Tous droits réservés</span><span>Façonné avec ✦ pour l'Afrique</span></div>
+</footer>
+
+<!-- ADMIN PANEL -->
+<div id="adm">
+  <div class="ph"><div class="pt">Administration</div><button class="pc2" onclick="closeAdmin()">✕</button></div>
+  <div class="au"><div class="abg">⬡ Super Admin</div><div class="an">Amadou Binta Diallo</div><div class="aid2">ID : #MBA-001 — Fondatrice & Directrice Générale</div></div>
+  <div class="anav">
+    <div class="ani act" onclick="setAdSec(this)"><span class="aico">▦</span>Tableau de bord</div>
+    <div class="ani" onclick="setAdSec(this)"><span class="aico">◈</span>Catalogue produits</div>
+    <div class="ani" onclick="setAdSec(this)"><span class="aico">◉</span>Commandes</div>
+    <div class="ani" onclick="setAdSec(this)"><span class="aico">◎</span>Clients</div>
+    <div class="ani" onclick="setAdSec(this)"><span class="aico">◑</span>Collections</div>
+    <div class="ani" onclick="setAdSec(this)"><span class="aico">◐</span>Analytics</div>
+    <div class="ani" onclick="openAI();closeAdmin()"><span class="aico">◈</span>Agents IA</div>
+    <div class="ani" onclick="setAdSec(this)"><span class="aico">◻</span>Paramètres</div>
+  </div>
+  <div class="ast">
+    <div class="asc"><div class="asv">48</div><div class="asl">Produits</div></div>
+    <div class="asc"><div class="asv">127</div><div class="asl">Commandes</div></div>
+    <div class="asc"><div class="asv">2.4M</div><div class="asl">FCFA</div></div>
+    <div class="asc"><div class="asv">89</div><div class="asl">Clients</div></div>
+    <div class="asc"><div class="asv">6</div><div class="asl">Collections</div></div>
+    <div class="asc"><div class="asv">12</div><div class="asl">En attente</div></div>
+  </div>
+  <div style="padding:1rem 2rem">
+    <button class="bp" style="width:100%;margin-bottom:.5rem" onclick="toast('Formulaire produit ouvert...')">+ Ajouter un produit</button>
+    <button class="bs" style="width:100%;padding:.8rem;font-size:.6rem;letter-spacing:.13em;cursor:pointer;margin-top:.5rem" onclick="toast('3 nouvelles commandes en attente')">Voir nouvelles commandes</button>
+  </div>
+</div>
+
+<!-- CART -->
+<div id="cart">
+  <div class="carth"><div class="cartt">Votre Panier</div><button class="pc2" onclick="closeCart()">✕</button></div>
+  <div class="citems">
+    <div class="ci"><div class="cimg">🪡</div><div><div class="cin2">Boubou Brodé d'Or</div><div class="cip">285 000 FCFA</div><div class="ciq">Qté : 1 — Dakar, Sénégal</div></div></div>
+    <div class="ci"><div class="cimg">💍</div><div><div class="cin2">Parure Berbère Argent</div><div class="cip">145 000 FCFA</div><div class="ciq">Qté : 1 — Marrakech, Maroc</div></div></div>
+  </div>
+  <div class="cartf"><div class="ctot"><span class="ctl">Total</span><span class="ctp">430 000 FCFA</span></div><button class="bco" onclick="toast('Redirection paiement sécurisé...')">Procéder au paiement →</button></div>
+</div>
+
+<!-- LOGIN -->
+<div id="lm">
+  <div class="lb">
+    <button class="lclose" onclick="closeLogin()">✕</button>
+    <div class="ll">Mémoire d'Afrique</div>
+    <div class="ls">Espace Membre & Administration</div>
+    <form class="lf" onsubmit="handleLogin(event)">
+      <div class="liw"><input type="email" class="lin" id="lemail" placeholder=" "><label class="llab">Adresse email</label></div>
+      <div class="liw"><input type="password" class="lin" id="lpw" placeholder=" "><label class="llab">Mot de passe</label><button type="button" class="pwt" onclick="tPw()">◉</button></div>
+      <div class="llnks"><label style="display:flex;gap:.4rem;align-items:center;cursor:pointer"><input type="checkbox" style="accent-color:var(--or)">Se souvenir</label><a href="#">Mot de passe oublié ?</a></div>
+      <button type="submit" class="bln">Se connecter</button>
+      <p style="text-align:center;font-size:.6rem;color:rgba(250,246,240,.26)">Pas encore membre ? <a href="#" style="color:var(--or);text-decoration:none">Créer un compte</a></p>
+    </form>
+  </div>
+</div>
+
+<!-- QUICKVIEW -->
+<div id="qv">
+  <div class="qvb">
+    <button class="qvcl" onclick="closeQV()">✕</button>
+    <div class="qvg" id="qvg">🪡</div>
+    <div class="qvi">
+      <div><span class="bk br" id="qvbg">Rare</span></div>
+      <div class="qvn" id="qvn">Boubou Brodé d'Or</div>
+      <div style="font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,169,110,.58)" id="qvo">Dakar, Sénégal</div>
+      <div class="qvp" id="qvp">285 000 FCFA</div>
+      <div class="qvd" id="qvd">Pièce d'exception tissée à la main selon des techniques transmises depuis trois siècles.</div>
+      <div class="qvdet">
+        <div class="qvdr"><span class="qvdk">Matière</span><span class="qvdv" id="qvmat">Soie & fil d'or</span></div>
+        <div class="qvdr"><span class="qvdk">Artisan</span><span class="qvdv" id="qvart">Maître Mbaye</span></div>
+        <div class="qvdr"><span class="qvdk">Disponibilité</span><span class="qvdv" style="color:var(--or)">Pièce unique</span></div>
+      </div>
+      <div class="qvac">
+        <button class="bac" onclick="addCart()">Ajouter au panier</button>
+        <button class="bs" style="padding:.8rem;font-size:.58rem;letter-spacing:.13em;cursor:pointer;width:100%" onclick="wl(this)">♡ Ajouter à la wishlist</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHATBOT IA -->
+<button id="cbtn" onclick="toggleChat()">✦<div class="cnotif">1</div></button>
+<div id="chatbox">
+  <div class="cbh">
+    <div class="cbav">✦</div>
+    <div><div class="cbname">Amara — Conseillère IA</div><div class="cbst"><span class="cdot"></span>En ligne · Powered by Claude</div></div>
+    <button class="cbcl" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="cbmsgs" id="cbmsgs">
+    <div class="msg bot">Bienvenue chez Mémoire d'Afrique ✦<br>Je suis Amara, votre conseillère en mode et artisanat africain. Comment puis-je vous guider ?<span class="mtime">À l'instant</span></div>
+  </div>
+  <div class="cbsug" id="cbsug">
+    <button class="sug" onclick="useSug(this)">Recommande-moi une tenue</button>
+    <button class="sug" onclick="useSug(this)">Idée cadeau luxe</button>
+    <button class="sug" onclick="useSug(this)">Pièces rares</button>
+    <button class="sug" onclick="useSug(this)">Artisans du Niger</button>
+  </div>
+  <div class="cbinp">
+    <input type="text" class="cbi" id="cbi" placeholder="Votre message..." onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="cbsend" onclick="sendMsg()">→</button>
+  </div>
+</div>
+
+<!-- AGENTS IA DASHBOARD -->
+<div id="aid">
+  <div class="ph"><div class="pt">◈ Agents IA — Tableau de bord</div><button class="pc2" onclick="closeAI()">✕</button></div>
+  <div class="adstat">
+    <div class="adsc"><div class="adscv" id="aact">5</div><div class="adscl">Agents actifs</div></div>
+    <div class="adsc"><div class="adscv" id="atasks">23</div><div class="adscl">Tâches</div></div>
+    <div class="adsc"><div class="adscv">98%</div><div class="adscl">Succès</div></div>
+  </div>
+  <div class="agrid">
+    <div class="agc on"><div class="agh"><div class="agico">🎯</div><div><div class="agname">Agent Prospection Client</div></div><div class="agst"><span class="agdot on"></span><span class="son">Actif</span></div></div><div class="agd">Analyse les visiteurs, détecte les prospects premium et lance des campagnes de recommandation personnalisées.</div><div class="agm"><div><div class="amv">47</div><div class="aml">Prospects</div></div><div><div class="amv">12</div><div class="aml">VIP</div></div><div><div class="amv">89%</div><div class="aml">Précision</div></div></div><div class="agbar"><div class="agfill" style="width:89%"></div></div><div class="agact"><button class="aa pr" onclick="toast('Rapport prospection généré')">Voir rapport</button><button class="aa" onclick="toast('Campagne lancée — 47 prospects')">Lancer campagne</button><button class="aa" onclick="toast('Agent mis en pause')">Pause</button></div></div>
+    <div class="agc on"><div class="agh"><div class="agico">👥</div><div><div class="agname">Agent CRM Intelligence</div></div><div class="agst"><span class="agdot on"></span><span class="son">Actif</span></div></div><div class="agd">Suit chaque client, analyse les comportements d'achat, gère la fidélisation et génère des recommandations automatiques.</div><div class="agm"><div><div class="amv">89</div><div class="aml">Clients</div></div><div><div class="amv">8</div><div class="aml">VIP</div></div><div><div class="amv">76%</div><div class="aml">Rétention</div></div></div><div class="agbar"><div class="agfill" style="width:76%"></div></div><div class="agact"><button class="aa pr" onclick="toast('Profils clients analysés')">Profils</button><button class="aa" onclick="toast('Segmentation mise à jour')">Segmenter</button><button class="aa" onclick="toast('Emails fidélisation envoyés')">Fidéliser</button></div></div>
+    <div class="agc on"><div class="agh"><div class="agico">🔐</div><div><div class="agname">Agent Vérification Paiements</div></div><div class="agst"><span class="agdot on"></span><span class="son">Actif</span></div></div><div class="agd">Vérifie automatiquement chaque transaction, détecte les anomalies et fraudes potentielles, notifie les confirmations.</div><div class="agm"><div><div class="amv">127</div><div class="aml">Vérifiés</div></div><div><div class="amv">0</div><div class="aml">Fraudes</div></div><div><div class="amv">100%</div><div class="aml">Sécurité</div></div></div><div class="agbar"><div class="agfill" style="width:100%"></div></div><div class="agact"><button class="aa pr" onclick="toast('Logs : 127 transactions OK')">Logs</button><button class="aa" onclick="toast('Scan anti-fraude lancé...')">Scanner</button></div></div>
+    <div class="agc on"><div class="agh"><div class="agico">📦</div><div><div class="agname">Agent Automatisation Livraison</div></div><div class="agst"><span class="agdot on"></span><span class="son">Actif</span></div></div><div class="agd">Déclenche la livraison après validation paiement, notifie le client à chaque étape et synchronise les commandes.</div><div class="agm"><div><div class="amv">115</div><div class="aml">Livrées</div></div><div><div class="amv">12</div><div class="aml">En route</div></div><div><div class="amv">96%</div><div class="aml">À temps</div></div></div><div class="agbar"><div class="agfill" style="width:96%"></div></div><div class="agact"><button class="aa pr" onclick="toast('Suivi : 12 en transit')">Suivi</button><button class="aa" onclick="toast('Notifications clients envoyées')">Notifier</button></div></div>
+    <div class="agc off"><div class="agh"><div class="agico">🔍</div><div><div class="agname">Agent Sourcing Produits IA</div></div><div class="agst"><span class="agdot off"></span><span class="soff">En attente</span></div></div><div class="agd">Explore les plateformes e-commerce et identifie des produits compatibles avec l'univers Mémoire d'Afrique.</div><div class="warn-box">⚠ Workflow sécurisé : détection → analyse IA → validation admin obligatoire → publication</div><div class="agm"><div><div class="amv">8</div><div class="aml">À valider</div></div><div><div class="amv">34</div><div class="aml">Analysés</div></div><div><div class="amv">82%</div><div class="aml">Pertinence</div></div></div><div class="agbar"><div class="agfill" style="width:82%"></div></div><div class="agact"><button class="aa pr" onclick="toast('8 produits en attente de validation')">Valider (8)</button><button class="aa" onclick="toast('Agent Sourcing activé...')">Activer</button><button class="aa" onclick="toast('Paramètres sourcing')">Config</button></div></div>
+  </div>
+  <div class="loglabel">Journal d'activité</div>
+  <div id="logc">
+    <div class="logitem"><div class="ldot ok"></div><div class="ltext">Paiement #MBA-127 validé — Boubou Brodé d'Or, 285 000 FCFA</div><div class="ltime">2min</div></div>
+    <div class="logitem"><div class="ldot info"></div><div class="ltext">Prospect VIP détecté — score 94/100 — Paris, France</div><div class="ltime">5min</div></div>
+    <div class="logitem"><div class="ldot ok"></div><div class="ltext">Livraison #MBA-115 confirmée — Nairobi, Kenya</div><div class="ltime">8min</div></div>
+    <div class="logitem"><div class="ldot warn"></div><div class="ltext">Sourcing : 8 produits nécessitent validation admin</div><div class="ltime">12min</div></div>
+    <div class="logitem"><div class="ldot info"></div><div class="ltext">CRM : emails fidélisation envoyés — 23 clients premium</div><div class="ltime">18min</div></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const cv=document.getElementById('hcv');
+  const ctx=cv.getContext('2d');
+  let W,H,pts=[],lns=[];
+  function resize(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;init()}
+  function init(){
+    pts=[];lns=[];
+    for(let i=0;i<75;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:Math.random()*2.2+.4,o:Math.random()*.65+.1,ph:Math.random()*Math.PI*2,spd:Math.random()*.008+.004,warm:Math.random()>.5});
+    for(let i=0;i<10;i++)lns.push({x:Math.random()*W,y:Math.random()*H,ang:Math.PI/4*Math.floor(Math.random()*4),len:Math.random()*110+55,spd:(Math.random()-.5)*.35,o:Math.random()*.1+.035});
+  }
+  function motif(cx,cy,sz,al){
+    ctx.save();ctx.globalAlpha=al;ctx.strokeStyle='rgba(201,169,110,1)';ctx.lineWidth=.55;
+    ctx.beginPath();ctx.moveTo(cx,cy-sz);ctx.lineTo(cx+sz*.55,cy);ctx.lineTo(cx,cy+sz);ctx.lineTo(cx-sz*.55,cy);ctx.closePath();ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx-sz*.55,cy);ctx.lineTo(cx+sz*.55,cy);ctx.moveTo(cx,cy-sz);ctx.lineTo(cx,cy+sz);ctx.stroke();
+    const s=sz*.13;[[cx-sz*.55,cy],[cx+sz*.55,cy],[cx,cy-sz],[cx,cy+sz]].forEach(([x,y])=>ctx.strokeRect(x-s,y-s,s*2,s*2));
+    ctx.restore();
+  }
+  const mps=[];
+  function buildM(){mps.length=0;for(let i=0;i<5;i++)mps.push({x:Math.random()*W,y:Math.random()*H,sz:Math.random()*38+18,bo:Math.random()*.07+.025})}
+  let t=0;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const bg=ctx.createRadialGradient(W*.5,H*.4,0,W*.5,H*.5,Math.max(W,H)*.8);
+    bg.addColorStop(0,'rgba(23,13,5,1)');bg.addColorStop(.45,'rgba(16,9,3,1)');bg.addColorStop(1,'rgba(10,8,6,1)');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    const hl=ctx.createRadialGradient(W*.5,H*.36,0,W*.5,H*.36,H*.52);
+    hl.addColorStop(0,'rgba(139,69,19,.08)');hl.addColorStop(.5,'rgba(201,169,110,.035)');hl.addColorStop(1,'transparent');
+    ctx.fillStyle=hl;ctx.fillRect(0,0,W,H);
+    t+=.0035;
+    lns.forEach(l=>{l.x+=l.spd;if(l.x>W+120)l.x=-120;if(l.x<-120)l.x=W+120;ctx.save();ctx.globalAlpha=l.o*(1+Math.sin(t+l.x*.008)*.38);ctx.strokeStyle='rgba(201,169,110,1)';ctx.lineWidth=.45;ctx.beginPath();ctx.moveTo(l.x,l.y);ctx.lineTo(l.x+Math.cos(l.ang)*l.len,l.y+Math.sin(l.ang)*l.len);ctx.stroke();ctx.restore()});
+    mps.forEach((m,i)=>{const p=Math.sin(t*1.15+i*1.05)*.38+.62;motif(m.x,m.y,m.sz*p,m.bo*p)});
+    ctx.save();ctx.globalAlpha=.025;ctx.strokeStyle='rgba(201,169,110,1)';ctx.lineWidth=.38;
+    const st=55;for(let x=-st;x<W+st;x+=st){for(let y=-st;y<H+st;y+=st){const off=(Math.floor(x/st)%2)*st*.5;ctx.beginPath();ctx.moveTo(x,y+off);ctx.lineTo(x+st*.5,y+off+st*.5);ctx.lineTo(x+st,y+off);ctx.lineTo(x+st*.5,y+off-st*.5);ctx.closePath();ctx.stroke()}}
+    ctx.restore();
+    pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.ph+=p.spd;if(p.x<-5)p.x=W+5;if(p.x>W+5)p.x=-5;if(p.y<-5)p.y=H+5;if(p.y>H+5)p.y=-5;const op=p.o*(Math.sin(p.ph)*.38+.62);ctx.save();ctx.globalAlpha=op;ctx.fillStyle=p.warm?'rgba(201,169,110,1)':'rgba(139,69,19,1)';ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();ctx.globalAlpha=op*.18;const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4.5);g.addColorStop(0,p.warm?'rgba(201,169,110,.5)':'rgba(139,69,19,.5)');g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x,p.y,p.r*4.5,0,Math.PI*2);ctx.fill();ctx.restore()});
+    for(let i=0;i<pts.length;i++){for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<85){ctx.save();ctx.globalAlpha=.032*(1-d/85);ctx.strokeStyle='rgba(201,169,110,1)';ctx.lineWidth=.38;ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke();ctx.restore()}}}
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',()=>{resize();buildM()});
+  resize();buildM();draw();
+})();
+
+window.addEventListener('scroll',()=>{
+  document.querySelectorAll('.rv').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight*.9)el.classList.add('vis')});
+});
+setTimeout(()=>{document.getElementById('loader').classList.add('hid')},2000);
+setTimeout(()=>{document.querySelectorAll('.rv').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight)el.classList.add('vis')})},2100);
+
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800)}
+function gotoSec(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'})}
+function openAdmin(){document.getElementById('adm').classList.add('open');document.getElementById('ov').classList.add('show')}
+function closeAdmin(){document.getElementById('adm').classList.remove('open');document.getElementById('ov').classList.remove('show')}
+function openCart(){document.getElementById('cart').classList.add('open');document.getElementById('ov').classList.add('show')}
+function closeCart(){document.getElementById('cart').classList.remove('open');document.getElementById('ov').classList.remove('show')}
+function openLogin(){document.getElementById('lm').classList.add('open')}
+function closeLogin(){document.getElementById('lm').classList.remove('open')}
+function openAI(){document.getElementById('aid').classList.add('open');document.getElementById('ov').classList.add('show')}
+function closeAI(){document.getElementById('aid').classList.remove('open');document.getElementById('ov').classList.remove('show')}
+function closeAll(){closeAdmin();closeCart();closeAI();closeQV()}
+function closeQV(){document.getElementById('qv').classList.remove('open')}
+function setAdSec(el){document.querySelectorAll('.ani').forEach(i=>i.classList.remove('act'));el.classList.add('act');toast('Section : '+el.textContent.trim())}
+function setF(btn){document.querySelectorAll('.pfb').forEach(b=>b.classList.remove('act'));btn.classList.add('act');toast('Filtre : '+btn.textContent)}
+function wl(btn){const ok=btn.textContent.includes('♡');btn.textContent=ok?'♥ Sauvegardé':'♡';btn.style.color=ok?'#e74c3c':'';toast(ok?'Ajouté à la wishlist ♥':'Retiré de la wishlist')}
+function tPw(){const p=document.getElementById('lpw');p.type=p.type==='password'?'text':'password'}
+function handleLogin(e){e.preventDefault();toast('Connexion en cours...');closeLogin()}
+function handleForm(e){e.preventDefault();toast('Message envoyé avec succès ✦');e.target.reset()}
+function addCart(){const c=document.getElementById('cc');c.textContent=parseInt(c.textContent)+1;closeQV();toast('Pièce ajoutée au panier ✦');setTimeout(openCart,380)}
+
+const prods=[
+  {i:'🪡',n:"Boubou Brodé d'Or",o:'Dakar, Sénégal',p:'285 000 FCFA',b:'Rare',d:"Pièce d'exception tissée à la main selon des techniques transmises depuis trois siècles.",m:'Soie & fil d\'or',a:'Maître Mbaye'},
+  {i:'🏺',n:'Masque Sculpté Baoulé',o:"Abidjan, Côte d'Ivoire",p:'420 000 FCFA',b:'Nouveau',d:"Œuvre sacrée taillée dans l'ébène par un maître sculpteur baoulé.",m:'Ébène & pigments naturels',a:'Kofi Asante'},
+  {i:'👘',n:'Robe Kente Royale',o:'Accra, Ghana',p:'195 000 FCFA',b:'Rare',d:'Tissu kente royal tissé sur métier traditionnel, motifs du royaume Ashanti.',m:'Soie & coton tissés',a:'Kwame Osei'},
+  {i:'💍',n:'Parure Berbère Argent',o:'Marrakech, Maroc',p:'145 000 FCFA',b:'Nouveau',d:'Parure en argent massif ciselé, ornée de corail et pierres précieuses.',m:'Argent massif, corail',a:'Fatima Benali'},
+  {i:'🎒',n:'Sac Cuir Maasaï',o:'Nairobi, Kenya',p:'98 000 FCFA',b:'',d:"Sac en cuir de buffle tanné à la main, orné de broderies maasaï.",m:'Cuir de buffle, perles',a:'Siokapu Ole'},
+  {i:'🪢',n:'Tapis Berbère Ancestral',o:'Fès, Maroc',p:'350 000 FCFA',b:'Rare',d:'Tapis noué à la main en laine naturelle teinte aux pigments végétaux.',m:'Laine naturelle',a:'Zahra El Fassi'},
+  {i:'👗',n:'Djellaba Brodée',o:'Tunis, Tunisie',p:'175 000 FCFA',b:'Nouveau',d:"Djellaba en lin blanc ivoire brodée à la main de fils d'argent.",m:"Lin & fils d'argent",a:'Leila Mansouri'},
+  {i:'🛕',n:'Statue Dogon Originale',o:'Bamako, Mali',p:'680 000 FCFA',b:'Rare',d:'Statue dogon authentique, bois de vène, certifiée par un expert culturel.',m:'Bois de vène sacré',a:'Togué Dolo'}
+];
+function openQV(idx){const p=prods[idx];document.getElementById('qvg').textContent=p.i;document.getElementById('qvn').textContent=p.n;document.getElementById('qvo').textContent=p.o;document.getElementById('qvp').textContent=p.p;document.getElementById('qvd').textContent=p.d;document.getElementById('qvmat').textContent=p.m;document.getElementById('qvart').textContent=p.a;const b=document.getElementById('qvbg');if(p.b){b.style.display='inline-block';b.textContent=p.b;b.className='bk '+(p.b==='Rare'?'br':'bn')}else b.style.display='none';document.getElementById('qv').classList.add('open')}
+
+let chatOpen=false,hist=[],busy=false;
+const SYS=`Tu es Amara, conseillère IA premium en mode africaine contemporaine et artisanat de luxe pour Mémoire d'Afrique, Niamey, Niger. Produits : Boubou Brodé d'Or (285 000 FCFA, Sénégal), Masque Baoulé (420 000 FCFA, Côte d'Ivoire), Robe Kente (195 000 FCFA, Ghana), Parure Berbère (145 000 FCFA, Maroc), Sac Maasaï (98 000 FCFA, Kenya), Tapis Berbère (350 000 FCFA, Maroc), Djellaba (175 000 FCFA, Tunisie), Statue Dogon (680 000 FCFA, Mali). Fondatrice : Amadou Binta Diallo. Livraison nationale 7-14j, internationale 14-21j. Paiements : Nita, Amana, Visa, Mastercard, PayPal. Ton : élégant, chaleureux, culturellement raffiné. Réponds en français, 3-4 phrases max, précis et enveloppant.`;
+function toggleChat(){chatOpen=!chatOpen;document.getElementById('chatbox').classList.toggle('open',chatOpen);document.querySelector('.cnotif').style.display=chatOpen?'none':'flex'}
+function useSug(btn){document.getElementById('cbi').value=btn.textContent;document.getElementById('cbsug').style.display='none';sendMsg()}
+function now2(){const d=new Date();return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0')}
+function addMsg(txt,role){const w=document.getElementById('cbmsgs');const d=document.createElement('div');d.className='msg '+role;d.innerHTML=txt.replace(/\n/g,'<br>')+'<span class="mtime">'+now2()+'</span>';w.appendChild(d);w.scrollTop=w.scrollHeight}
+function showTyping(){const w=document.getElementById('cbmsgs');const d=document.createElement('div');d.className='typing';d.id='tid';d.innerHTML='<span></span><span></span><span></span>';w.appendChild(d);w.scrollTop=w.scrollHeight}
+function hideTyping(){const t=document.getElementById('tid');if(t)t.remove()}
+async function sendMsg(){
+  if(busy)return;
+  const inp=document.getElementById('cbi');const txt=inp.value.trim();if(!txt)return;
+  inp.value='';addMsg(txt,'usr');hist.push({role:'user',content:txt});busy=true;showTyping();
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYS,messages:hist})});
+    const data=await r.json();hideTyping();
+    const reply=data.content?.[0]?.text||'Une erreur est survenue. Veuillez réessayer.';
+    hist.push({role:'assistant',content:reply});addMsg(reply,'bot');
+  }catch(e){hideTyping();addMsg('Je suis momentanément indisponible. Contactez-nous via WhatsApp ✦','bot')}
+  busy=false;
+}
+
+let lt=0;
+const logs=[
+  {c:'ok',t:'Prospect qualifié — score 91/100 — Abidjan, Côte d\'Ivoire'},
+  {c:'info',t:'CRM : recommandation générée pour client VIP #089'},
+  {c:'ok',t:'Paiement #MBA-128 validé — Amana — 195 000 FCFA'},
+  {c:'info',t:'Agent Sourcing : produit analysé — pertinence 87%'},
+  {c:'ok',t:'Livraison déclenchée automatiquement — commande #MBA-128'},
+  {c:'warn',t:'Transaction #MBA-129 en cours de vérification...'},
+];
+setInterval(()=>{
+  document.getElementById('atasks').textContent=23+Math.floor(Math.sin(lt*.12)*2);lt++;
+  const lc=document.getElementById('logc');const m=logs[lt%logs.length];
+  const item=document.createElement('div');item.className='logitem';item.style.opacity='0';item.style.transition='opacity .45s';
+  item.innerHTML=`<div class="ldot ${m.c}"></div><div class="ltext">${m.t}</div><div class="ltime">À l'instant</div>`;
+  lc.insertBefore(item,lc.firstChild);setTimeout(()=>item.style.opacity='1',40);
+  if(lc.children.length>7)lc.removeChild(lc.lastChild);
+},6500);
+</script>
