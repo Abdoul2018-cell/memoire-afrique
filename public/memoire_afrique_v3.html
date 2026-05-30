@@ -343,7 +343,8 @@ footer{background:#030201;border-top:1px solid rgba(201,169,110,.1);padding:4rem
 #qv.open{opacity:1;pointer-events:all}
 .qvb{width:780px;max-width:92vw;display:grid;grid-template-columns:1fr 1fr;background:#0c0907;border:1px solid rgba(201,169,110,.17);max-height:92vh;overflow:hidden;position:relative}
 .qvg{background:var(--cacao);overflow:hidden;aspect-ratio:3/4;display:flex;flex-direction:column}
-.qvg>#qvimg{width:100%;flex:1;min-height:0;object-fit:cover;object-position:center top}
+.qvg>#qvimg{width:100%;flex:1;min-height:0;object-fit:cover;object-position:center top;cursor:zoom-in;transform-origin:center center;transition:transform .35s ease,opacity .25s ease}
+.qvg.zoomed>#qvimg{transform:scale(2);cursor:zoom-out}
 #qv-thumbs::-webkit-scrollbar{display:none}
 .qvi{padding:2.4rem;overflow-y:auto;display:flex;flex-direction:column;gap:.9rem}
 .qvn{font-family:var(--fd);font-size:1.72rem;font-weight:300;color:var(--ivoire);font-style:italic;line-height:1.2}
@@ -854,6 +855,16 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     <p class="sl">La Boutique</p>
     <h2 class="st">Pièces <em>d'exception</em></h2>
     <div class="sd"></div>
+  </div>
+  <div class="rv" style="margin-bottom:1.4rem">
+    <div style="position:relative;max-width:340px;margin:0 auto">
+      <input id="prod-search" type="search" placeholder="Rechercher une pièce…" autocomplete="off"
+        oninput="searchProds(this.value)"
+        style="width:100%;background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.2);color:var(--ivoire);font-family:var(--fb);font-size:.68rem;letter-spacing:.1em;padding:.65rem 2.4rem .65rem 1rem;outline:none;transition:border-color .3s"
+        onfocus="this.style.borderColor='var(--or)'" onblur="this.style.borderColor='rgba(201,169,110,.2)'"
+        aria-label="Rechercher un produit">
+      <span style="position:absolute;right:.85rem;top:50%;transform:translateY(-50%);color:rgba(201,169,110,.4);pointer-events:none;font-size:.75rem">⌕</span>
+    </div>
   </div>
   <div class="pfilters rv" role="group" aria-label="Filtres collections">
     <button class="pfb act" data-filter="all"        onclick="setF(this)">Tout</button>
@@ -1449,6 +1460,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="qvac">
         <button class="bac" onclick="addCart()">Ajouter au panier</button>
         <button class="bs" style="padding:.85rem;font-size:.58rem;letter-spacing:.14em;cursor:pointer;width:100%" onclick="wl(this)">♡ Ajouter à la wishlist</button>
+        <button class="bs" style="padding:.6rem;font-size:.58rem;letter-spacing:.14em;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:.5rem" onclick="shareProduct()" id="qv-share-btn">↗ Partager cette pièce</button>
       </div>
     </div>
   </div>
@@ -1848,7 +1860,7 @@ function openLogin(){document.getElementById('lm').classList.add('open');setAria
 function closeLogin(){document.getElementById('lm').classList.remove('open');setAriaHidden('lm',true)}
 function openAI(){document.getElementById('aid').classList.add('open');document.getElementById('ov').classList.add('show');setAriaHidden('aid',false);document.body.style.overflow='hidden'}
 function closeAI(){document.getElementById('aid').classList.remove('open');document.getElementById('ov').classList.remove('show');setAriaHidden('aid',true);document.body.style.overflow=''}
-function closeQV(){document.getElementById('qv').classList.remove('open');setAriaHidden('qv',true)}
+function closeQV(){document.getElementById('qv').classList.remove('open');setAriaHidden('qv',true);document.getElementById('qvg')?.classList.remove('zoomed');}
 function closeAll(){closeAdmin();closeCart();closeAI();closeQV();closeInfoModal();closePdfPreview();closePayModal();document.getElementById('ov').classList.remove('show');document.body.style.overflow=''}
 
 // ─── SECRET ADMIN ACCESS (5 clics sur le logo) ───────────────────────────────
@@ -2203,7 +2215,37 @@ function setF(btn){
   document.querySelectorAll('.pfb').forEach(b=>b.classList.remove('act'));
   btn.classList.add('act');
   const key = btn.dataset.filter;
+  // Reset search when changing filter
+  const searchEl = document.getElementById('prod-search');
+  if(searchEl) searchEl.value = '';
   applyFilter(key === 'all' ? null : key);
+}
+
+function searchProds(query){
+  const q = query.trim().toLowerCase();
+  // Reset filter buttons to "Tout" when searching
+  if(q){
+    document.querySelectorAll('.pfb').forEach(b=>b.classList.remove('act'));
+    document.querySelector('.pfb[data-filter="all"]')?.classList.add('act');
+  }
+  document.querySelectorAll('.pgrid .pc').forEach((card, i)=>{
+    if(!q){ card.style.display=''; return; }
+    const p = prods[i];
+    if(!p){ card.style.display='none'; return; }
+    const haystack = [p.n, p.o, p.m, p.a, p.d].join(' ').toLowerCase();
+    card.style.display = haystack.includes(q) ? '' : 'none';
+  });
+  const anyVisible = [...document.querySelectorAll('.pgrid .pc')].some(c=>c.style.display!=='none');
+  let noRes = document.getElementById('no-results');
+  if(!anyVisible){
+    if(!noRes){
+      noRes = document.createElement('p');
+      noRes.id='no-results';
+      noRes.style.cssText='grid-column:1/-1;text-align:center;font-family:var(--fd);font-style:italic;color:rgba(250,246,240,.35);font-size:1.1rem;padding:3rem 0';
+      document.querySelector('.pgrid').appendChild(noRes);
+    }
+    noRes.textContent=`Aucune pièce ne correspond à "${query}".`;
+  } else if(noRes){ noRes.remove(); }
 }
 
 function filterAndGoto(cat){
@@ -2587,6 +2629,8 @@ function openQV(idx){
 
 function switchQVImg(src, thumbEl){
   const mainImg=document.getElementById('qvimg');
+  const qvg=document.getElementById('qvg');
+  qvg.classList.remove('zoomed'); // reset zoom on image change
   mainImg.style.opacity='0';
   setTimeout(()=>{ mainImg.src=src; mainImg.style.opacity='1'; },200);
   document.querySelectorAll('#qv-thumbs img').forEach(t=>{
@@ -2596,6 +2640,41 @@ function switchQVImg(src, thumbEl){
   thumbEl.style.borderColor='var(--or)';
   thumbEl.style.opacity='1';
 }
+
+// ─── IMAGE ZOOM (Quick View) ───────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  const qvg = document.getElementById('qvg');
+  const qvimg = document.getElementById('qvimg');
+  if(!qvg || !qvimg) return;
+
+  // Click pour toggle zoom
+  qvimg.addEventListener('click', e=>{
+    if(qvg.classList.contains('zoomed')){
+      qvg.classList.remove('zoomed');
+    } else {
+      // Centrer le zoom sur le point cliqué
+      const rect = qvimg.getBoundingClientRect();
+      const xPct = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+      const yPct = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
+      qvimg.style.transformOrigin = `${xPct}% ${yPct}%`;
+      qvg.classList.add('zoomed');
+    }
+  });
+
+  // Suivi de la souris pour panoramique en mode zoom
+  qvg.addEventListener('mousemove', e=>{
+    if(!qvg.classList.contains('zoomed')) return;
+    const rect = qvg.getBoundingClientRect();
+    const xPct = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+    const yPct = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
+    qvimg.style.transformOrigin = `${xPct}% ${yPct}%`;
+  });
+
+  // Reset zoom quand on quitte la QV
+  document.getElementById('qv').addEventListener('click', e=>{
+    if(e.target.id==='qv') qvg.classList.remove('zoomed');
+  });
+});
 
 // ─── CHATBOT ──────────────────────────────────────────────────────────────────
 let chatOpen=false,hist=[],busy=false,userName='',msgCount=0,userMood='neutral';
@@ -5092,6 +5171,35 @@ function toggleOrderDetail(idx){
     detail.style.display = 'none';
     if(chevron) chevron.textContent = '▾';
   }
+}
+
+// ─── PARTAGE PRODUIT ──────────────────────────────────────────────────────────
+async function shareProduct(){
+  const p = prods[currentQVIdx];
+  const isFr = currentLang === 'fr';
+  const shareData = {
+    title: `${p.n} — Mémoire d'Afrique`,
+    text: isFr
+      ? `Découvrez "${p.n}" (${p.p}) sur Mémoire d'Afrique — Mode & Artisanat Africain d'Exception`
+      : `Discover "${p.n}" (${p.p}) on Mémoire d'Afrique — Exclusive African Fashion & Craft`,
+    url: 'https://memoire-afrique-phi.vercel.app'
+  };
+  const btn = document.getElementById('qv-share-btn');
+  if(navigator.share){
+    try{
+      await navigator.share(shareData);
+    } catch(e){ if(e.name!=='AbortError') fallbackCopy(shareData.url, btn); }
+  } else {
+    fallbackCopy(shareData.url, btn);
+  }
+}
+function fallbackCopy(url, btn){
+  navigator.clipboard?.writeText(url).then(()=>{
+    const orig = btn?.innerHTML;
+    if(btn){ btn.innerHTML='✓ Lien copié !'; btn.style.color='var(--or)'; }
+    toast('Lien copié dans le presse-papiers ✦');
+    setTimeout(()=>{ if(btn){ btn.innerHTML=orig; btn.style.color=''; } }, 2000);
+  }).catch(()=>toast('Lien : memoire-afrique-phi.vercel.app'));
 }
 
 // Init badge on load
