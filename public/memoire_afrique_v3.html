@@ -726,6 +726,31 @@ body.light .pact .pwl{background:rgba(242,236,226,.85);border-color:rgba(201,169
 body.light .cbname{color:var(--ivoire)}
 body.light .an,.light .cartt,.light .pt,.light .ll{color:var(--ivoire)!important}
 body.light #loader{background:var(--noir)}
+/* Artisans mode clair */
+body.light .arti-card{border-color:rgba(201,169,110,.25);background:#e8dcc8}
+body.light .arti-overlay{background:linear-gradient(to top,rgba(26,15,7,.88) 0%,rgba(26,15,7,.25) 60%,transparent 100%)}
+body.light .arti-img{filter:grayscale(20%)}
+/* Journal mode clair */
+body.light .jcard{background:rgba(255,255,255,.5);border-color:rgba(201,169,110,.2)}
+body.light .jtag{background:rgba(201,169,110,.15)}
+body.light .jt{color:var(--ivoire)}
+body.light .jex{color:rgba(26,15,7,.45)}
+/* Guide tailles mode clair */
+body.light #sg-box{background:#f2ece2;border-color:rgba(201,169,110,.25)}
+body.light .sg-table td{color:rgba(26,15,7,.65)}
+body.light .sg-table th{color:rgba(26,15,7,.35)}
+body.light .sg-table tr:hover td{background:rgba(201,169,110,.06)}
+body.light .sg-tip{background:rgba(201,169,110,.06);border-color:rgba(201,169,110,.15)}
+body.light .sg-tab{color:rgba(26,15,7,.4);border-color:rgba(201,169,110,.2)}
+body.light .sg-tab.act{background:rgba(201,169,110,.15);color:rgba(26,15,7,.8)}
+/* Compte client mode clair */
+body.light #account-modal>div,body.light #size-guide #sg-box{background:#f2ece2}
+/* Bouton retour en haut */
+#back-top{position:fixed;bottom:1.8rem;right:1.5rem;width:40px;height:40px;background:var(--or);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:190;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .3s,visibility .3s,transform .3s;color:var(--noir)}
+#back-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+#back-top svg{width:16px;height:16px;stroke:var(--noir);stroke-width:2;fill:none}
+#back-top:hover{background:var(--ivoire)}
+body.light #back-top:hover{background:var(--cacao)}
 
 /* ─── THEME TOGGLE ────────────────────────────── */
 .ntoggle{display:flex;align-items:center;gap:1.2rem;margin-left:.5rem;padding-left:.9rem;border-left:1px solid rgba(201,169,110,.15)}
@@ -4287,6 +4312,15 @@ renderCart();
 
 // ─── THEME DARK / LIGHT ───────────────────────────────────────────────────────
 let isDark = true;
+// ─── RETOUR EN HAUT ───────────────────────────────────────────────────────────
+(function(){
+  const btn = document.getElementById('back-top');
+  if(!btn) return;
+  window.addEventListener('scroll', ()=>{
+    btn.classList.toggle('show', window.scrollY > 500);
+  }, {passive:true});
+})();
+
 function toggleTheme(){
   isDark = !isDark;
   document.body.classList.toggle('light', !isDark);
@@ -6957,5 +6991,37 @@ function closeArticle(){
   </div>
 </div>
 
+<!-- Bouton retour en haut -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Retour en haut de page" title="Retour en haut">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Mémoire d'Afrique",
+      "url": "https://memoire-afrique-phi.vercel.app/",
+      "logo": "https://memoire-afrique-phi.vercel.app/Couverture Mode Femme.png",
+      "description": "Maison de mode et d'artisanat africain d'exception. Pièces rares façonnées par des artisans des quatre coins de l'Afrique.",
+      "foundingDate": "2024",
+      "founder": { "@type": "Person", "name": "Amadou Binta Diallo" },
+      "address": { "@type": "PostalAddress", "addressCountry": "NE", "addressLocality": "Niamey" }
+    },
+    {
+      "@type": "ItemList",
+      "name": "Collections Mémoire d'Afrique",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Boubou Brodé d'Or","offers":{"@type":"Offer","priceCurrency":"XOF","price":"285000"}},
+        {"@type":"ListItem","position":2,"name":"Masque Sculpté Baoulé","offers":{"@type":"Offer","priceCurrency":"XOF","price":"420000"}},
+        {"@type":"ListItem","position":3,"name":"Robe Kente Royale","offers":{"@type":"Offer","priceCurrency":"XOF","price":"195000"}},
+        {"@type":"ListItem","position":4,"name":"Sac Cuir Maasaï","offers":{"@type":"Offer","priceCurrency":"XOF","price":"98000"}}
+      ]
+    }
+  ]
+}
+</script>
 </body>
 </html>
