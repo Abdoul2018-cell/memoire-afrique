@@ -710,6 +710,11 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
   <button onclick="document.getElementById('promo-banner').style.display='none'" style="position:absolute;right:.8rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(250,246,240,.3);cursor:pointer;font-size:.75rem;line-height:1;padding:.2rem" aria-label="Fermer">✕</button>
 </div>
 
+<!-- BANDEAU LIVRAISON GRATUITE -->
+<div id="ship-banner" style="background:#0a0806;border-bottom:1px solid rgba(201,169,110,.15);padding:.35rem 1rem;text-align:center;position:relative;z-index:199">
+  <span style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,246,240,.6)">🚚 &nbsp;Livraison offerte dès &nbsp;<strong style="color:var(--or)">200 000 FCFA</strong>&nbsp; d'achat &nbsp;·&nbsp; Nationale &amp; Internationale</span>
+</div>
+
 <!-- LOADER -->
 <div id="loader" role="status" aria-label="Chargement">
   <div class="llogo">Mémoire d'Afrique</div>
@@ -1147,7 +1152,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
   <div class="dinn">
     <div class="rv">
       <div class="dpframe">
-        <img src="Image mot de la DG.png" alt="Amadou Binta Diallo — Fondatrice de Mémoire d'Afrique" loading="lazy" style="object-position:center top">
+        <img src="Image mot de la DG.png" alt=" Binta Diallo — Fondatrice de Mémoire d'Afrique" loading="lazy" style="object-position:center top">
         <div class="dpacc" aria-hidden="true"></div>
       </div>
       <div class="dpbrd" aria-hidden="true"></div>
@@ -1239,6 +1244,53 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
         <div><div style="font-size:.68rem;color:var(--ivoire);letter-spacing:.08em">Amina Traoré</div><div style="font-size:.55rem;color:rgba(201,169,110,.4);margin-top:.2rem">Abidjan, Côte d'Ivoire</div></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- COMMENT ÇA MARCHE -->
+<section id="comment-ca-marche" style="background:#080605;padding:5rem 1rem" aria-label="Comment ça marche">
+  <div class="rv" style="text-align:center;margin-bottom:3.5rem">
+    <p class="sl">Simple &amp; élégant</p>
+    <h2 class="st">Comment ça <em>marche</em></h2>
+    <div class="sd" style="margin:0 auto"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2.5rem;max-width:960px;margin:0 auto;position:relative">
+
+    <!-- Ligne décorative entre étapes (desktop) -->
+    <div style="position:absolute;top:3.2rem;left:calc(16.6% + 1rem);right:calc(16.6% + 1rem);height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,.3),transparent);pointer-events:none;display:none" class="ccm-line"></div>
+
+    <!-- Étape 1 -->
+    <div style="text-align:center;padding:2rem 1.5rem;background:rgba(201,169,110,.03);border:1px solid rgba(201,169,110,.1);position:relative">
+      <div style="width:3.2rem;height:3.2rem;border:1px solid var(--or);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.4rem;background:rgba(201,169,110,.08)">
+        <span style="font-family:var(--fd);font-size:1.2rem;color:var(--or);font-style:italic">1</span>
+      </div>
+      <p style="font-family:var(--fd);font-size:1.15rem;color:var(--ivoire);font-style:italic;margin-bottom:.7rem">Choisissez votre pièce</p>
+      <p style="font-size:.8rem;color:rgba(250,246,240,.55);line-height:1.75">Parcourez notre sélection d'œuvres artisanales d'exception. Filtrez par catégorie, prix ou origine. Chaque fiche détaille l'artisan, les matières et la technique.</p>
+    </div>
+
+    <!-- Étape 2 -->
+    <div style="text-align:center;padding:2rem 1.5rem;background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.18);position:relative">
+      <div style="position:absolute;top:-.7rem;left:50%;transform:translateX(-50%);background:var(--or);color:var(--noir);font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;padding:.25rem .7rem">Le plus populaire</div>
+      <div style="width:3.2rem;height:3.2rem;border:1px solid var(--or);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:1.2rem auto 1.4rem;background:rgba(201,169,110,.12)">
+        <span style="font-family:var(--fd);font-size:1.2rem;color:var(--or);font-style:italic">2</span>
+      </div>
+      <p style="font-family:var(--fd);font-size:1.15rem;color:var(--ivoire);font-style:italic;margin-bottom:.7rem">Commandez en sécurité</p>
+      <p style="font-size:.8rem;color:rgba(250,246,240,.55);line-height:1.75">Remplissez vos coordonnées et choisissez votre mode de paiement — mobile money, carte ou virement. Chaque transaction est chiffrée SSL et confirmée par WhatsApp.</p>
+    </div>
+
+    <!-- Étape 3 -->
+    <div style="text-align:center;padding:2rem 1.5rem;background:rgba(201,169,110,.03);border:1px solid rgba(201,169,110,.1)">
+      <div style="width:3.2rem;height:3.2rem;border:1px solid var(--or);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.4rem;background:rgba(201,169,110,.08)">
+        <span style="font-family:var(--fd);font-size:1.2rem;color:var(--or);font-style:italic">3</span>
+      </div>
+      <p style="font-family:var(--fd);font-size:1.15rem;color:var(--ivoire);font-style:italic;margin-bottom:.7rem">Recevez avec soin</p>
+      <p style="font-size:.8rem;color:rgba(250,246,240,.55);line-height:1.75">Votre pièce arrive dans un coffret premium signé Mémoire d'Afrique, avec son certificat d'authenticité. Livraison suivie, 7 à 21 jours selon destination.</p>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;margin-top:3rem">
+    <a href="#produits" onclick="gotoSec('produits')" class="bp" style="display:inline-block;padding:1rem 2.5rem;font-size:.62rem;letter-spacing:.18em;text-decoration:none">Découvrir la collection</a>
   </div>
 </section>
 
@@ -5953,6 +6005,86 @@ function claimExitOffer(){
 
 // Init badge on load
 document.addEventListener('DOMContentLoaded', updateOrdersBadge);
+
+// ─── A : GALERIE SWIPE SUR CARTES PRODUIT ─────────────────────────────────
+(function initCardGalleries(){
+  const cards = document.querySelectorAll('.pc');
+  cards.forEach((card, idx) => {
+    const p = prods[idx];
+    if(!p || !p.imgs || p.imgs.length < 2) return;
+    const imgs = p.imgs;
+    let current = 0;
+    const pi = card.querySelector('.pi');
+    const mainImg = card.querySelector('.pi img');
+    if(!pi || !mainImg) return;
+
+    // Dots
+    const dots = document.createElement('div');
+    dots.style.cssText = 'position:absolute;bottom:.55rem;left:50%;transform:translateX(-50%);display:flex;gap:.35rem;z-index:5;pointer-events:none';
+    imgs.forEach((_, i) => {
+      const d = document.createElement('span');
+      d.style.cssText = `width:${i===0?'16px':'5px'};height:5px;border-radius:3px;background:${i===0?'var(--or)':'rgba(201,169,110,.35)'};transition:all .25s ease;display:inline-block`;
+      dots.appendChild(d);
+    });
+    pi.appendChild(dots);
+
+    function goTo(n){
+      current = (n + imgs.length) % imgs.length;
+      mainImg.style.opacity = '0';
+      setTimeout(() => { mainImg.src = imgs[current]; mainImg.style.opacity = '1'; }, 150);
+      dots.querySelectorAll('span').forEach((d,i) => {
+        d.style.width = i === current ? '16px' : '5px';
+        d.style.background = i === current ? 'var(--or)' : 'rgba(201,169,110,.35)';
+      });
+    }
+
+    // Arrows
+    ['‹','›'].forEach((ch, dir) => {
+      const btn = document.createElement('button');
+      btn.textContent = ch;
+      btn.style.cssText = `position:absolute;${dir===0?'left:.4rem':'right:.4rem'};top:50%;transform:translateY(-50%);z-index:6;background:rgba(10,8,6,.65);border:1px solid rgba(201,169,110,.25);color:var(--or);font-size:1.2rem;line-height:1;width:1.8rem;height:1.8rem;cursor:pointer;opacity:0;transition:opacity .2s;display:flex;align-items:center;justify-content:center;padding:0`;
+      btn.setAttribute('aria-label', dir===0?'Image précédente':'Image suivante');
+      btn.addEventListener('click', e => { e.stopPropagation(); goTo(current + (dir===0?-1:1)); });
+      pi.appendChild(btn);
+    });
+
+    // Show/hide arrows on hover
+    pi.addEventListener('mouseenter', () => pi.querySelectorAll('button[aria-label]').forEach(b => b.style.opacity='1'));
+    pi.addEventListener('mouseleave', () => pi.querySelectorAll('button[aria-label]').forEach(b => b.style.opacity='0'));
+
+    // Touch swipe
+    let tx = 0;
+    pi.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+    pi.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - tx;
+      if(Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+    }, {passive:true});
+  });
+})();
+
+// ─── D : COMPTEUR "X PERSONNES REGARDENT" SUR CARTES ─────────────────────
+(function initViewers(){
+  const base = [14,9,6,11,7,5,12,8];
+  document.querySelectorAll('.pc').forEach((card, i) => {
+    const pi = card.querySelector('.pi');
+    if(!pi) return;
+    const count = base[i] || (5 + Math.floor(Math.random()*10));
+    const badge = document.createElement('div');
+    badge.style.cssText = 'position:absolute;bottom:.5rem;right:.5rem;font-size:.52rem;letter-spacing:.08em;color:rgba(250,246,240,.7);background:rgba(10,8,6,.7);padding:.22rem .5rem;border:1px solid rgba(201,169,110,.15);z-index:5;pointer-events:none';
+    badge.innerHTML = `👁 <span class="vc">${count}</span> regardent`;
+    pi.appendChild(badge);
+
+    // Fluctuation légère toutes les 8–20s
+    function fluctuate(){
+      const el = badge.querySelector('.vc');
+      const delta = Math.random() < .5 ? 1 : -1;
+      const next = Math.max(3, Math.min(25, parseInt(el.textContent) + delta));
+      el.textContent = next;
+      setTimeout(fluctuate, 8000 + Math.random()*12000);
+    }
+    setTimeout(fluctuate, 3000 + Math.random()*8000);
+  });
+})();
 </script>
 
 <!-- ── Exit Intent Popup ─────────────────────────────────────────────── -->
