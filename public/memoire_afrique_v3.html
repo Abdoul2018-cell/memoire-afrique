@@ -221,6 +221,56 @@ section{padding:7rem 5%}
 .gb7{background:linear-gradient(135deg,#0d0a1a,#2d1a4a)}
 .gb8{background:linear-gradient(135deg,#0a1a0a,#1a4a2a)}
 
+/* ─── RECHERCHE ──────────────────────────────── */
+#search-overlay{position:fixed;inset:0;background:rgba(10,8,6,.96);z-index:400;display:none;flex-direction:column;align-items:center;padding-top:12vh}
+#search-overlay.open{display:flex}
+#search-wrap{width:min(640px,88vw);position:relative}
+#search-input{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(201,169,110,.35);color:var(--ivoire);font-family:var(--fd);font-size:1.8rem;font-style:italic;font-weight:300;padding:.6rem 2.5rem .6rem 0;outline:none;letter-spacing:.04em;caret-color:var(--or)}
+#search-input::placeholder{color:rgba(250,246,240,.2)}
+#search-close{position:absolute;right:0;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(250,246,240,.35);font-size:1.2rem;cursor:pointer;padding:.3rem;transition:color .2s}
+#search-close:hover{color:var(--or)}
+#search-hint{font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,169,110,.4);margin-top:.8rem}
+#search-results{width:min(640px,88vw);margin-top:2.5rem;display:flex;flex-direction:column;gap:.6rem;overflow-y:auto;max-height:55vh;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.2) transparent}
+.sr-item{display:flex;align-items:center;gap:1.2rem;padding:.9rem 1rem;border:1px solid rgba(201,169,110,.1);background:rgba(201,169,110,.03);cursor:pointer;transition:background .2s,border-color .2s}
+.sr-item:hover{background:rgba(201,169,110,.07);border-color:rgba(201,169,110,.25)}
+.sr-img{width:52px;height:52px;object-fit:cover;flex-shrink:0}
+.sr-info{flex:1;min-width:0}
+.sr-name{font-family:var(--fd);font-size:.9rem;font-style:italic;color:var(--ivoire);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr-meta{font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(201,169,110,.5);margin-top:.2rem}
+.sr-price{font-size:.75rem;color:var(--or);font-family:var(--fd);font-style:italic;flex-shrink:0}
+#search-empty{text-align:center;color:rgba(250,246,240,.2);font-family:var(--fd);font-size:1.1rem;font-style:italic;padding:2rem 0;display:none}
+/* ─── PAGE PRODUIT ──────────────────────────────── */
+#pdp{position:fixed;inset:0;background:var(--noir);z-index:350;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.2) transparent;transform:translateX(100%);transition:transform .45s cubic-bezier(.22,.68,0,1.2);visibility:hidden}
+#pdp.open{transform:translateX(0);visibility:visible}
+#pdp-inner{max-width:1100px;margin:0 auto;padding:5rem 2rem 4rem}
+#pdp-back{position:fixed;top:1.1rem;left:1.4rem;z-index:360;display:flex;align-items:center;gap:.5rem;background:rgba(10,8,6,.7);backdrop-filter:blur(8px);border:1px solid rgba(201,169,110,.15);padding:.45rem 1rem;cursor:pointer;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(250,246,240,.5);transition:color .2s,border-color .2s}
+#pdp-back:hover{color:var(--or);border-color:rgba(201,169,110,.35)}
+#pdp-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+#pdp-gallery{position:sticky;top:5rem}
+#pdp-main-img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top}
+#pdp-thumbs{display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap}
+#pdp-thumbs img{width:68px;height:68px;object-fit:cover;cursor:pointer;border:2px solid rgba(201,169,110,.2);opacity:.6;transition:border-color .2s,opacity .2s;flex-shrink:0}
+#pdp-thumbs img.active{border-color:var(--or);opacity:1}
+#pdp-info{padding-top:.5rem}
+.pdp-badge{font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;padding:.22rem .6rem;margin-bottom:1.2rem;display:inline-block}
+#pdp-name{font-family:var(--fd);font-size:2.2rem;font-style:italic;font-weight:300;color:var(--ivoire);line-height:1.2;margin-bottom:.5rem}
+#pdp-origin{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,169,110,.55);margin-bottom:1.2rem}
+#pdp-price{font-family:var(--fd);font-size:1.6rem;font-style:italic;color:var(--or);margin-bottom:.4rem}
+#pdp-desc{font-size:.75rem;line-height:2;color:rgba(250,246,240,.55);margin:1.4rem 0;font-weight:300}
+.pdp-sep{height:1px;background:rgba(201,169,110,.1);margin:1.4rem 0}
+.pdp-row{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:.45rem 0;border-bottom:1px solid rgba(201,169,110,.07);font-size:.6rem}
+.pdp-dk{color:rgba(201,169,110,.45);letter-spacing:.12em;text-transform:uppercase;flex-shrink:0}
+.pdp-dv{color:rgba(250,246,240,.7);text-align:right;line-height:1.6}
+#pdp-sizes-wrap{margin:1.4rem 0}
+#pdp-sizes{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem}
+.pdp-sz{background:transparent;border:1px solid rgba(201,169,110,.2);color:rgba(250,246,240,.6);font-family:var(--fb);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .7rem;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.pdp-sz:hover,.pdp-sz.sel{background:var(--or);border-color:var(--or);color:var(--noir)}
+#pdp-cta{display:flex;flex-direction:column;gap:.8rem;margin-top:1.8rem}
+@media(max-width:768px){
+  #pdp-grid{grid-template-columns:1fr}
+  #pdp-gallery{position:static}
+  #pdp-inner{padding:4.5rem 1.2rem 3rem}
+}
 /* ─── DIRECTRICE ──────────────────────────────── */
 #dir{background:linear-gradient(135deg,#0a0806,#140e09,#0a0806);position:relative;overflow:hidden}
 .dpat{position:absolute;inset:0;opacity:.025;background-image:repeating-conic-gradient(var(--or) 0%,transparent .5%,transparent 50%);background-size:36px 36px;pointer-events:none}
@@ -753,6 +803,8 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nic">
+    <!-- Recherche : loupe -->
+    <button class="ni" onclick="openSearch()" aria-label="Rechercher" title="Rechercher"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
     <!-- Wishlist : cœur -->
     <button class="ni" onclick="openWishlist()" aria-label="Mes favoris" title="Mes favoris" style="position:relative"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span id="wl-badge" style="display:none;position:absolute;top:-3px;right:-4px;background:#e74c3c;color:#fff;font-size:.44rem;font-weight:700;min-width:14px;height:14px;border-radius:50%;align-items:center;justify-content:center;padding:0 2px"></span></button>
     <!-- Commandes : colis -->
@@ -936,33 +988,33 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     </div>
   </div>
   <div class="pgrid rv">
-    <article class="pc" onclick="openQV(0)" data-cat="mode-femme rare" data-price="285000" aria-label="Boubou Brodé d'Or — 285 000 FCFA">
+    <article class="pc" onclick="openPDP(0)" data-cat="mode-femme rare" data-price="285000" aria-label="Boubou Brodé d'Or — 285 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#2d1a0e,#1a0f07)">
         <img src="Boubou brodé doré.png" alt="Boubou Brodé d'Or — Dakar, Sénégal" loading="lazy">
         <div class="pbrow"><span class="bk br">Rare</span></div>
         <div class="pact">
           <button class="pwl" onclick="event.stopPropagation();wl(this)" aria-label="Ajouter à la wishlist">♡</button>
-          <button class="pqv">Vue rapide</button>
+          <button class="pqv" onclick="event.stopPropagation();openQV(0)">Vue rapide</button>
         </div>
       </div>
       <div class="pn">Boubou Brodé d'Or</div>
       <div class="po">Dakar, Sénégal</div>
       <div class="pp">285 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openQV(1)" data-cat="artisanat" data-price="420000" aria-label="Masque Sculpté Baoulé — 420 000 FCFA">
+    <article class="pc" onclick="openPDP(1)" data-cat="artisanat" data-price="420000" aria-label="Masque Sculpté Baoulé — 420 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#1a1a2e,#0d0d1a)">
         <img src="Masque Baoulé sculpé.png" alt="Masque Sculpté Baoulé — Abidjan, Côte d'Ivoire" loading="lazy">
         <div class="pbrow"><span class="bk bn">Nouveau</span></div>
         <div class="pact">
           <button class="pwl" onclick="event.stopPropagation();wl(this)" aria-label="Ajouter à la wishlist">♡</button>
-          <button class="pqv">Vue rapide</button>
+          <button class="pqv" onclick="event.stopPropagation();openQV(1)">Vue rapide</button>
         </div>
       </div>
       <div class="pn">Masque Sculpté Baoulé</div>
       <div class="po">Abidjan, Côte d'Ivoire</div>
       <div class="pp">420 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openQV(2)" data-cat="mode-femme rare" data-price="195000" aria-label="Robe Kente Royale — 195 000 FCFA">
+    <article class="pc" onclick="openPDP(2)" data-cat="mode-femme rare" data-price="195000" aria-label="Robe Kente Royale — 195 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#2e1a1a,#1a0d0d)">
         <img src="Robe Kenté Royale.png" alt="Robe Kente Royale — Accra, Ghana" loading="lazy">
         <div class="pbrow"><span class="bk br">Rare</span></div>
@@ -975,7 +1027,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Accra, Ghana</div>
       <div class="pp">195 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openQV(3)" data-cat="accessoires" data-price="145000" aria-label="Parure Berbère Argent — 145 000 FCFA">
+    <article class="pc" onclick="openPDP(3)" data-cat="accessoires" data-price="145000" aria-label="Parure Berbère Argent — 145 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#1a2e1a,#0d1a0d)">
         <img src="Parures argentées.png" alt="Parure Berbère Argent — Marrakech, Maroc" loading="lazy">
         <div class="pbrow"><span class="bk bn">Nouveau</span></div>
@@ -988,7 +1040,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Marrakech, Maroc</div>
       <div class="pp">145 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openQV(4)" data-cat="accessoires" data-price="98000" aria-label="Sac Cuir Maasaï — 98 000 FCFA">
+    <article class="pc" onclick="openPDP(4)" data-cat="accessoires" data-price="98000" aria-label="Sac Cuir Maasaï — 98 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#2e2a1a,#1a1507)">
         <img src="Sac en cuir Massai.png" alt="Sac Cuir Maasaï — Nairobi, Kenya" loading="lazy">
         <div class="pact">
@@ -1000,7 +1052,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Nairobi, Kenya</div>
       <div class="pp">98 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openQV(5)" data-cat="artisanat rare" data-price="350000" aria-label="Tapis Berbère Ancestral — 350 000 FCFA">
+    <article class="pc" onclick="openPDP(5)" data-cat="artisanat rare" data-price="350000" aria-label="Tapis Berbère Ancestral — 350 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#1a1a1a,#0d0d0d)">
         <img src="Tapis berber ancestral.png" alt="Tapis Berbère Ancestral — Fès, Maroc" loading="lazy">
         <div class="pbrow"><span class="bk br">Rare</span></div>
@@ -1013,7 +1065,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Fès, Maroc</div>
       <div class="pp">350 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openQV(6)" data-cat="mode-femme mode-homme" data-price="175000" aria-label="Djellaba Brodée — 175 000 FCFA">
+    <article class="pc" onclick="openPDP(6)" data-cat="mode-femme mode-homme" data-price="175000" aria-label="Djellaba Brodée — 175 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#1a1a2e,#0d0d1a)">
         <img src="Djellaba Brodée.png" alt="Djellaba Brodée — Tunis, Tunisie" loading="lazy">
         <div class="pbrow"><span class="bk bn">Nouveau</span></div>
@@ -1026,7 +1078,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Tunis, Tunisie</div>
       <div class="pp">175 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openQV(7)" data-cat="artisanat rare" data-price="680000" aria-label="Plateau Africain Signature — 680 000 FCFA">
+    <article class="pc" onclick="openPDP(7)" data-cat="artisanat rare" data-price="680000" aria-label="Plateau Africain Signature — 680 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#2e2e1a,#1a1a0d)">
         <img src="Plateau Africain DG.jpg" alt="Plateau Africain Signature — Niamey, Niger" loading="lazy">
         <div class="pbrow"><span class="bk br">Rare</span></div>
@@ -1172,8 +1224,10 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <p class="sl">Mot de la Directrice Générale</p>
       <div class="dqm" aria-hidden="true">"</div>
       <blockquote class="dq">L'Afrique n'est pas seulement un continent —<br>c'est un <em>univers de création</em>, de mémoire<br>et de beauté intemporelle.</blockquote>
-      <p class="dt">Mémoire d'Afrique est née d'une conviction profonde : les savoir-faire artisanaux africains méritent d'être célébrés avec l'exigence et le raffinement que leur talent ancestral requiert. Chaque pièce porte en elle des décennies de transmission, d'apprentissage et d'amour pour le geste juste.</p>
-      <p class="dt">Notre mission : créer un pont lumineux entre les créateurs du continent et les amateurs de beauté authentique à travers le monde. Pas simplement vendre — mais transmettre, honorer, perpétuer.</p>
+      <p class="dt">Mémoire d'Afrique est née d'une évidence que j'ai portée longtemps avant de la formuler : les savoir-faire artisanaux africains sont parmi les plus sophistiqués au monde, et pourtant ils demeurent trop souvent invisibles aux yeux de ceux qui apprécient le luxe véritable. J'ai voulu corriger cette injustice — non par militantisme, mais par amour du beau.</p>
+      <p class="dt">Chaque pièce que nous proposons est le fruit d'un dialogue patient avec des artisans d'exception — tisserands kente du Ghana, maroquiniers maasaï du Kenya, teinturiers bogolan du Mali. Des hommes et des femmes dont les mains transmettent, depuis des générations, une intelligence du geste que nulle machine ne saurait reproduire. Nous ne sélectionnons pas des objets ; nous choisissons des histoires.</p>
+      <p class="dt">Notre exigence est double : honorer la tradition sans la figer, et offrir à nos clientes une expérience d'achat à la hauteur de la rareté de ce qu'elles acquièrent. Chaque commande est traitée avec la rigueur d'un atelier de haute couture — emballage, délai de fabrication, suivi personnalisé. Parce que la beauté africaine mérite ce niveau d'attention.</p>
+      <p class="dt">Je vous invite à entrer dans cet univers avec curiosité et confiance. Derrière chaque pièce, il y a une main, un territoire, une mémoire. Et désormais, il y a vous.</p>
       <div class="dsig">Amadou Binta Diallo</div>
       <div class="drl">Fondatrice &amp; Directrice Générale — Mémoire d'Afrique</div>
     </div>
@@ -2963,6 +3017,124 @@ function handleLogin(e){
   toast(loginIsRegister ? 'Compte créé — Bienvenue ✦' : `Bienvenue, ${user.name.split(' ')[0]} ✦`);
   setTimeout(()=>{ closeLogin(); updateAccountUI(); }, 600);
 }
+
+/* ──────────────── RECHERCHE ──────────────── */
+function openSearch(){
+  const o=document.getElementById('search-overlay');
+  o.classList.add('open');
+  document.getElementById('search-input').value='';
+  document.getElementById('search-results').innerHTML='';
+  document.getElementById('search-empty').style.display='none';
+  document.body.style.overflow='hidden';
+  setTimeout(()=>document.getElementById('search-input').focus(),80);
+}
+function closeSearch(){
+  document.getElementById('search-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function searchKey(e){ if(e.key==='Escape') closeSearch(); }
+function runSearch(q){
+  const res=document.getElementById('search-results');
+  const empty=document.getElementById('search-empty');
+  q=q.trim().toLowerCase();
+  if(!q){ res.innerHTML=''; empty.style.display='none'; return; }
+  const hits=prods.filter(p=>
+    p.n.toLowerCase().includes(q)||
+    (p.o||'').toLowerCase().includes(q)||
+    (p.m||'').toLowerCase().includes(q)||
+    (p.a||'').toLowerCase().includes(q)||
+    (p.d||'').toLowerCase().includes(q)
+  );
+  if(!hits.length){ res.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  res.innerHTML=hits.map(p=>{
+    const idx=prods.indexOf(p);
+    return `<div class="sr-item" role="option" onclick="closeSearch();openPDP(${idx})">
+      <img class="sr-img" src="${p.img}" alt="${p.n}" loading="lazy">
+      <div class="sr-info">
+        <div class="sr-name">${p.n}</div>
+        <div class="sr-meta">${p.o||''} ${p.b?'· '+p.b:''}</div>
+      </div>
+      <div class="sr-price">${p.p}</div>
+    </div>`;
+  }).join('');
+}
+document.addEventListener('keydown',e=>{ if(e.key==='/'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){ e.preventDefault(); openSearch(); } });
+
+/* ──────────────── PAGE PRODUIT ──────────────── */
+let _pdpIdx=null;
+function openPDP(idx){
+  _pdpIdx=idx;
+  const p=prods[idx];
+  const pdp=document.getElementById('pdp');
+  // Image principale
+  document.getElementById('pdp-main-img').src=p.img;
+  document.getElementById('pdp-main-img').alt=p.n;
+  // Miniatures
+  const thumbs=document.getElementById('pdp-thumbs');
+  const imgs=p.imgs||[p.img];
+  if(imgs.length>1){
+    thumbs.innerHTML=imgs.map((src,i)=>`<img src="${src}" alt="${p.n} ${i+1}" class="${i===0?'active':''}" onclick="pdpSwitchImg('${src}',this)" loading="lazy">`).join('');
+    thumbs.style.display='flex';
+  } else { thumbs.innerHTML=''; thumbs.style.display='none'; }
+  // Badge
+  const badge=document.getElementById('pdp-badge');
+  if(p.b){ badge.textContent=p.b; badge.className='bk pdp-badge '+(p.b==='Rare'?'br':'bn'); badge.style.display='inline-block'; }
+  else badge.style.display='none';
+  // Textes
+  document.getElementById('pdp-name').textContent=p.n;
+  document.getElementById('pdp-origin').textContent=p.o||'';
+  document.getElementById('pdp-price').textContent=p.p;
+  document.getElementById('pdp-desc').textContent=p.d;
+  // Stock
+  const sm=document.getElementById('pdp-stock-msg');
+  sm.innerHTML=p.stock<=3?`<div style="font-size:.58rem;color:#e74c3c;letter-spacing:.12em;text-transform:uppercase;margin:.4rem 0">● Plus que ${p.stock} en stock</div>`:'';
+  // Details
+  const rows=[['Matière',p.m],['Artisan',p.a],['Technique',p.tech],['Dimensions',p.dims],['Entretien',p.care],['Fabrication',p.delai]];
+  document.getElementById('pdp-details').innerHTML=rows.filter(r=>r[1]).map(r=>`<div class="pdp-row"><span class="pdp-dk">${r[0]}</span><span class="pdp-dv">${r[1]}</span></div>`).join('');
+  // Tailles
+  const sw=document.getElementById('pdp-sizes-wrap');
+  const sd=document.getElementById('pdp-sizes');
+  if(p.sizes&&p.sizes.length){ sw.style.display='block'; sd.innerHTML=p.sizes.map(s=>`<button class="pdp-sz" onclick="this.parentElement.querySelectorAll('.pdp-sz').forEach(b=>b.classList.remove('sel'));this.classList.add('sel')">${s}</button>`).join(''); }
+  else sw.style.display='none';
+  // CTA
+  document.getElementById('pdp-add-btn').onclick=()=>{
+    const sz=document.querySelector('#pdp-sizes .sel');
+    const p2=prods[idx];
+    if(p2.sizes&&p2.sizes.length&&!sz){ toast('Veuillez choisir une taille'); document.getElementById('pdp-sizes').style.outline='1px solid #e74c3c'; setTimeout(()=>document.getElementById('pdp-sizes').style.outline='',1500); return; }
+    const size=sz?sz.textContent:null;
+    const existing=cartItems.find(i=>i.idx===idx&&i.size===size);
+    if(existing) existing.qty++; else cartItems.push({idx,qty:1,size});
+    saveCart(); renderCart();
+    toast('Pièce ajoutée au panier ✦');
+    setTimeout(()=>{ closePDP(); openCart(); },400);
+  };
+  document.getElementById('pdp-wl-btn').onclick=()=>{ wlByIdx(idx); };
+  // Ouvrir
+  pdp.classList.add('open');
+  pdp.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  pdp.scrollTop=0;
+}
+function closePDP(){
+  document.getElementById('pdp').classList.remove('open');
+  document.getElementById('pdp').setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+function pdpSwitchImg(src,el){
+  document.getElementById('pdp-main-img').src=src;
+  document.querySelectorAll('#pdp-thumbs img').forEach(i=>i.classList.remove('active'));
+  el.classList.add('active');
+}
+function wlByIdx(idx){
+  const p=prods[idx];
+  let wl=[];
+  try{ wl=JSON.parse(localStorage.getItem('mda_wl')||'[]'); }catch(e){}
+  if(!wl.includes(idx)){ wl.push(idx); try{ localStorage.setItem('mda_wl',JSON.stringify(wl)); }catch(e){} toast('Ajouté aux favoris ✦'); }
+  else toast('Déjà dans vos favoris');
+}
+// Keyboard: Escape ferme PDP
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.getElementById('pdp').classList.contains('open')) closePDP(); });
 
 function updateAccountUI(){
   let user = null;
@@ -6476,6 +6648,51 @@ function closeArticle(){
 </div>
 
 <!-- ── Wishlist Modal ────────────────────────────────────────────────── -->
+<!-- ── Search Overlay ────────────────────────────────────────────────── -->
+<div id="search-overlay" role="search" aria-label="Recherche">
+  <div id="search-wrap">
+    <input id="search-input" type="search" placeholder="Rechercher une pièce…" autocomplete="off" oninput="runSearch(this.value)" onkeydown="searchKey(event)">
+    <button id="search-close" onclick="closeSearch()" aria-label="Fermer">✕</button>
+  </div>
+  <div id="search-hint">Tapez le nom, la matière ou l'origine</div>
+  <div id="search-results" role="listbox"></div>
+  <div id="search-empty">Aucun résultat pour cette recherche</div>
+</div>
+
+<!-- ── Page Produit (PDP) ─────────────────────────────────────────────── -->
+<div id="pdp" role="dialog" aria-modal="true" aria-label="Fiche produit" aria-hidden="true">
+  <button id="pdp-back" onclick="closePDP()" aria-label="Retour au catalogue">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Retour
+  </button>
+  <div id="pdp-inner">
+    <div id="pdp-grid">
+      <div id="pdp-gallery">
+        <img id="pdp-main-img" src="" alt="">
+        <div id="pdp-thumbs"></div>
+      </div>
+      <div id="pdp-info">
+        <span class="bk pdp-badge" id="pdp-badge"></span>
+        <h1 id="pdp-name"></h1>
+        <div id="pdp-origin"></div>
+        <div id="pdp-price"></div>
+        <div id="pdp-stock-msg"></div>
+        <p id="pdp-desc"></p>
+        <div class="pdp-sep"></div>
+        <div id="pdp-details"></div>
+        <div id="pdp-sizes-wrap" style="display:none">
+          <div style="font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,169,110,.45)">Taille</div>
+          <div id="pdp-sizes"></div>
+        </div>
+        <div id="pdp-cta">
+          <button class="bp" id="pdp-add-btn" style="font-size:.6rem;padding:1rem">Ajouter au panier</button>
+          <button class="bs" id="pdp-wl-btn" style="font-size:.6rem;padding:.95rem">Ajouter aux favoris</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ── Account Modal ──────────────────────────────────────────────────── -->
 <div id="account-modal" role="dialog" aria-modal="true" aria-label="Mon Compte" aria-hidden="true"
   style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.88);z-index:320;align-items:center;justify-content:center"
