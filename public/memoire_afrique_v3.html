@@ -221,6 +221,50 @@ section{padding:7rem 5%}
 .gb7{background:linear-gradient(135deg,#0d0a1a,#2d1a4a)}
 .gb8{background:linear-gradient(135deg,#0a1a0a,#1a4a2a)}
 
+/* ─── NOTIFICATIONS ─────────────────────────────── */
+#notif-panel{position:fixed;top:0;right:0;width:min(360px,92vw);height:100dvh;background:var(--noir);border-left:1px solid rgba(201,169,110,.15);z-index:380;transform:translateX(100%);transition:transform .4s cubic-bezier(.22,.68,0,1.2);overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.2) transparent}
+#notif-panel.open{transform:translateX(0)}
+#notif-header{padding:1.2rem 1.4rem;border-bottom:1px solid rgba(201,169,110,.1);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--noir);z-index:1}
+.notif-item{padding:.9rem 1.2rem;border-bottom:1px solid rgba(201,169,110,.07);display:flex;gap:.9rem;align-items:flex-start;transition:background .2s;cursor:pointer}
+.notif-item:hover{background:rgba(201,169,110,.04)}
+.notif-item.unread{border-left:2px solid var(--or);padding-left:calc(1.2rem - 2px)}
+.notif-ico{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.notif-ico.new{background:rgba(201,169,110,.12)}
+.notif-ico.restock{background:rgba(39,174,96,.1)}
+.notif-ico.promo{background:rgba(52,152,219,.1)}
+.notif-ico.journal{background:rgba(155,89,182,.1)}
+.notif-title{font-size:.62rem;color:var(--ivoire);line-height:1.4;margin-bottom:.2rem}
+.notif-sub{font-size:.55rem;color:rgba(250,246,240,.35);line-height:1.5}
+.notif-time{font-size:.48rem;color:rgba(201,169,110,.35);margin-top:.25rem;font-style:italic}
+#notif-badge{position:absolute;top:-3px;right:-4px;background:#e74c3c;color:#fff;font-size:.44rem;font-weight:700;min-width:14px;height:14px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 2px}
+#notif-badge.show{display:flex}
+body.light #notif-panel{background:#f2ece2;border-left-color:rgba(201,169,110,.2)}
+body.light #notif-header{background:#f2ece2}
+body.light .notif-title{color:var(--ivoire)}
+/* ─── COMPARATEUR ────────────────────────────────── */
+#compare-bar{position:fixed;bottom:0;left:0;right:0;background:var(--noir);border-top:1px solid rgba(201,169,110,.2);z-index:300;transform:translateY(100%);transition:transform .4s cubic-bezier(.22,.68,0,1.2);display:flex;align-items:center;gap:1rem;padding:.75rem 1.5rem;flex-wrap:wrap}
+#compare-bar.show{transform:translateY(0)}
+.cmp-slot{width:52px;height:52px;border:1px solid rgba(201,169,110,.2);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0}
+.cmp-slot img{width:100%;height:100%;object-fit:cover}
+.cmp-slot .cmp-rm{position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;background:#e74c3c;border:none;color:#fff;font-size:.55rem;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.cmp-slot.empty{border-style:dashed;color:rgba(201,169,110,.2);font-size:.55rem}
+#cmp-label{font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,246,240,.35);flex:1}
+#compare-modal{position:fixed;inset:0;background:rgba(10,8,6,.94);z-index:390;display:none;align-items:flex-start;justify-content:center;padding:3rem 1rem;overflow-y:auto}
+#compare-modal.open{display:flex}
+#cmp-box{background:var(--noir);border:1px solid rgba(201,169,110,.18);width:min(900px,96vw);position:relative}
+#cmp-close{position:absolute;top:.8rem;right:.9rem;background:none;border:none;color:rgba(250,246,240,.3);font-size:1rem;cursor:pointer}
+.cmp-table{width:100%;border-collapse:collapse;font-size:.6rem}
+.cmp-table th{padding:.9rem 1rem;border-bottom:1px solid rgba(201,169,110,.12);font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,169,110,.45);font-weight:400;text-align:left}
+.cmp-table th:first-child{width:110px}
+.cmp-table td{padding:.8rem 1rem;border-bottom:1px solid rgba(201,169,110,.07);color:rgba(250,246,240,.65);vertical-align:top}
+.cmp-table td:first-child{color:rgba(201,169,110,.45);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase}
+.cmp-table tr:hover td{background:rgba(201,169,110,.03)}
+.cmp-prod-img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;margin-bottom:.5rem}
+.cmp-prod-name{font-family:var(--fd);font-size:.88rem;font-style:italic;color:var(--ivoire)}
+.cmp-prod-price{font-size:.75rem;color:var(--or);font-family:var(--fd);font-style:italic;margin:.2rem 0}
+.cmp-add-btn{font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;background:var(--or);border:none;color:var(--noir);font-family:var(--fb);padding:.35rem .8rem;cursor:pointer;margin-top:.4rem;width:100%}
+body.light #compare-bar{background:#f2ece2;border-top-color:rgba(201,169,110,.25)}
+body.light #cmp-box{background:#f2ece2}
 /* ─── LIGHTBOX GALERIE ───────────────────────────── */
 #lightbox{position:fixed;inset:0;background:rgba(5,4,2,.97);z-index:450;display:none;align-items:center;justify-content:center;flex-direction:column}
 #lightbox.open{display:flex}
@@ -969,6 +1013,8 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     <button class="ni" onclick="openOrders()" aria-label="Mes commandes" title="Mes commandes" id="orders-nav-btn" style="position:relative"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><span id="orders-badge" style="display:none;position:absolute;top:-3px;right:-4px;background:var(--or);color:var(--noir);font-size:.44rem;font-weight:700;min-width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 2px"></span></button>
     <!-- Documents : fichier -->
     <button class="ni" onclick="openDocs()" aria-label="Mes Documents" title="Mes Documents" id="docs-nav-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></button>
+    <!-- Notifications : cloche -->
+    <button class="ni" onclick="openNotifs()" aria-label="Notifications" title="Notifications" style="position:relative"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span id="notif-badge"></span></button>
     <!-- Agents IA : étincelle -->
     <button class="ni" onclick="openAI()" aria-label="Agents IA" title="Agents IA"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></button>
     <!-- Connexion : profil -->
@@ -4536,6 +4582,151 @@ function submitNLPopup(){
   setTimeout(()=>closeNLPopup(false), 4000);
 }
 
+// ─── NOTIFICATIONS (Z) ────────────────────────────────────────────────────────
+const NOTIF_KEY = 'mda_notifs_read';
+const NOTIF_DATA = [
+  { id:'n1', type:'new',     ico:'✦', title:'Nouvelle collection disponible', sub:'Boubou Brodé d\'Or — édition limitée printemps 2026', time:'Il y a 2 heures' },
+  { id:'n2', type:'restock', ico:'↩', title:'Restockage : Sac Cuir Maasaï', sub:'3 exemplaires de nouveau disponibles', time:'Il y a 5 heures' },
+  { id:'n3', type:'promo',   ico:'%', title:'Offre exclusive — 72h', sub:'Code MÉMOIRE15 : -15% sur les accessoires', time:'Il y a 1 jour' },
+  { id:'n4', type:'journal', ico:'✒', title:'Nouveau dans le Journal', sub:'Le Bogolan : art de résistance et de beauté', time:'Il y a 2 jours' },
+  { id:'n5', type:'new',     ico:'✦', title:'Pièce rare ajoutée', sub:'Plateau Africain Signature — édition numérotée', time:'Il y a 3 jours' },
+  { id:'n6', type:'restock', ico:'↩', title:'Restockage : Parure Berbère Argent', sub:'Disponible en taille unique', time:'Il y a 4 jours' },
+];
+
+function openNotifs(){
+  renderNotifs();
+  document.getElementById('notif-panel').classList.add('open');
+  setAriaHidden('notif-panel', false);
+  document.body.style.overflow = 'hidden';
+}
+function closeNotifs(){
+  document.getElementById('notif-panel').classList.remove('open');
+  setAriaHidden('notif-panel', true);
+  document.body.style.overflow = '';
+}
+function renderNotifs(){
+  let read = [];
+  try{ read = JSON.parse(localStorage.getItem(NOTIF_KEY)||'[]'); }catch(e){}
+  const unread = NOTIF_DATA.filter(n=>!read.includes(n.id));
+  document.getElementById('notif-unread-label').textContent = unread.length > 0 ? `${unread.length} non lue${unread.length>1?'s':''}` : 'Tout est lu';
+  const badge = document.getElementById('notif-badge');
+  if(unread.length > 0){ badge.textContent = unread.length > 9 ? '9+' : unread.length; badge.classList.add('show'); }
+  else badge.classList.remove('show');
+  const typeClass = {new:'new',restock:'restock',promo:'promo',journal:'journal'};
+  document.getElementById('notif-list').innerHTML = NOTIF_DATA.map(n=>`
+    <div class="notif-item ${read.includes(n.id)?'':'unread'}" onclick="readNotif('${n.id}',event)">
+      <div class="notif-ico ${typeClass[n.type]||'new'}" style="font-family:var(--fd);color:var(--or)">${n.ico}</div>
+      <div style="flex:1;min-width:0">
+        <div class="notif-title">${n.title}</div>
+        <div class="notif-sub">${n.sub}</div>
+        <div class="notif-time">${n.time}</div>
+      </div>
+    </div>`).join('');
+}
+function readNotif(id, e){
+  e.stopPropagation();
+  let read = [];
+  try{ read = JSON.parse(localStorage.getItem(NOTIF_KEY)||'[]'); }catch(err){}
+  if(!read.includes(id)){ read.push(id); try{ localStorage.setItem(NOTIF_KEY, JSON.stringify(read)); }catch(err){} }
+  renderNotifs();
+}
+function markAllRead(){
+  try{ localStorage.setItem(NOTIF_KEY, JSON.stringify(NOTIF_DATA.map(n=>n.id))); }catch(e){}
+  renderNotifs();
+}
+// Badge initial au chargement
+document.addEventListener('DOMContentLoaded',()=>{
+  let read = [];
+  try{ read = JSON.parse(localStorage.getItem(NOTIF_KEY)||'[]'); }catch(e){}
+  const unread = NOTIF_DATA.filter(n=>!read.includes(n.id)).length;
+  const badge = document.getElementById('notif-badge');
+  if(unread > 0){ badge.textContent = unread > 9 ? '9+' : unread; badge.classList.add('show'); }
+});
+
+// ─── COMPARATEUR (Y) ──────────────────────────────────────────────────────────
+let compareList = []; // indices produits
+
+function addToCompare(idx){
+  if(compareList.includes(idx)){ toast('Pièce déjà dans la comparaison'); return; }
+  if(compareList.length >= 3){ toast('Maximum 3 pièces à comparer'); return; }
+  compareList.push(idx);
+  renderCompareBar();
+  toast('Pièce ajoutée à la comparaison ✦');
+}
+function removeFromCompare(idx){
+  compareList = compareList.filter(i=>i!==idx);
+  renderCompareBar();
+}
+function clearCompare(){
+  compareList = [];
+  renderCompareBar();
+}
+function renderCompareBar(){
+  const bar = document.getElementById('compare-bar');
+  const slots = document.getElementById('cmp-slots');
+  const MAX = 3;
+  let html = compareList.map(idx=>{
+    const p = prods[idx];
+    return `<div class="cmp-slot"><img src="${p.img}" alt="${p.n}"><button class="cmp-rm" onclick="event.stopPropagation();removeFromCompare(${idx})">✕</button></div>`;
+  }).join('');
+  for(let i=compareList.length; i<MAX; i++){
+    html += `<div class="cmp-slot empty" style="font-size:.7rem">+</div>`;
+  }
+  slots.innerHTML = html;
+  document.getElementById('cmp-label').textContent = compareList.length > 0 ? `${compareList.length} pièce${compareList.length>1?'s':''} sélectionnée${compareList.length>1?'s':''}` : 'Comparer des pièces';
+  bar.classList.toggle('show', compareList.length > 0);
+}
+function openCompareModal(){
+  if(compareList.length < 2){ toast('Sélectionnez au moins 2 pièces à comparer'); return; }
+  const rows = [
+    ['',        p=>p.img,   true],
+    ['Nom',     p=>p.n],
+    ['Prix',    p=>`<span style="color:var(--or);font-family:var(--fd);font-style:italic">${p.p}</span>`],
+    ['Origine', p=>p.o],
+    ['Matière', p=>p.m],
+    ['Technique',p=>p.tech||'—'],
+    ['Dimensions',p=>p.dims||'—'],
+    ['Entretien',p=>p.care||'—'],
+    ['Délai',   p=>p.delai||'—'],
+    ['Stock',   p=>p.stock<=3?`<span style="color:#e74c3c">● ${p.stock} en stock</span>`:`<span style="color:#27ae60">✓ Disponible</span>`],
+  ];
+  const ps = compareList.map(i=>prods[i]);
+  let html = '<thead><tr><th></th>' + ps.map(p=>`<th style="text-align:center">${p.n.split(' ').slice(0,2).join(' ')}</th>`).join('') + '</tr></thead><tbody>';
+  rows.forEach(([label, getter, isImg])=>{
+    html += '<tr>';
+    html += `<td>${label}</td>`;
+    ps.forEach((p,ci)=>{
+      if(isImg){
+        html += `<td style="padding:.5rem 1rem;text-align:center"><img class="cmp-prod-img" src="${p.img}" alt="${p.n}"><div class="cmp-prod-price">${p.p}</div><button class="cmp-add-btn" onclick="closeCompareModal();openPDP(${compareList[ci]})">Voir la pièce</button></td>`;
+      } else {
+        html += `<td style="text-align:center">${getter(p)}</td>`;
+      }
+    });
+    html += '</tr>';
+  });
+  html += '</tbody>';
+  document.getElementById('cmp-table').innerHTML = html;
+  document.getElementById('compare-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCompareModal(){
+  document.getElementById('compare-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+// Injecter bouton Comparer sur chaque card produit au chargement
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.pgrid .pc').forEach((card,i)=>{
+    const qvBtn = card.querySelector('.pqv');
+    if(!qvBtn) return;
+    const cmpBtn = document.createElement('button');
+    cmpBtn.className = 'pqv';
+    cmpBtn.style.cssText = 'font-size:.5rem;letter-spacing:.1em';
+    cmpBtn.textContent = 'Comparer';
+    cmpBtn.onclick = (e)=>{ e.stopPropagation(); addToCompare(i); };
+    qvBtn.insertAdjacentElement('afterend', cmpBtn);
+  });
+});
+
 // ─── LIGHTBOX GALERIE ─────────────────────────────────────────────────────────
 const LB_ITEMS = [
   {src:'Plateau Africain DG2.jpg',    cap:'Art de vivre — Niger'},
@@ -7405,6 +7596,42 @@ function closeArticle(){
     </div>
     <!-- Body -->
     <div id="orders-body" style="overflow-y:auto;padding:1rem 1.2rem;flex:1;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.2) transparent"></div>
+  </div>
+</div>
+
+<!-- ── Panel Notifications ───────────────────────────────────────────────── -->
+<div id="notif-panel" aria-label="Notifications" aria-hidden="true">
+  <div id="notif-header">
+    <div>
+      <div style="font-family:var(--fd);font-size:1.1rem;font-style:italic;color:var(--ivoire)">Notifications</div>
+      <div style="font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,169,110,.4);margin-top:.2rem" id="notif-unread-label">3 non lues</div>
+    </div>
+    <div style="display:flex;gap:.8rem;align-items:center">
+      <button onclick="markAllRead()" style="font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:none;color:rgba(201,169,110,.4);cursor:pointer;font-family:var(--fb)">Tout lire</button>
+      <button onclick="closeNotifs()" style="background:none;border:none;color:rgba(250,246,240,.3);font-size:1rem;cursor:pointer">✕</button>
+    </div>
+  </div>
+  <div id="notif-list"></div>
+</div>
+
+<!-- ── Barre Comparateur ──────────────────────────────────────────────────── -->
+<div id="compare-bar" role="region" aria-label="Comparer des produits">
+  <span id="cmp-label">Comparer des pièces</span>
+  <div id="cmp-slots" style="display:flex;gap:.5rem"></div>
+  <button class="bp" style="font-size:.55rem;padding:.5rem 1.2rem;white-space:nowrap" onclick="openCompareModal()">Comparer</button>
+  <button style="font-size:.55rem;padding:.5rem .9rem;background:transparent;border:1px solid rgba(201,169,110,.2);color:rgba(250,246,240,.4);cursor:pointer;font-family:var(--fb);letter-spacing:.1em;white-space:nowrap" onclick="clearCompare()">Effacer</button>
+</div>
+
+<!-- ── Modal Comparaison ──────────────────────────────────────────────────── -->
+<div id="compare-modal" onclick="if(event.target===this)closeCompareModal()">
+  <div id="cmp-box">
+    <button id="cmp-close" onclick="closeCompareModal()" aria-label="Fermer">✕</button>
+    <div style="padding:1.4rem 1.4rem .5rem;border-bottom:1px solid rgba(201,169,110,.1)">
+      <div style="font-family:var(--fd);font-size:1.2rem;font-style:italic;color:var(--ivoire)">Comparaison de pièces</div>
+    </div>
+    <div style="overflow-x:auto;padding:.5rem">
+      <table class="cmp-table" id="cmp-table"></table>
+    </div>
   </div>
 </div>
 
