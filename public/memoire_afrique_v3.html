@@ -221,6 +221,34 @@ section{padding:7rem 5%}
 .gb7{background:linear-gradient(135deg,#0d0a1a,#2d1a4a)}
 .gb8{background:linear-gradient(135deg,#0a1a0a,#1a4a2a)}
 
+/* ─── LIGHTBOX GALERIE ───────────────────────────── */
+#lightbox{position:fixed;inset:0;background:rgba(5,4,2,.97);z-index:450;display:none;align-items:center;justify-content:center;flex-direction:column}
+#lightbox.open{display:flex}
+#lb-img{max-width:min(88vw,900px);max-height:78vh;object-fit:contain;transition:opacity .3s}
+#lb-cap{font-family:var(--fd);font-size:1rem;font-style:italic;color:rgba(201,169,110,.6);margin-top:1.1rem;letter-spacing:.06em}
+#lb-counter{font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,246,240,.2);margin-top:.3rem}
+#lb-close{position:fixed;top:1.2rem;right:1.5rem;background:none;border:none;color:rgba(250,246,240,.35);font-size:1.5rem;cursor:pointer;transition:color .2s;z-index:2;padding:.3rem}
+#lb-close:hover{color:var(--or)}
+#lb-prev,#lb-next{position:fixed;top:50%;transform:translateY(-50%);background:rgba(201,169,110,.08);border:1px solid rgba(201,169,110,.15);color:rgba(250,246,240,.4);font-size:1.2rem;cursor:pointer;padding:.7rem .9rem;transition:all .2s;z-index:2}
+#lb-prev{left:1.2rem}#lb-next{right:1.2rem}
+#lb-prev:hover,#lb-next:hover{background:rgba(201,169,110,.15);color:var(--or);border-color:rgba(201,169,110,.4)}
+#lb-dots{display:flex;gap:.5rem;margin-top:.8rem}
+.lb-dot{width:6px;height:6px;border-radius:50%;background:rgba(201,169,110,.2);border:none;cursor:pointer;padding:0;transition:background .2s}
+.lb-dot.act{background:var(--or)}
+.gi{cursor:pointer}
+/* ─── PROGRAMME FIDÉLITÉ ─────────────────────────── */
+#loyalty-section{padding:1.5rem}
+.loyalty-bar-wrap{margin:1rem 0 .5rem}
+.loyalty-bar-bg{height:4px;background:rgba(201,169,110,.1);position:relative;overflow:visible}
+.loyalty-bar-fill{height:100%;background:linear-gradient(to right,var(--or),#e8c87a);transition:width 1s cubic-bezier(.22,.68,0,1.2)}
+.loyalty-milestones{display:flex;justify-content:space-between;margin-top:.5rem}
+.lm-item{text-align:center;font-size:.46rem;color:rgba(250,246,240,.3);letter-spacing:.1em;text-transform:uppercase}
+.lm-item.reached{color:rgba(201,169,110,.6)}
+.loyalty-perks{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1rem}
+.lp-item{background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.1);padding:.6rem .7rem;font-size:.55rem;color:rgba(250,246,240,.5);line-height:1.5}
+.lp-item strong{color:rgba(201,169,110,.7);display:block;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.2rem}
+.lp-item.unlocked{border-color:rgba(201,169,110,.25);color:rgba(250,246,240,.7)}
+.lp-item.unlocked strong{color:var(--or)}
 /* ─── VOIR PLUS CATALOGUE ───────────────────────── */
 #load-more-wrap{text-align:center;padding:2.2rem 0 .5rem;display:none}
 #load-more-wrap.show{display:block}
@@ -1285,42 +1313,42 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     <div class="sd"></div>
   </div>
   <div class="gg rv">
-    <div class="gi" role="img" aria-label="Plateau Africain DG — Art contemporain">
+    <div class="gi" role="button" tabindex="0" aria-label="Agrandir — Art de vivre" onclick="openLightbox(0)">
       <div class="gbg gb1"><img src="Plateau Africain DG2.jpg" alt="Plateau Africain — Décoration d'art" loading="lazy"></div>
       <div class="gov"></div>
       <div class="gcap">Art de vivre</div>
     </div>
-    <div class="gi" role="img" aria-label="Masque Baoulé — Artisanat sacré">
+    <div class="gi" role="button" tabindex="0" aria-label="Agrandir — Argile ancestrale" onclick="openLightbox(1)">
       <div class="gbg gb2"><img src="Masque Baoulé sculpé.png" alt="Masque Baoulé sculpté" loading="lazy"></div>
       <div class="gov"></div>
       <div class="gcap">Argile ancestrale</div>
     </div>
-    <div class="gi" role="img" aria-label="Sac Bogolan — Mode africaine">
+    <div class="gi" role="button" tabindex="0" aria-label="Agrandir — Bogolan contemporain" onclick="openLightbox(2)">
       <div class="gbg gb3"><img src="sac à main bogolan noir 1.jpg" alt="Sac à main bogolan noir" loading="lazy"></div>
       <div class="gov"></div>
       <div class="gcap">Bogolan contemporain</div>
     </div>
-    <div class="gi" role="img" aria-label="Robe Kente — Tissu royal">
+    <div class="gi" role="button" tabindex="0" aria-label="Agrandir — Tissu royal Kente" onclick="openLightbox(3)">
       <div class="gbg gb4"><img src="Robe Kenté Royale.png" alt="Robe Kente Royale" loading="lazy"></div>
       <div class="gov"></div>
       <div class="gcap">Tissu royal Kente</div>
     </div>
-    <div class="gi" role="img" aria-label="Plateau Africain — Décoration">
+    <div class="gi" role="button" tabindex="0" aria-label="Agrandir — Savoir-faire d'or" onclick="openLightbox(4)">
       <div class="gbg gb5"><img src="Plateau Africain DG4.jpg" alt="Plateau Africain DG4" loading="lazy"></div>
       <div class="gov"></div>
       <div class="gcap">Savoir-faire d'or</div>
     </div>
-    <div class="gi" role="img" aria-label="Tapis berbère — Artisanat marocain">
+    <div class="gi" role="button" tabindex="0" aria-label="Agrandir — Paille dorée" onclick="openLightbox(5)">
       <div class="gbg gb6"><img src="Tapis berber ancestral.png" alt="Tapis berbère ancestral" loading="lazy"></div>
       <div class="gov"></div>
       <div class="gcap">Paille dorée</div>
     </div>
-    <div class="gi" role="img" aria-label="Sac cuir — Maroquinerie africaine">
+    <div class="gi" role="button" tabindex="0" aria-label="Agrandir — Cuir d'exception" onclick="openLightbox(6)">
       <div class="gbg gb7"><img src="sac à main cuir noir 1.jpg" alt="Sac à main cuir noir" loading="lazy"></div>
       <div class="gov"></div>
       <div class="gcap">Cuir d'exception</div>
     </div>
-    <div class="gi" role="img" aria-label="Sac bogolan — Collection capsule">
+    <div class="gi" role="button" tabindex="0" aria-label="Agrandir — Collection capsule" onclick="openLightbox(7)">
       <div class="gbg gb8"><img src="sac%20%C3%A0%20main%20bogolan%20noir%202.jpg" alt="Sac à main bogolan noir 2" loading="lazy"></div>
       <div class="gov"></div>
       <div class="gcap">Collection capsule</div>
@@ -3472,7 +3500,30 @@ function openAccount(){
       <button class="bp" style="width:100%;font-size:.6rem;padding:.9rem" onclick="closeAccount();openOrders()">Mes commandes</button>
       <button class="bs" style="width:100%;font-size:.6rem;padding:.85rem;cursor:pointer" onclick="closeAccount();openWishlist()">Mes favoris</button>
       <button style="width:100%;font-size:.6rem;padding:.85rem;cursor:pointer;background:transparent;border:1px solid rgba(255,80,80,.25);color:rgba(255,100,100,.6);font-family:var(--fb);letter-spacing:.1em;text-transform:uppercase" onclick="logoutAccount()">Se déconnecter</button>
-    </div>`;
+    </div>
+    <!-- Programme fidélité -->
+    ${(()=>{
+      const milestones = [{label:'Membre',min:0},{label:'Premium',min:200000},{label:'VIP',min:500000},{label:'Elite',min:1000000}];
+      const curMilestone = milestones.reduce((acc,m)=>orderTotal>=m.min?m:acc,milestones[0]);
+      const nextMilestone = milestones[milestones.indexOf(curMilestone)+1];
+      const pct = nextMilestone ? Math.min((orderTotal-curMilestone.min)/(nextMilestone.min-curMilestone.min)*100,100) : 100;
+      const perks = [
+        {label:'Livraison offerte', desc:'Dès 200 000 FCFA', unlock:orderTotal>=200000},
+        {label:'Accès prioritaire', desc:'Nouvelles collections', unlock:orderTotal>=200000},
+        {label:'Emballage cadeau', desc:'Offert sur toute commande', unlock:orderTotal>=500000},
+        {label:'Conseiller dédié', desc:'WhatsApp personnel', unlock:orderTotal>=500000},
+      ];
+      return `<div id="loyalty-section" style="border-top:1px solid rgba(201,169,110,.1);padding:1.2rem 1.5rem">
+        <div style="font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(201,169,110,.45);margin-bottom:.8rem">Programme Fidélité</div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:.4rem">
+          <span style="font-size:.6rem;color:var(--or);font-family:var(--fd);font-style:italic">${curMilestone.label}</span>
+          ${nextMilestone?`<span style="font-size:.55rem;color:rgba(250,246,240,.3)">${nextMilestone.label} dans ${((nextMilestone.min-orderTotal)/1000).toFixed(0)}K FCFA</span>`:'<span style="font-size:.55rem;color:rgba(201,169,110,.5)">Niveau maximum ✦</span>'}
+        </div>
+        <div class="loyalty-bar-wrap"><div class="loyalty-bar-bg"><div class="loyalty-bar-fill" style="width:${pct}%"></div></div></div>
+        <div class="loyalty-milestones">${milestones.map(m=>`<div class="lm-item ${orderTotal>=m.min?'reached':''}">${m.label}</div>`).join('')}</div>
+        <div class="loyalty-perks">${perks.map(p=>`<div class="lp-item ${p.unlock?'unlocked':''}"><strong>${p.unlock?'✓ ':''} ${p.label}</strong>${p.desc}</div>`).join('')}</div>
+      </div>`;
+    })()}`;
   const m = document.getElementById('account-modal');
   m.classList.add('open');
   setAriaHidden('account-modal', false);
@@ -4484,6 +4535,53 @@ function submitNLPopup(){
   document.getElementById('nl-success').style.display = 'block';
   setTimeout(()=>closeNLPopup(false), 4000);
 }
+
+// ─── LIGHTBOX GALERIE ─────────────────────────────────────────────────────────
+const LB_ITEMS = [
+  {src:'Plateau Africain DG2.jpg',    cap:'Art de vivre — Niger'},
+  {src:'Masque Baoulé sculpé.png',    cap:'Argile ancestrale — Côte d\'Ivoire'},
+  {src:'sac à main bogolan noir 1.jpg', cap:'Bogolan contemporain — Mali'},
+  {src:'Robe Kenté Royale.png',       cap:'Tissu royal Kente — Ghana'},
+  {src:'Plateau Africain DG4.jpg',    cap:'Savoir-faire d\'or — Niger'},
+  {src:'Tapis berber ancestral.png',  cap:'Paille dorée — Maroc'},
+  {src:'sac à main cuir noir 1.jpg',  cap:'Cuir d\'exception — Kenya'},
+  {src:'sac%20%C3%A0%20main%20bogolan%20noir%202.jpg', cap:'Collection capsule — Mali'},
+];
+let lbIdx = 0;
+
+function openLightbox(i){
+  lbIdx = i;
+  renderLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  setAriaHidden('lightbox', false);
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  setAriaHidden('lightbox', true);
+  document.body.style.overflow = '';
+}
+function lbNav(dir){
+  lbIdx = (lbIdx + dir + LB_ITEMS.length) % LB_ITEMS.length;
+  renderLightbox();
+}
+function renderLightbox(){
+  const item = LB_ITEMS[lbIdx];
+  const img = document.getElementById('lb-img');
+  img.style.opacity = '0';
+  setTimeout(()=>{ img.src = item.src; img.alt = item.cap; img.style.opacity = '1'; }, 120);
+  document.getElementById('lb-cap').textContent = item.cap;
+  document.getElementById('lb-counter').textContent = `${lbIdx+1} / ${LB_ITEMS.length}`;
+  document.getElementById('lb-dots').innerHTML = LB_ITEMS.map((_,i)=>
+    `<button class="lb-dot ${i===lbIdx?'act':''}" onclick="lbNav(${i-lbIdx})" aria-label="Image ${i+1}"></button>`
+  ).join('');
+}
+document.addEventListener('keydown', e=>{
+  if(!document.getElementById('lightbox').classList.contains('open')) return;
+  if(e.key==='ArrowLeft') lbNav(-1);
+  if(e.key==='ArrowRight') lbNav(1);
+  if(e.key==='Escape') closeLightbox();
+});
 
 // ─── PAGINATION CATALOGUE ─────────────────────────────────────────────────────
 const PRODUCTS_PER_PAGE = 4;
@@ -7308,6 +7406,17 @@ function closeArticle(){
     <!-- Body -->
     <div id="orders-body" style="overflow-y:auto;padding:1rem 1.2rem;flex:1;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.2) transparent"></div>
   </div>
+</div>
+
+<!-- ── Lightbox Galerie ──────────────────────────────────────────────────── -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Galerie plein écran" onclick="if(event.target===this)closeLightbox()">
+  <button id="lb-close" onclick="closeLightbox()" aria-label="Fermer">✕</button>
+  <button id="lb-prev" onclick="lbNav(-1)" aria-label="Image précédente">‹</button>
+  <button id="lb-next" onclick="lbNav(1)" aria-label="Image suivante">›</button>
+  <img id="lb-img" src="" alt="">
+  <div id="lb-cap"></div>
+  <div id="lb-counter"></div>
+  <div id="lb-dots"></div>
 </div>
 
 <!-- ── Popup Newsletter ──────────────────────────────────────────────────── -->
