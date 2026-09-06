@@ -1147,7 +1147,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
   <div class="dinn">
     <div class="rv">
       <div class="dpframe">
-        <img src="Plateau Africain DG.jpg" alt="Amadou Binta Diallo — Fondatrice de Mémoire d'Afrique" loading="lazy">
+        <img src="Image mot de la DG.png" alt="Amadou Binta Diallo — Fondatrice de Mémoire d'Afrique" loading="lazy" style="object-position:center top">
         <div class="dpacc" aria-hidden="true"></div>
       </div>
       <div class="dpbrd" aria-hidden="true"></div>
@@ -2786,23 +2786,80 @@ function addCart(){
 const infoContent = {
   retours: {
     title: 'Politique de retours',
-    body: `<h3 style="font-family:var(--fd);color:var(--or);font-style:italic;font-size:1.2rem;margin-bottom:1rem">Politique de retours</h3>
-    <p style="margin-bottom:1rem">Chez Mémoire d'Afrique, chaque pièce est unique et façonnée à la main. Nous acceptons les retours dans les <strong style="color:var(--ivoire)">14 jours</strong> suivant la réception, sous conditions :</p>
-    <ul style="padding-left:1.4rem;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem">
-      <li>La pièce doit être dans son état d'origine, non portée</li>
-      <li>L'emballage premium doit être intact</li>
-      <li>Le certificat d'authenticité joint à la livraison est requis</li>
+    body: `<h3 style="font-family:var(--fd);color:var(--or);font-style:italic;font-size:1.3rem;margin-bottom:1.2rem">Politique de retours & remboursements</h3>
+
+    <p style="margin-bottom:1.2rem;line-height:1.7">Chez Mémoire d'Afrique, chaque création est façonnée à la main par des artisans d'exception. Nous accordons la plus grande attention à la qualité de chaque pièce livrée. Toutefois, si vous n'êtes pas entièrement satisfait, nous vous offrons les conditions de retour suivantes.</p>
+
+    <p style="color:var(--or);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem">Délai de retour</p>
+    <p style="margin-bottom:1.2rem;line-height:1.7">Vous disposez de <strong style="color:var(--ivoire)">14 jours calendaires</strong> à compter de la date de réception pour nous signaler votre souhait de retourner une pièce. Passé ce délai, aucun retour ne pourra être accepté.</p>
+
+    <p style="color:var(--or);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem">Conditions d'éligibilité</p>
+    <ul style="padding-left:1.4rem;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.2rem;line-height:1.6">
+      <li>La pièce doit être dans son état d'origine, <strong style="color:var(--ivoire)">non portée, non lavée, non altérée</strong></li>
+      <li>L'emballage premium signé Mémoire d'Afrique doit être intact (coffret, papier de soie, ruban)</li>
+      <li>Le <strong style="color:var(--ivoire)">certificat d'authenticité</strong> fourni avec la livraison doit être joint au retour</li>
+      <li>Les pièces commandées <strong style="color:var(--ivoire)">sur mesure ou personnalisées</strong> ne sont pas éligibles au retour sauf défaut avéré</li>
+      <li>Les bijoux et accessoires ne sont échangeables qu'en cas de défaut de fabrication</li>
     </ul>
-    <p>Pour initier un retour, contactez-nous à <a href="mailto:contact@memoireafrique.com" style="color:var(--or)">contact@memoireafrique.com</a> ou via WhatsApp.</p>`
+
+    <p style="color:var(--or);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem">Procédure de retour</p>
+    <ol style="padding-left:1.4rem;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.2rem;line-height:1.6">
+      <li>Contactez-nous par email ou WhatsApp en précisant votre numéro de commande et le motif du retour</li>
+      <li>Nous vous adressons une autorisation de retour sous <strong style="color:var(--ivoire)">48h ouvrables</strong></li>
+      <li>Expédiez la pièce soigneusement emballée à l'adresse indiquée dans l'autorisation</li>
+      <li>Les frais de retour sont à la charge du client, sauf en cas de défaut ou d'erreur de notre part</li>
+    </ol>
+
+    <p style="color:var(--or);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem">Remboursement</p>
+    <p style="margin-bottom:1.2rem;line-height:1.7">Une fois la pièce réceptionnée et contrôlée (sous 5 jours ouvrables), le remboursement est effectué via le même moyen de paiement utilisé lors de la commande, dans un délai de <strong style="color:var(--ivoire)">7 à 10 jours ouvrables</strong>. Nous proposons également un avoir valable 12 mois sur toute notre boutique.</p>
+
+    <p style="font-size:.8rem;color:rgba(250,246,240,.5);border-top:1px solid rgba(201,169,110,.2);padding-top:.8rem">Contact : <a href="mailto:contact@memoireafrique.com" style="color:var(--or)">contact@memoireafrique.com</a> — WhatsApp disponible 7j/7 de 9h à 20h (heure de Niamey)</p>`
   },
   faq: {
     title: 'Questions fréquentes',
-    body: `<h3 style="font-family:var(--fd);color:var(--or);font-style:italic;font-size:1.2rem;margin-bottom:1.2rem">Questions fréquentes</h3>
-    <div style="display:flex;flex-direction:column;gap:1.4rem">
-      <div><p style="color:var(--or);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Les pièces sont-elles authentiques ?</p><p>Oui, chaque pièce est certifiée par son artisan et accompagnée d'un certificat d'authenticité signé.</p></div>
-      <div><p style="color:var(--or);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Puis-je commander sur mesure ?</p><p>Absolument. Contactez-nous via WhatsApp pour discuter de vos souhaits. Certains artisans acceptent des commissions personnalisées.</p></div>
-      <div><p style="color:var(--or);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Comment sont emballées les pièces ?</p><p>Chaque pièce est soigneusement protégée dans un coffret cadeau premium signé Mémoire d'Afrique, avec papier de soie et ruban doré.</p></div>
-      <div><p style="color:var(--or);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Quels moyens de paiement acceptez-vous ?</p><p>Nita, Amana, Visa, Mastercard, PayPal et virement bancaire. Toutes les transactions sont chiffrées SSL.</p></div>
+    body: `<h3 style="font-family:var(--fd);color:var(--or);font-style:italic;font-size:1.3rem;margin-bottom:1.4rem">Questions fréquentes</h3>
+    <div style="display:flex;flex-direction:column;gap:1.6rem">
+
+      <div>
+        <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Les pièces sont-elles authentiques ?</p>
+        <p style="line-height:1.7">Absolument. Chaque création est fabriquée à la main par des artisans africains sélectionnés pour leur maîtrise et leur respect des traditions. Toute pièce est accompagnée d'un <strong style="color:var(--ivoire)">certificat d'authenticité signé</strong> par l'artisan, précisant sa technique et son origine géographique.</p>
+      </div>
+
+      <div>
+        <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Quels sont les délais de livraison ?</p>
+        <p style="line-height:1.7">Pour les livraisons en <strong style="color:var(--ivoire)">Afrique de l'Ouest</strong> : 7 à 14 jours ouvrables. Pour les destinations <strong style="color:var(--ivoire)">internationales</strong> (Europe, Amérique du Nord, reste du monde) : 14 à 21 jours ouvrables. Un email de suivi avec numéro de tracking vous est envoyé dès l'expédition de votre colis.</p>
+      </div>
+
+      <div>
+        <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Puis-je commander sur mesure ?</p>
+        <p style="line-height:1.7">Oui, nous proposons des commandes personnalisées sur sélection de pièces. Contactez-nous via WhatsApp ou par email en décrivant vos souhaits (couleurs, taille, matière, occasion). Nos artisans partenaires étudieront la faisabilité et vous transmettrons un devis sous <strong style="color:var(--ivoire)">72 heures</strong>. Un acompte de 50 % est requis à la validation.</p>
+      </div>
+
+      <div>
+        <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Comment gérez-vous les tailles et les mensurations ?</p>
+        <p style="line-height:1.7">Chaque pièce de prêt-à-porter est accompagnée d'un guide des tailles détaillé sur sa fiche produit. Pour les vêtements, nous indiquons les mesures réelles en centimètres (buste, tour de taille, longueur). En cas de doute, notre équipe est disponible pour vous guider avant l'achat — n'hésitez pas à nous envoyer vos mensurations via WhatsApp.</p>
+      </div>
+
+      <div>
+        <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Comment sont emballées les pièces ?</p>
+        <p style="line-height:1.7">Chaque commande est préparée avec le plus grand soin. La pièce est enveloppée dans du papier de soie, placée dans un <strong style="color:var(--ivoire)">coffret cadeau premium signé Mémoire d'Afrique</strong>, fermé d'un ruban doré, lui-même glissé dans un emballage de transport rigide. L'emballage peut être agrémenté d'une carte personnalisée sur demande.</p>
+      </div>
+
+      <div>
+        <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Quels moyens de paiement acceptez-vous ?</p>
+        <p style="line-height:1.7">Nous acceptons : <strong style="color:var(--ivoire)">Nita, Amana</strong> (mobile money local), <strong style="color:var(--ivoire)">Visa & Mastercard</strong> (carte bancaire internationale), <strong style="color:var(--ivoire)">PayPal</strong> et <strong style="color:var(--ivoire)">virement bancaire</strong>. Toutes les transactions en ligne sont sécurisées par chiffrement SSL. Le paiement à la livraison est disponible sur Niamey pour les commandes locales.</p>
+      </div>
+
+      <div>
+        <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Puis-je retourner ou échanger une pièce ?</p>
+        <p style="line-height:1.7">Vous disposez de <strong style="color:var(--ivoire)">14 jours</strong> après réception pour initier un retour, sous réserve que la pièce soit dans son état d'origine avec emballage et certificat intacts. Les pièces sur mesure ne sont pas retournables. Consultez notre politique de retours complète pour tous les détails.</p>
+      </div>
+
+      <div>
+        <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Comment suivre ma commande ?</p>
+        <p style="line-height:1.7">Dès validation de votre paiement, vous recevez un email de confirmation. Un second email vous est envoyé à l'expédition avec le numéro de suivi de votre colis. Vous pouvez également nous contacter à tout moment via WhatsApp pour un point sur votre commande.</p>
+      </div>
+
     </div>`
   },
   mentions: {
@@ -2825,12 +2882,35 @@ const infoContent = {
   },
   cgv: {
     title: 'Conditions Générales de Vente',
-    body: `<h3 style="font-family:var(--fd);color:var(--or);font-style:italic;font-size:1.2rem;margin-bottom:1rem">CGV</h3>
-    <p style="margin-bottom:1rem">En passant commande sur memoireafrique.com, vous acceptez les présentes conditions.</p>
-    <p style="margin-bottom:.8rem"><strong style="color:var(--ivoire)">Prix</strong> : affichés en FCFA TTC. Frais de livraison calculés à la commande.</p>
-    <p style="margin-bottom:.8rem"><strong style="color:var(--ivoire)">Paiement</strong> : sécurisé et immédiat. La commande est validée après confirmation du paiement.</p>
-    <p style="margin-bottom:.8rem"><strong style="color:var(--ivoire)">Livraison</strong> : nationale 7-14 jours, internationale 14-21 jours ouvrables.</p>
-    <p><strong style="color:var(--ivoire)">Pièces uniques</strong> : certaines pièces sont en exemplaire unique. En cas d'indisponibilité, vous serez contacté sous 48h.</p>`
+    body: `<h3 style="font-family:var(--fd);color:var(--or);font-style:italic;font-size:1.3rem;margin-bottom:1.4rem">Conditions Générales de Vente</h3>
+
+    <p style="margin-bottom:1.2rem;line-height:1.7;font-size:.8rem;color:rgba(250,246,240,.6)">En passant commande sur memoireafrique.com, vous acceptez sans réserve les présentes Conditions Générales de Vente (CGV). Mémoire d'Afrique se réserve le droit de les modifier à tout moment ; la version applicable est celle en vigueur au moment de la commande.</p>
+
+    <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Article 1 — Identification du vendeur</p>
+    <p style="margin-bottom:1.2rem;line-height:1.7">Mémoire d'Afrique — Boutique artisanale de luxe africain — Niamey, Niger. Directrice : Amadou Binta Diallo. Contact : <a href="mailto:contact@memoireafrique.com" style="color:var(--or)">contact@memoireafrique.com</a>.</p>
+
+    <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Article 2 — Prix et devises</p>
+    <p style="margin-bottom:1.2rem;line-height:1.7">Tous les prix sont affichés en <strong style="color:var(--ivoire)">Francs CFA (FCFA) TTC</strong>. Les prix peuvent être affichés à titre indicatif en EUR ou USD selon votre localisation. Les frais de livraison sont calculés et affichés avant la validation définitive de la commande. Mémoire d'Afrique se réserve le droit de modifier ses prix à tout moment, sans affecter les commandes déjà confirmées.</p>
+
+    <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Article 3 — Commande et validation</p>
+    <p style="margin-bottom:1.2rem;line-height:1.7">La commande est considérée comme définitive après <strong style="color:var(--ivoire)">confirmation du paiement</strong> et envoi de l'email de confirmation. Pour les commandes sur mesure, la validation intervient après signature du bon de commande et encaissement de l'acompte de 50 %. Mémoire d'Afrique se réserve le droit de refuser toute commande en cas de doute sur la solvabilité du client ou de rupture de stock.</p>
+
+    <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Article 4 — Paiement</p>
+    <p style="margin-bottom:1.2rem;line-height:1.7">Les moyens de paiement acceptés sont : Nita, Amana, Visa, Mastercard, PayPal et virement bancaire. Le paiement est dû à la commande. Toutes les transactions en ligne sont protégées par <strong style="color:var(--ivoire)">chiffrement SSL 256 bits</strong>. En cas de paiement non honoré, la commande est automatiquement annulée.</p>
+
+    <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Article 5 — Livraison</p>
+    <p style="margin-bottom:1.2rem;line-height:1.7">Les délais de livraison sont indicatifs : <strong style="color:var(--ivoire)">7–14 jours ouvrables</strong> en Afrique de l'Ouest, <strong style="color:var(--ivoire)">14–21 jours ouvrables</strong> à l'international. Tout retard lié à un transporteur tiers ou à des formalités douanières ne saurait engager la responsabilité de Mémoire d'Afrique. Un numéro de suivi est communiqué à l'expédition.</p>
+
+    <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Article 6 — Pièces uniques & disponibilité</p>
+    <p style="margin-bottom:1.2rem;line-height:1.7">Certaines créations sont en <strong style="color:var(--ivoire)">exemplaire unique</strong>. En cas d'indisponibilité après validation de la commande, le client est contacté sous <strong style="color:var(--ivoire)">48 heures</strong> pour proposer une alternative ou procéder au remboursement intégral.</p>
+
+    <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Article 7 — Retours et remboursements</p>
+    <p style="margin-bottom:1.2rem;line-height:1.7">Les retours sont acceptés sous 14 jours, conformément à notre Politique de retours disponible sur le site. Le remboursement est effectué sous 7 à 10 jours ouvrables après réception et contrôle de la pièce retournée.</p>
+
+    <p style="color:var(--or);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem">Article 8 — Propriété intellectuelle & litiges</p>
+    <p style="margin-bottom:.8rem;line-height:1.7">L'ensemble du contenu du site (textes, photos, design, logo) est protégé et ne peut être reproduit sans autorisation écrite. En cas de litige, une solution amiable sera recherchée en priorité. À défaut, les tribunaux compétents de Niamey, Niger, seront saisis, conformément au droit nigérien.</p>
+
+    <p style="font-size:.8rem;color:rgba(250,246,240,.5);border-top:1px solid rgba(201,169,110,.2);padding-top:.8rem">CGV en vigueur à compter du 1er septembre 2025 — v2.0</p>`
   },
   cookies: {
     title: 'Politique cookies',
