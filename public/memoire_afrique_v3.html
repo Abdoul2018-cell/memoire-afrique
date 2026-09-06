@@ -1361,8 +1361,9 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     </div>
     <div class="pay-steps">
       <div class="pay-step active" id="pstep1" data-i18n="pay_step1">Récapitulatif</div>
-      <div class="pay-step" id="pstep2" data-i18n="pay_step2">Méthode</div>
-      <div class="pay-step" id="pstep3" data-i18n="pay_step3">Confirmation</div>
+      <div class="pay-step" id="pstep2">Coordonnées</div>
+      <div class="pay-step" id="pstep3" data-i18n="pay_step2">Méthode</div>
+      <div class="pay-step" id="pstep4" data-i18n="pay_step3">Confirmation</div>
     </div>
 
     <!-- STEP 1 : Récapitulatif commande -->
@@ -1418,8 +1419,70 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       </p>
     </div>
 
-    <!-- STEP 2 : Choix du moyen de paiement -->
+    <!-- STEP 2 : Coordonnées de livraison -->
     <div class="pay-body" id="pay-body-2" style="display:none">
+      <p class="sl">Vos coordonnées de livraison</p>
+      <p style="font-size:.62rem;color:rgba(201,169,110,.5);margin-bottom:1.4rem;line-height:1.7">Ces informations nous permettent de préparer et d'expédier votre commande.</p>
+      <div style="display:flex;flex-direction:column;gap:1.1rem">
+        <!-- Prénom + Nom -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+          <div>
+            <label style="font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,169,110,.55);display:block;margin-bottom:.4rem">Prénom *</label>
+            <input id="ord-prenom" type="text" autocomplete="given-name" placeholder="Ex : Aminata"
+              style="width:100%;background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.18);border-bottom:1px solid rgba(201,169,110,.4);color:var(--ivoire);font-family:var(--fb);font-size:.75rem;font-weight:300;padding:.6rem .75rem;outline:none;transition:border-color .3s"
+              onfocus="this.style.borderColor='var(--or)'" onblur="this.style.borderColor='rgba(201,169,110,.18)'">
+          </div>
+          <div>
+            <label style="font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,169,110,.55);display:block;margin-bottom:.4rem">Nom *</label>
+            <input id="ord-nom" type="text" autocomplete="family-name" placeholder="Ex : Diallo"
+              style="width:100%;background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.18);border-bottom:1px solid rgba(201,169,110,.4);color:var(--ivoire);font-family:var(--fb);font-size:.75rem;font-weight:300;padding:.6rem .75rem;outline:none;transition:border-color .3s"
+              onfocus="this.style.borderColor='var(--or)'" onblur="this.style.borderColor='rgba(201,169,110,.18)'">
+          </div>
+        </div>
+        <!-- Téléphone -->
+        <div>
+          <label style="font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,169,110,.55);display:block;margin-bottom:.4rem">Téléphone *</label>
+          <input id="ord-tel" type="tel" autocomplete="tel" placeholder="+227 XX XX XX XX"
+            style="width:100%;background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.18);border-bottom:1px solid rgba(201,169,110,.4);color:var(--ivoire);font-family:var(--fb);font-size:.75rem;font-weight:300;padding:.6rem .75rem;outline:none;transition:border-color .3s"
+            onfocus="this.style.borderColor='var(--or)'" onblur="this.style.borderColor='rgba(201,169,110,.18)'">
+        </div>
+        <!-- Adresse -->
+        <div>
+          <label style="font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,169,110,.55);display:block;margin-bottom:.4rem">Adresse de livraison *</label>
+          <input id="ord-adresse" type="text" autocomplete="street-address" placeholder="Quartier, rue, numéro…"
+            style="width:100%;background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.18);border-bottom:1px solid rgba(201,169,110,.4);color:var(--ivoire);font-family:var(--fb);font-size:.75rem;font-weight:300;padding:.6rem .75rem;outline:none;transition:border-color .3s"
+            onfocus="this.style.borderColor='var(--or)'" onblur="this.style.borderColor='rgba(201,169,110,.18)'">
+        </div>
+        <!-- Ville + Pays -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+          <div>
+            <label style="font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,169,110,.55);display:block;margin-bottom:.4rem">Ville *</label>
+            <input id="ord-ville" type="text" autocomplete="address-level2" placeholder="Ex : Niamey"
+              style="width:100%;background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.18);border-bottom:1px solid rgba(201,169,110,.4);color:var(--ivoire);font-family:var(--fb);font-size:.75rem;font-weight:300;padding:.6rem .75rem;outline:none;transition:border-color .3s"
+              onfocus="this.style.borderColor='var(--or)'" onblur="this.style.borderColor='rgba(201,169,110,.18)'">
+          </div>
+          <div>
+            <label style="font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,169,110,.55);display:block;margin-bottom:.4rem">Pays *</label>
+            <input id="ord-pays" type="text" autocomplete="country-name" placeholder="Ex : Niger"
+              style="width:100%;background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.18);border-bottom:1px solid rgba(201,169,110,.4);color:var(--ivoire);font-family:var(--fb);font-size:.75rem;font-weight:300;padding:.6rem .75rem;outline:none;transition:border-color .3s"
+              onfocus="this.style.borderColor='var(--or)'" onblur="this.style.borderColor='rgba(201,169,110,.18)'">
+          </div>
+        </div>
+        <!-- Note optionnelle -->
+        <div>
+          <label style="font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,169,110,.55);display:block;margin-bottom:.4rem">Note (optionnel)</label>
+          <textarea id="ord-note" placeholder="Instructions particulières, point de repère…" rows="2"
+            style="width:100%;background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.18);color:var(--ivoire);font-family:var(--fb);font-size:.75rem;font-weight:300;padding:.6rem .75rem;outline:none;resize:none;transition:border-color .3s"
+            onfocus="this.style.borderColor='var(--or)'" onblur="this.style.borderColor='rgba(201,169,110,.18)'"></textarea>
+        </div>
+      </div>
+      <p style="font-size:.58rem;color:rgba(201,169,110,.35);margin-top:1rem;line-height:1.7">
+        Vos données sont uniquement utilisées pour traiter et expédier votre commande.
+      </p>
+    </div>
+
+    <!-- STEP 3 : Choix du moyen de paiement -->
+    <div class="pay-body" id="pay-body-3" style="display:none">
       <p class="sl" data-i18n="pay_method_label">Choisir un moyen de paiement</p>
       <div class="pay-methods">
         <!-- MyNITA -->
@@ -1456,8 +1519,8 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div id="pay-dynamic"></div>
     </div>
 
-    <!-- STEP 3 : Confirmation -->
-    <div class="pay-body" id="pay-body-3" style="display:none">
+    <!-- STEP 4 : Confirmation -->
+    <div class="pay-body" id="pay-body-4" style="display:none">
       <div class="pay-confirm-box">
         <div class="pay-confirm-icon" id="pay-confirm-icon">✦</div>
         <div class="pay-confirm-title" id="pay-confirm-title" data-i18n="pay_processing">Traitement en cours…</div>
@@ -4900,6 +4963,11 @@ function checkout(){
 function openPayModal(){
   payStep = 1;
   selectedMethod = null;
+  // Réinitialiser le formulaire coordonnées
+  ['ord-prenom','ord-nom','ord-tel','ord-adresse','ord-ville','ord-pays','ord-note'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.value = '';
+  });
   buildPaySummary();
   showPayStep(1);
   const m = document.getElementById('payModal');
@@ -5055,10 +5123,11 @@ function buildPaySummary(){
 
 function showPayStep(n){
   payStep = n;
-  [1,2,3].forEach(i=>{
-    document.getElementById('pay-body-'+i).style.display = i===n ? 'block' : 'none';
+  [1,2,3,4].forEach(i=>{
+    const body = document.getElementById('pay-body-'+i);
+    if(body) body.style.display = i===n ? 'block' : 'none';
     const s = document.getElementById('pstep'+i);
-    s.className = 'pay-step' + (i===n?' active':(i<n?' done':''));
+    if(s) s.className = 'pay-step' + (i===n?' active':(i<n?' done':''));
   });
   const backBtn = document.getElementById('pay-back-btn');
   const nextBtn = document.getElementById('pay-next-btn');
@@ -5069,13 +5138,20 @@ function showPayStep(n){
     nextBtn.style.display = '';
     nextBtn.textContent = t.pay_continue;
     nextBtn.disabled = false;
+    nextBtn.style.opacity = '1';
   } else if(n===2){
+    backBtn.style.display = '';
+    nextBtn.style.display = '';
+    nextBtn.textContent = t.pay_continue;
+    nextBtn.disabled = false;
+    nextBtn.style.opacity = '1';
+  } else if(n===3){
     backBtn.style.display = '';
     nextBtn.style.display = '';
     nextBtn.textContent = selectedMethod ? (t.pay_confirm||'Payer') : t.pay_continue;
     nextBtn.disabled = !selectedMethod;
     nextBtn.style.opacity = selectedMethod ? '1' : '.45';
-  } else if(n===3){
+  } else if(n===4){
     backBtn.style.display = 'none';
     nextBtn.style.display = 'none';
     processPayment();
@@ -5083,22 +5159,42 @@ function showPayStep(n){
 }
 
 function payStepNext(){
+  const isFr = currentLang === 'fr';
   if(payStep===1){ showPayStep(2); return; }
   if(payStep===2){
-    if(!selectedMethod){ toast(currentLang==='en'?'Please select a payment method':'Veuillez choisir un moyen de paiement'); return; }
-    // Validation téléphone obligatoire pour MyNITA et Amana
+    // Validation du formulaire de coordonnées
+    const prenom  = (document.getElementById('ord-prenom')?.value||'').trim();
+    const nom     = (document.getElementById('ord-nom')?.value||'').trim();
+    const tel     = (document.getElementById('ord-tel')?.value||'').trim();
+    const adresse = (document.getElementById('ord-adresse')?.value||'').trim();
+    const ville   = (document.getElementById('ord-ville')?.value||'').trim();
+    const pays    = (document.getElementById('ord-pays')?.value||'').trim();
+    if(!prenom || !nom){
+      toast(isFr?'Veuillez entrer votre prénom et nom':'Please enter your first and last name'); return;
+    }
+    if(!tel || tel.replace(/\D/g,'').length < 8){
+      toast(isFr?'Veuillez entrer un numéro de téléphone valide':'Please enter a valid phone number'); return;
+    }
+    if(!adresse || !ville || !pays){
+      toast(isFr?'Veuillez compléter votre adresse de livraison':'Please complete your delivery address'); return;
+    }
+    showPayStep(3); return;
+  }
+  if(payStep===3){
+    if(!selectedMethod){ toast(isFr?'Veuillez choisir un moyen de paiement':'Please select a payment method'); return; }
     if(selectedMethod==='nita'||selectedMethod==='amana'){
       const phoneId = selectedMethod==='nita'?'nita-phone':'amana-phone';
       const phoneVal = (document.getElementById(phoneId)?.value||'').trim();
       if(!phoneVal || phoneVal.replace(/\D/g,'').length < 8){
-        toast(currentLang==='en'?'Please enter a valid phone number':'Veuillez saisir un numéro de téléphone valide'); return;
+        toast(isFr?'Veuillez saisir un numéro de téléphone valide':'Please enter a valid phone number'); return;
       }
     }
-    showPayStep(3);
+    showPayStep(4);
   }
 }
 function payStepBack(){
   if(payStep===2){ showPayStep(1); }
+  else if(payStep===3){ showPayStep(2); }
 }
 
 function selectPayMethod(method){
@@ -5246,18 +5342,29 @@ function processPayment(){
   const refNum = dynContainer?.dataset?.ref || ('MBA-' + Date.now().toString().slice(-6));
   const methodName = {nita:'MyNITA',amana:'Amana',card:isFr?'Carte bancaire':'Bank card',paypal:'PayPal'}[selectedMethod];
 
-  // Pour MyNITA et Amana : ouvrir WhatsApp avec résumé commande
-  if(selectedMethod === 'nita' || selectedMethod === 'amana'){
-    const phoneInput = document.getElementById(selectedMethod === 'nita' ? 'nita-phone' : 'amana-phone');
-    const customerPhone = phoneInput?.value || '';
-    const orderLines = buildOrderSummaryText();
-    const waMsg = encodeURIComponent(
-      (isFr
-        ? `🛍 Nouvelle commande — Mémoire d'Afrique\n\nRéférence : ${refNum}\nMéthode : ${methodName}\nNuméro client : ${customerPhone}\n\n${orderLines}\n\nMerci de confirmer la réception du paiement.`
-        : `🛍 New order — Mémoire d'Afrique\n\nReference: ${refNum}\nMethod: ${methodName}\nCustomer number: ${customerPhone}\n\n${orderLines}\n\nPlease confirm payment receipt.`)
-    );
-    window.open(`https://wa.me/${MERCHANT_PHONE_CLEAN}?text=${waMsg}`, '_blank');
-  }
+  // Récupérer les coordonnées client saisies au step 2
+  const ordPrenom  = (document.getElementById('ord-prenom')?.value||'').trim();
+  const ordNom     = (document.getElementById('ord-nom')?.value||'').trim();
+  const ordTel     = (document.getElementById('ord-tel')?.value||'').trim();
+  const ordAdresse = (document.getElementById('ord-adresse')?.value||'').trim();
+  const ordVille   = (document.getElementById('ord-ville')?.value||'').trim();
+  const ordPays    = (document.getElementById('ord-pays')?.value||'').trim();
+  const ordNote    = (document.getElementById('ord-note')?.value||'').trim();
+  const clientFullName = `${ordPrenom} ${ordNom}`.trim() || "Client Mémoire d'Afrique";
+  const adresseFull = [ordAdresse, ordVille, ordPays].filter(Boolean).join(', ');
+
+  // Envoyer récap complet sur WhatsApp pour tous les moyens de paiement
+  const phoneInput = document.getElementById(selectedMethod === 'nita' ? 'nita-phone' : selectedMethod === 'amana' ? 'amana-phone' : null);
+  const methodPhone = phoneInput?.value || '';
+  const orderLines = buildOrderSummaryText();
+  const noteSection = ordNote ? (isFr ? `\nNote : ${ordNote}` : `\nNote: ${ordNote}`) : '';
+  const methodPhoneSection = methodPhone ? (isFr ? `\nNuméro ${methodName} : ${methodPhone}` : `\n${methodName} number: ${methodPhone}`) : '';
+  const waMsg = encodeURIComponent(
+    isFr
+      ? `🛍 *Nouvelle commande — Mémoire d'Afrique*\n\n*Référence :* ${refNum}\n*Méthode :* ${methodName}${methodPhoneSection}\n\n*CLIENT*\nNom : ${clientFullName}\nTél : ${ordTel}\nAdresse : ${adresseFull}${noteSection}\n\n*COMMANDE*\n${orderLines}\n\nMerci de confirmer la réception du paiement et de préparer l'expédition. ✦`
+      : `🛍 *New order — Mémoire d'Afrique*\n\n*Reference:* ${refNum}\n*Method:* ${methodName}${methodPhoneSection}\n\n*CLIENT*\nName: ${clientFullName}\nPhone: ${ordTel}\nAddress: ${adresseFull}${noteSection}\n\n*ORDER*\n${orderLines}\n\nPlease confirm payment receipt and prepare shipping. ✦`
+  );
+  window.open(`https://wa.me/${MERCHANT_PHONE_CLEAN}?text=${waMsg}`, '_blank');
 
   const delay = (selectedMethod === 'nita' || selectedMethod === 'amana') ? 1800 : 2200;
 
