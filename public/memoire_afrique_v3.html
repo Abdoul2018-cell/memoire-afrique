@@ -221,6 +221,45 @@ section{padding:7rem 5%}
 .gb7{background:linear-gradient(135deg,#0d0a1a,#2d1a4a)}
 .gb8{background:linear-gradient(135deg,#0a1a0a,#1a4a2a)}
 
+/* ─── POPUP NEWSLETTER ──────────────────────────── */
+#nl-popup{position:fixed;inset:0;z-index:500;display:none;align-items:flex-end;justify-content:center;padding-bottom:2rem;pointer-events:none}
+#nl-popup.show{display:flex;pointer-events:auto}
+#nl-box{background:var(--noir);border:1px solid rgba(201,169,110,.25);width:min(480px,92vw);padding:2.4rem 2rem 2rem;position:relative;transform:translateY(30px);opacity:0;transition:transform .55s cubic-bezier(.22,.68,0,1.2),opacity .45s;pointer-events:auto}
+#nl-popup.show #nl-box{transform:translateY(0);opacity:1}
+#nl-close{position:absolute;top:.75rem;right:.9rem;background:none;border:none;color:rgba(250,246,240,.3);font-size:1.1rem;cursor:pointer;transition:color .2s;line-height:1}
+#nl-close:hover{color:var(--or)}
+.nl-tag{font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,169,110,.55);margin-bottom:.7rem}
+.nl-title{font-family:var(--fd);font-size:1.5rem;font-style:italic;color:var(--ivoire);line-height:1.25;margin-bottom:.5rem}
+.nl-sub{font-size:.62rem;color:rgba(250,246,240,.38);line-height:1.75;margin-bottom:1.4rem;font-weight:300}
+.nl-offer{display:inline-block;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.25);color:var(--or);padding:.35rem .9rem;margin-bottom:1.2rem}
+#nl-form{display:flex;gap:.6rem}
+#nl-email{flex:1;background:transparent;border:1px solid rgba(201,169,110,.22);color:var(--ivoire);font-family:var(--fb);font-size:.65rem;padding:.75rem 1rem;outline:none;letter-spacing:.05em;transition:border-color .2s}
+#nl-email::placeholder{color:rgba(250,246,240,.22)}
+#nl-email:focus{border-color:rgba(201,169,110,.5)}
+#nl-submit{background:var(--or);border:none;color:var(--noir);font-family:var(--fb);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;padding:.75rem 1.2rem;cursor:pointer;white-space:nowrap;transition:opacity .2s}
+#nl-submit:hover{opacity:.85}
+.nl-note{font-size:.5rem;color:rgba(250,246,240,.2);margin-top:.7rem;line-height:1.6}
+#nl-success{display:none;text-align:center;padding:1rem 0}
+#nl-success .ns-icon{font-family:var(--fd);font-size:2rem;color:var(--or);font-style:italic;margin-bottom:.5rem}
+#nl-success p{font-size:.65rem;color:rgba(250,246,240,.5);line-height:1.7}
+body.light #nl-box{background:#f2ece2;border-color:rgba(201,169,110,.3)}
+body.light #nl-email{color:var(--ivoire);border-color:rgba(201,169,110,.25)}
+/* ─── FILTRES AVANCÉS ────────────────────────────── */
+#adv-filters{display:none;padding:.9rem 1.2rem;background:rgba(201,169,110,.04);border:1px solid rgba(201,169,110,.1);margin-top:.7rem;gap:1.5rem;flex-wrap:wrap;align-items:flex-start}
+#adv-filters.open{display:flex}
+.af-group{display:flex;flex-direction:column;gap:.5rem}
+.af-label{font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,169,110,.45)}
+.af-chips{display:flex;gap:.4rem;flex-wrap:wrap}
+.af-chip{font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .7rem;border:1px solid rgba(201,169,110,.18);background:transparent;color:rgba(250,246,240,.45);cursor:pointer;font-family:var(--fb);transition:all .2s}
+.af-chip:hover{border-color:rgba(201,169,110,.4);color:rgba(250,246,240,.7)}
+.af-chip.sel{background:rgba(201,169,110,.15);border-color:var(--or);color:var(--or)}
+#adv-toggle{font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;background:transparent;border:1px solid rgba(201,169,110,.15);color:rgba(201,169,110,.5);cursor:pointer;padding:.28rem .9rem;font-family:var(--fb);transition:all .2s;display:flex;align-items:center;gap:.4rem}
+#adv-toggle:hover{border-color:rgba(201,169,110,.35);color:rgba(201,169,110,.8)}
+#adv-toggle.open{border-color:var(--or);color:var(--or)}
+#filter-count{font-size:.48rem;background:var(--or);color:var(--noir);padding:.1rem .4rem;border-radius:2px;display:none}
+body.light .af-chip{color:rgba(26,15,7,.45);border-color:rgba(201,169,110,.2)}
+body.light .af-chip.sel{color:var(--cacao);border-color:var(--or)}
+body.light #adv-filters{background:rgba(201,169,110,.06);border-color:rgba(201,169,110,.18)}
 /* ─── ARTISANS ───────────────────────────────────── */
 #artisans{background:linear-gradient(180deg,#070503,#0a0806)}
 .arti-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;margin-top:3.5rem}
@@ -1054,9 +1093,48 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
         <option value="desc">Prix décroissant</option>
       </select>
     </div>
+    <button id="adv-toggle" onclick="toggleAdvFilters()">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+      Filtres avancés
+      <span id="filter-count"></span>
+    </button>
+  </div>
+  <!-- Filtres avancés : pays + matière -->
+  <div id="adv-filters" class="rv">
+    <div class="af-group">
+      <div class="af-label">Pays d'origine</div>
+      <div class="af-chips" id="af-pays">
+        <button class="af-chip" data-pays="Niger" onclick="toggleChip(this,'pays')">🇳🇪 Niger</button>
+        <button class="af-chip" data-pays="Ghana" onclick="toggleChip(this,'pays')">🇬🇭 Ghana</button>
+        <button class="af-chip" data-pays="Mali" onclick="toggleChip(this,'pays')">🇲🇱 Mali</button>
+        <button class="af-chip" data-pays="Kenya" onclick="toggleChip(this,'pays')">🇰🇪 Kenya</button>
+        <button class="af-chip" data-pays="Maroc" onclick="toggleChip(this,'pays')">🇲🇦 Maroc</button>
+        <button class="af-chip" data-pays="Côte d'Ivoire" onclick="toggleChip(this,'pays')">🇨🇮 Côte d'Ivoire</button>
+      </div>
+    </div>
+    <div class="af-group">
+      <div class="af-label">Matière</div>
+      <div class="af-chips" id="af-matiere">
+        <button class="af-chip" data-mat="soie" onclick="toggleChip(this,'mat')">Soie</button>
+        <button class="af-chip" data-mat="coton" onclick="toggleChip(this,'mat')">Coton</button>
+        <button class="af-chip" data-mat="cuir" onclick="toggleChip(this,'mat')">Cuir</button>
+        <button class="af-chip" data-mat="bois" onclick="toggleChip(this,'mat')">Bois</button>
+        <button class="af-chip" data-mat="argent" onclick="toggleChip(this,'mat')">Argent</button>
+        <button class="af-chip" data-mat="bronze" onclick="toggleChip(this,'mat')">Bronze</button>
+      </div>
+    </div>
+    <div class="af-group">
+      <div class="af-label">Disponibilité</div>
+      <div class="af-chips">
+        <button class="af-chip" data-avail="stock" onclick="toggleChip(this,'avail')">En stock</button>
+        <button class="af-chip" data-avail="rare" onclick="toggleChip(this,'avail')">Pièces rares</button>
+        <button class="af-chip" data-avail="sur-mesure" onclick="toggleChip(this,'avail')">Sur mesure</button>
+      </div>
+    </div>
+    <button onclick="resetAdvFilters()" style="font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:none;color:rgba(201,169,110,.4);cursor:pointer;font-family:var(--fb);padding:.3rem 0;text-decoration:underline;text-underline-offset:3px;align-self:flex-end">Réinitialiser</button>
   </div>
   <div class="pgrid rv">
-    <article class="pc" onclick="openPDP(0)" data-cat="mode-femme rare" data-price="285000" aria-label="Boubou Brodé d'Or — 285 000 FCFA">
+    <article class="pc" onclick="openPDP(0)" data-cat="mode-femme rare" data-price="285000" data-pays="Niger" data-mat="soie coton" aria-label="Boubou Brodé d'Or — 285 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#2d1a0e,#1a0f07)">
         <img src="Boubou brodé doré.png" alt="Boubou Brodé d'Or — Dakar, Sénégal" loading="lazy">
         <div class="pbrow"><span class="bk br">Rare</span></div>
@@ -1069,7 +1147,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Dakar, Sénégal</div>
       <div class="pp">285 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openPDP(1)" data-cat="artisanat" data-price="420000" aria-label="Masque Sculpté Baoulé — 420 000 FCFA">
+    <article class="pc" onclick="openPDP(1)" data-cat="artisanat" data-price="420000" data-pays="Côte d'Ivoire" data-mat="bois bronze" aria-label="Masque Sculpté Baoulé — 420 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#1a1a2e,#0d0d1a)">
         <img src="Masque Baoulé sculpé.png" alt="Masque Sculpté Baoulé — Abidjan, Côte d'Ivoire" loading="lazy">
         <div class="pbrow"><span class="bk bn">Nouveau</span></div>
@@ -1082,7 +1160,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Abidjan, Côte d'Ivoire</div>
       <div class="pp">420 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openPDP(2)" data-cat="mode-femme rare" data-price="195000" aria-label="Robe Kente Royale — 195 000 FCFA">
+    <article class="pc" onclick="openPDP(2)" data-cat="mode-femme rare" data-price="195000" data-pays="Ghana" data-mat="soie coton" aria-label="Robe Kente Royale — 195 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#2e1a1a,#1a0d0d)">
         <img src="Robe Kenté Royale.png" alt="Robe Kente Royale — Accra, Ghana" loading="lazy">
         <div class="pbrow"><span class="bk br">Rare</span></div>
@@ -1095,7 +1173,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Accra, Ghana</div>
       <div class="pp">195 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openPDP(3)" data-cat="accessoires" data-price="145000" aria-label="Parure Berbère Argent — 145 000 FCFA">
+    <article class="pc" onclick="openPDP(3)" data-cat="accessoires" data-price="145000" data-pays="Maroc" data-mat="argent" aria-label="Parure Berbère Argent — 145 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#1a2e1a,#0d1a0d)">
         <img src="Parures argentées.png" alt="Parure Berbère Argent — Marrakech, Maroc" loading="lazy">
         <div class="pbrow"><span class="bk bn">Nouveau</span></div>
@@ -1108,7 +1186,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Marrakech, Maroc</div>
       <div class="pp">145 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openPDP(4)" data-cat="accessoires" data-price="98000" aria-label="Sac Cuir Maasaï — 98 000 FCFA">
+    <article class="pc" onclick="openPDP(4)" data-cat="accessoires" data-price="98000" data-pays="Kenya" data-mat="cuir" aria-label="Sac Cuir Maasaï — 98 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#2e2a1a,#1a1507)">
         <img src="Sac en cuir Massai.png" alt="Sac Cuir Maasaï — Nairobi, Kenya" loading="lazy">
         <div class="pact">
@@ -1120,7 +1198,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Nairobi, Kenya</div>
       <div class="pp">98 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openPDP(5)" data-cat="artisanat rare" data-price="350000" aria-label="Tapis Berbère Ancestral — 350 000 FCFA">
+    <article class="pc" onclick="openPDP(5)" data-cat="artisanat rare" data-price="350000" data-pays="Maroc" data-mat="laine coton" aria-label="Tapis Berbère Ancestral — 350 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#1a1a1a,#0d0d0d)">
         <img src="Tapis berber ancestral.png" alt="Tapis Berbère Ancestral — Fès, Maroc" loading="lazy">
         <div class="pbrow"><span class="bk br">Rare</span></div>
@@ -1133,7 +1211,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Fès, Maroc</div>
       <div class="pp">350 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openPDP(6)" data-cat="mode-femme mode-homme" data-price="175000" aria-label="Djellaba Brodée — 175 000 FCFA">
+    <article class="pc" onclick="openPDP(6)" data-cat="mode-femme mode-homme" data-price="175000" data-pays="Mali" data-mat="coton soie" aria-label="Djellaba Brodée — 175 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#1a1a2e,#0d0d1a)">
         <img src="Djellaba Brodée.png" alt="Djellaba Brodée — Tunis, Tunisie" loading="lazy">
         <div class="pbrow"><span class="bk bn">Nouveau</span></div>
@@ -1146,7 +1224,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Tunis, Tunisie</div>
       <div class="pp">175 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openPDP(7)" data-cat="artisanat rare" data-price="680000" aria-label="Plateau Africain Signature — 680 000 FCFA">
+    <article class="pc" onclick="openPDP(7)" data-cat="artisanat rare" data-price="680000" data-pays="Niger" data-mat="bois bronze" aria-label="Plateau Africain Signature — 680 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#2e2e1a,#1a1a0d)">
         <img src="Plateau Africain DG.jpg" alt="Plateau Africain Signature — Niamey, Niger" loading="lazy">
         <div class="pbrow"><span class="bk br">Rare</span></div>
@@ -2893,13 +2971,24 @@ function applyAllFilters(){
   // 1. Filtrer
   cards.forEach(card=>{
     const cats  = card.dataset.cat   || '';
+    const pays  = card.dataset.pays  || '';
+    const mat   = card.dataset.mat   || '';
     const price = parseInt(card.dataset.price || '0', 10);
     const catOk = !activeCatFilter || cats.includes(activeCatFilter);
     let priceOk = true;
     if(activePriceRange === 'low')  priceOk = price < 150000;
     if(activePriceRange === 'mid')  priceOk = price >= 150000 && price <= 300000;
     if(activePriceRange === 'high') priceOk = price > 300000;
-    card.style.display = (catOk && priceOk) ? '' : 'none';
+    // Filtres avancés
+    const paysOk = !advFilters.pays.length || advFilters.pays.some(p=>pays.includes(p));
+    const matOk  = !advFilters.mat.length  || advFilters.mat.some(m=>mat.includes(m));
+    const availOk = !advFilters.avail.length || advFilters.avail.some(a=>{
+      if(a==='stock') return parseInt(card.dataset.price||'0')>0;
+      if(a==='rare')  return cats.includes('rare');
+      if(a==='sur-mesure') return true;
+      return true;
+    });
+    card.style.display = (catOk && priceOk && paysOk && matOk && availOk) ? '' : 'none';
   });
 
   // 2. Trier les cartes visibles
@@ -4312,6 +4401,93 @@ renderCart();
 
 // ─── THEME DARK / LIGHT ───────────────────────────────────────────────────────
 let isDark = true;
+// ─── POPUP NEWSLETTER ─────────────────────────────────────────────────────────
+(function initNLPopup(){
+  const DISMISSED_KEY = 'mda_nl_dismissed';
+  const SUBSCRIBED_KEY = 'mda_newsletter';
+  let shown = false;
+
+  function showNLPopup(){
+    if(shown) return;
+    try{
+      if(localStorage.getItem(DISMISSED_KEY)) return;
+      if(localStorage.getItem(SUBSCRIBED_KEY)) return;
+    }catch(e){}
+    shown = true;
+    document.getElementById('nl-popup').classList.add('show');
+  }
+
+  // Déclencheur 1 : 30 secondes
+  setTimeout(showNLPopup, 30000);
+
+  // Déclencheur 2 : intention de quitter (souris sort vers le haut)
+  document.addEventListener('mouseleave', e=>{
+    if(e.clientY < 10) showNLPopup();
+  });
+
+  // Déclencheur 3 : 70% de scroll de page
+  window.addEventListener('scroll', ()=>{
+    const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+    if(pct > 0.70) showNLPopup();
+  }, {passive:true});
+})();
+
+function closeNLPopup(dismiss){
+  document.getElementById('nl-popup').classList.remove('show');
+  if(dismiss) try{ localStorage.setItem('mda_nl_dismissed','1'); }catch(e){}
+}
+
+function submitNLPopup(){
+  const email = document.getElementById('nl-email').value.trim();
+  if(!email || !email.includes('@')){ toast('Email invalide'); return; }
+  let subs = [];
+  try{ subs = JSON.parse(localStorage.getItem('mda_newsletter')||'[]'); }catch(e){}
+  if(!subs.includes(email)){
+    subs.push(email);
+    try{ localStorage.setItem('mda_newsletter', JSON.stringify(subs)); }catch(e){}
+  }
+  document.getElementById('nl-form-wrap').style.display = 'none';
+  document.getElementById('nl-success').style.display = 'block';
+  setTimeout(()=>closeNLPopup(false), 4000);
+}
+
+// ─── FILTRES AVANCÉS ──────────────────────────────────────────────────────────
+let advFilters = { pays: [], mat: [], avail: [] };
+
+function toggleAdvFilters(){
+  const panel = document.getElementById('adv-filters');
+  const btn = document.getElementById('adv-toggle');
+  panel.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+function toggleChip(chip, group){
+  chip.classList.toggle('sel');
+  const val = chip.dataset[group] || chip.dataset.pays || chip.dataset.mat || chip.dataset.avail;
+  const key = group === 'pays' ? 'pays' : group === 'mat' ? 'mat' : 'avail';
+  if(chip.classList.contains('sel')){
+    if(!advFilters[key].includes(val)) advFilters[key].push(val);
+  } else {
+    advFilters[key] = advFilters[key].filter(v=>v!==val);
+  }
+  updateFilterCount();
+  applyAllFilters();
+}
+
+function updateFilterCount(){
+  const total = advFilters.pays.length + advFilters.mat.length + advFilters.avail.length;
+  const badge = document.getElementById('filter-count');
+  if(total > 0){ badge.textContent = total; badge.style.display = 'inline'; }
+  else badge.style.display = 'none';
+}
+
+function resetAdvFilters(){
+  advFilters = { pays: [], mat: [], avail: [] };
+  document.querySelectorAll('.af-chip').forEach(c=>c.classList.remove('sel'));
+  updateFilterCount();
+  applyAllFilters();
+}
+
 // ─── RETOUR EN HAUT ───────────────────────────────────────────────────────────
 (function(){
   const btn = document.getElementById('back-top');
@@ -6988,6 +7164,30 @@ function closeArticle(){
     </div>
     <!-- Body -->
     <div id="orders-body" style="overflow-y:auto;padding:1rem 1.2rem;flex:1;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.2) transparent"></div>
+  </div>
+</div>
+
+<!-- ── Popup Newsletter ──────────────────────────────────────────────────── -->
+<div id="nl-popup" role="dialog" aria-modal="true" aria-label="Newsletter Mémoire d'Afrique">
+  <div id="nl-box">
+    <button id="nl-close" onclick="closeNLPopup(true)" aria-label="Fermer">✕</button>
+    <div id="nl-main">
+      <div class="nl-tag">Offre de bienvenue</div>
+      <div class="nl-title">Rejoignez la maison<br><em>Mémoire d'Afrique</em></div>
+      <p class="nl-sub">Recevez en avant-première nos nouvelles collections, les portraits de nos artisans, et les pièces rares avant leur mise en ligne.</p>
+      <div class="nl-offer">✦ &nbsp;Code &nbsp;<strong>BIENVENUE10</strong>&nbsp; — 10% sur votre première commande</div>
+      <div id="nl-form-wrap">
+        <div id="nl-form" style="display:flex;gap:.6rem">
+          <input type="email" id="nl-email" placeholder="Votre adresse email" autocomplete="email">
+          <button id="nl-submit" onclick="submitNLPopup()">S'inscrire</button>
+        </div>
+        <p class="nl-note">Sans engagement · Désinscription en un clic · Vos données ne sont jamais partagées.</p>
+      </div>
+      <div id="nl-success">
+        <div class="ns-icon">✦</div>
+        <p>Bienvenue dans la maison.<br>Votre code <strong style="color:var(--or)">BIENVENUE10</strong> est valable dès maintenant.</p>
+      </div>
+    </div>
   </div>
 </div>
 
