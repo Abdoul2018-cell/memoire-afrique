@@ -221,6 +221,31 @@ section{padding:7rem 5%}
 .gb7{background:linear-gradient(135deg,#0d0a1a,#2d1a4a)}
 .gb8{background:linear-gradient(135deg,#0a1a0a,#1a4a2a)}
 
+/* ─── GUIDE TAILLES ─────────────────────────────── */
+#size-guide{position:fixed;inset:0;background:rgba(10,8,6,.93);z-index:420;display:none;align-items:center;justify-content:center}
+#size-guide.open{display:flex}
+#sg-box{background:var(--noir);border:1px solid rgba(201,169,110,.18);width:min(700px,92vw);max-height:88vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.2) transparent;position:relative}
+#sg-header{padding:1.4rem 1.6rem;border-bottom:1px solid rgba(201,169,110,.1);display:flex;align-items:center;justify-content:space-between}
+.sg-tab{font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;padding:.4rem 1rem;background:transparent;border:1px solid rgba(201,169,110,.2);color:rgba(250,246,240,.4);cursor:pointer;transition:all .2s;font-family:var(--fb)}
+.sg-tab.act{background:rgba(201,169,110,.12);border-color:var(--or);color:var(--or)}
+#sg-body{padding:1.4rem 1.6rem}
+.sg-section{display:none}.sg-section.act{display:block}
+.sg-table{width:100%;border-collapse:collapse;font-size:.62rem;margin-top:1rem}
+.sg-table th{font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,169,110,.5);padding:.6rem .8rem;text-align:left;border-bottom:1px solid rgba(201,169,110,.12);font-weight:400;font-family:var(--fb)}
+.sg-table td{padding:.65rem .8rem;border-bottom:1px solid rgba(201,169,110,.07);color:rgba(250,246,240,.65);line-height:1.5}
+.sg-table tr:hover td{background:rgba(201,169,110,.04)}
+.sg-table td:first-child{color:var(--or);font-family:var(--fd);font-style:italic;font-size:.78rem;font-weight:400}
+.sg-tip{font-size:.6rem;color:rgba(250,246,240,.35);line-height:1.8;margin-top:1.2rem;padding:1rem;border:1px solid rgba(201,169,110,.08);background:rgba(201,169,110,.03)}
+.sg-tip strong{color:rgba(201,169,110,.6);font-weight:400}
+/* Timeline commande enrichie */
+.ord-timeline{padding:1rem 0 .5rem}
+.otl-steps{display:flex;align-items:flex-start;position:relative;gap:0}
+.otl-step{flex:1;text-align:center;position:relative;z-index:1}
+.otl-dot{width:28px;height:28px;border-radius:50%;margin:0 auto .4rem;display:flex;align-items:center;justify-content:center;font-size:.7rem;border:1px solid;transition:all .3s;position:relative;z-index:2}
+.otl-label{font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;line-height:1.4;color:rgba(250,246,240,.35)}
+.otl-label.act{color:var(--ivoire)}
+.otl-date{font-size:.48rem;color:rgba(201,169,110,.45);margin-top:.2rem;font-style:italic}
+.otl-line{position:absolute;top:14px;left:50%;right:-50%;height:1px;z-index:0}
 /* ─── RECHERCHE ──────────────────────────────── */
 #search-overlay{position:fixed;inset:0;background:rgba(10,8,6,.96);z-index:400;display:none;flex-direction:column;align-items:center;padding-top:12vh}
 #search-overlay.open{display:flex}
@@ -3019,6 +3044,25 @@ function handleLogin(e){
 }
 
 /* ──────────────── RECHERCHE ──────────────── */
+// ─── GUIDE DES TAILLES ────────────────────────────────────────────────────────
+function openSizeGuide(){
+  const m = document.getElementById('size-guide');
+  m.classList.add('open');
+  setAriaHidden('size-guide', false);
+  document.body.style.overflow = 'hidden';
+}
+function closeSizeGuide(){
+  document.getElementById('size-guide').classList.remove('open');
+  setAriaHidden('size-guide', true);
+  document.body.style.overflow = '';
+}
+function sgTab(btn, sectionId){
+  document.querySelectorAll('.sg-tab').forEach(t=>t.classList.remove('act'));
+  document.querySelectorAll('.sg-section').forEach(s=>s.classList.remove('act'));
+  btn.classList.add('act');
+  document.getElementById(sectionId)?.classList.add('act');
+}
+
 function openSearch(){
   const o=document.getElementById('search-overlay');
   o.classList.add('open');
@@ -3095,7 +3139,12 @@ function openPDP(idx){
   // Tailles
   const sw=document.getElementById('pdp-sizes-wrap');
   const sd=document.getElementById('pdp-sizes');
-  if(p.sizes&&p.sizes.length){ sw.style.display='block'; sd.innerHTML=p.sizes.map(s=>`<button class="pdp-sz" onclick="this.parentElement.querySelectorAll('.pdp-sz').forEach(b=>b.classList.remove('sel'));this.classList.add('sel')">${s}</button>`).join(''); }
+  if(p.sizes&&p.sizes.length){
+    sw.style.display='block';
+    sd.innerHTML=p.sizes.map(s=>`<button class="pdp-sz" onclick="this.parentElement.querySelectorAll('.pdp-sz').forEach(b=>b.classList.remove('sel'));this.classList.add('sel')">${s}</button>`).join('');
+    const sgLink=sw.querySelector('.sg-link');
+    if(!sgLink) sw.insertAdjacentHTML('beforeend','<button class="sg-link" onclick="openSizeGuide()" style="background:none;border:none;color:rgba(201,169,110,.5);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:.4rem 0;text-decoration:underline;text-underline-offset:3px;font-family:var(--fb);display:block;margin-top:.5rem">Guide des tailles →</button>');
+  }
   else sw.style.display='none';
   // CTA
   document.getElementById('pdp-add-btn').onclick=()=>{
@@ -3563,6 +3612,7 @@ function openQV(idx){
       <div id="qv-size-btns" style="display:flex;gap:.4rem;flex-wrap:wrap">
         ${p.sizes.map(s=>`<button onclick="selectSize(this,'${s}')" style="padding:.3rem .75rem;border:1px solid var(--or);background:transparent;color:var(--ivoire);font-family:var(--fb);font-size:.7rem;letter-spacing:.1em;cursor:pointer;text-transform:uppercase;transition:all .2s" data-size="${s}">${s}</button>`).join('')}
       </div>
+      <button onclick="openSizeGuide()" style="background:none;border:none;color:rgba(201,169,110,.5);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:.4rem 0;text-decoration:underline;text-underline-offset:3px;font-family:var(--fb)">Guide des tailles →</button>
     `;
     sizesWrap.style.display='block';
   } else {
@@ -6201,10 +6251,11 @@ function closeOrders(){
 }
 
 const ORDER_STATUS = {
-  processing: {fr:'En traitement',en:'Processing',color:'#f39c12',icon:'⏳'},
-  shipped:    {fr:'Expédié',en:'Shipped',color:'#3498db',icon:'🚚'},
-  delivered:  {fr:'Livré',en:'Delivered',color:'#27ae60',icon:'✦'},
-  cancelled:  {fr:'Annulé',en:'Cancelled',color:'#e74c3c',icon:'✕'}
+  processing: {fr:'Reçue',en:'Received',color:'#27ae60',icon:'✓'},
+  making:     {fr:'En fabrication',en:'Making',color:'#c9a96e',icon:'✦'},
+  shipped:    {fr:'Expédiée',en:'Shipped',color:'#3498db',icon:'►'},
+  delivered:  {fr:'Livrée',en:'Delivered',color:'#27ae60',icon:'◆'},
+  cancelled:  {fr:'Annulée',en:'Cancelled',color:'#e74c3c',icon:'✕'}
 };
 
 function renderOrders(){
@@ -6248,21 +6299,40 @@ function renderOrders(){
           <span style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,246,240,.4)">${isFr?'Total':'Total'}</span>
           <span style="font-family:var(--fd);font-size:.95rem;color:var(--or);font-style:italic">${totalFmt} FCFA</span>
         </div>
-        <div style="margin-top:.75rem">
-          <div style="font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(201,169,110,.5);margin-bottom:.5rem">${isFr?'Suivi':'Tracking'}</div>
-          <div style="display:flex;gap:0;align-items:center">
-            ${['processing','shipped','delivered'].map((s,i)=>{
-              const isActive = ['processing','shipped','delivered'].indexOf(o.status) >= i;
-              const sd = ORDER_STATUS[s];
-              return `<div style="display:flex;align-items:center;flex:1">
-                <div style="text-align:center;flex:1">
-                  <div style="width:20px;height:20px;border-radius:50%;margin:0 auto .3rem;display:flex;align-items:center;justify-content:center;font-size:.6rem;background:${isActive?sd.color:'rgba(201,169,110,.1)'};border:1px solid ${isActive?sd.color:'rgba(201,169,110,.2)'};color:${isActive?'#fff':'rgba(250,246,240,.3)'}">${sd.icon}</div>
-                  <div style="font-size:.52rem;letter-spacing:.08em;color:${isActive?'var(--ivoire)':'rgba(250,246,240,.3)'}">${isFr?sd.fr:sd.en}</div>
-                </div>
-                ${i<2?`<div style="flex:1;height:1px;background:${isActive?'var(--or)':'rgba(201,169,110,.15)'};margin-bottom:.8rem"></div>`:''}
-              </div>`;
-            }).join('')}
-          </div>
+        <div class="ord-timeline">
+          <div style="font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,169,110,.45);margin-bottom:1rem">${isFr?'Suivi de commande':'Order tracking'}</div>
+          ${(()=>{
+            const steps = [
+              {key:'processing', icon:'✓', fr:'Reçue', en:'Received', color:'#27ae60'},
+              {key:'making',     icon:'✦', fr:'En fabrication', en:'Making', color:'#c9a96e'},
+              {key:'shipped',    icon:'►', fr:'Expédiée', en:'Shipped', color:'#3498db'},
+              {key:'delivered',  icon:'◆', fr:'Livrée', en:'Delivered', color:'#27ae60'}
+            ];
+            const statusOrder = ['processing','making','shipped','delivered'];
+            const cancelled = o.status === 'cancelled';
+            const curIdx = cancelled ? -1 : Math.max(statusOrder.indexOf(o.status), 0);
+            // Dates estimées
+            const orderDate = new Date(o.date.split('/').reverse().join('-'));
+            const addDays = (d,n)=>{ const r=new Date(d); r.setDate(r.getDate()+n); return r.toLocaleDateString('fr-FR',{day:'numeric',month:'short'}); };
+            const stepDates = [o.date, addDays(orderDate,3), addDays(orderDate,14), addDays(orderDate,21)];
+            return `<div class="otl-steps">
+              ${steps.map((s,i)=>{
+                const done = !cancelled && curIdx >= i;
+                const current = !cancelled && curIdx === i;
+                const dotBg = done ? s.color : 'rgba(201,169,110,.08)';
+                const dotBorder = done ? s.color : 'rgba(201,169,110,.2)';
+                const dotColor = done ? '#fff' : 'rgba(250,246,240,.2)';
+                const lineColor = (!cancelled && curIdx > i) ? 'var(--or)' : 'rgba(201,169,110,.12)';
+                return `<div class="otl-step">
+                  ${i < steps.length-1 ? `<div class="otl-line" style="background:${lineColor}"></div>` : ''}
+                  <div class="otl-dot" style="background:${dotBg};border-color:${dotBorder};color:${dotColor};${current?'box-shadow:0 0 0 3px '+s.color+'33':''}">${s.icon}</div>
+                  <div class="otl-label ${done?'act':''}">${isFr?s.fr:s.en}</div>
+                  <div class="otl-date">${done ? stepDates[i] : '~'+stepDates[i]}</div>
+                </div>`;
+              }).join('')}
+            </div>
+            ${cancelled ? `<div style="font-size:.58rem;color:#e74c3c;text-align:center;margin-top:.7rem;padding:.5rem;background:rgba(231,76,60,.06);border:1px solid rgba(231,76,60,.15)">${isFr?'Cette commande a été annulée':'This order was cancelled'}</div>` : ''}`;
+          })()}
         </div>
       </div>
     </div>`;
@@ -6649,6 +6719,67 @@ function closeArticle(){
 
 <!-- ── Wishlist Modal ────────────────────────────────────────────────── -->
 <!-- ── Search Overlay ────────────────────────────────────────────────── -->
+<!-- ── Guide des tailles ──────────────────────────────────────────────── -->
+<div id="size-guide" role="dialog" aria-modal="true" aria-label="Guide des tailles" aria-hidden="true" onclick="if(event.target===this)closeSizeGuide()">
+  <div id="sg-box">
+    <div id="sg-header">
+      <div>
+        <div style="font-family:var(--fd);font-size:1.2rem;font-style:italic;color:var(--ivoire)">Guide des tailles</div>
+        <div style="font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(201,169,110,.45);margin-top:.2rem">Toutes dimensions en centimètres</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:.6rem">
+        <button class="sg-tab act" onclick="sgTab(this,'sg-vetements')">Vêtements</button>
+        <button class="sg-tab" onclick="sgTab(this,'sg-accessoires')">Accessoires</button>
+        <button onclick="closeSizeGuide()" style="background:none;border:none;color:rgba(250,246,240,.3);font-size:1rem;cursor:pointer;padding:.3rem;margin-left:.5rem">✕</button>
+      </div>
+    </div>
+    <div id="sg-body">
+      <!-- Vêtements -->
+      <div id="sg-vetements" class="sg-section act">
+        <p style="font-size:.62rem;color:rgba(250,246,240,.4);line-height:1.8;margin-bottom:.5rem">Pour les créations sur mesure, nos artisans s'adaptent à vos mesures exactes. Les tailles ci-dessous correspondent aux mensurations standards de nos modèles prêt-à-porter.</p>
+        <table class="sg-table">
+          <thead><tr><th>Taille</th><th>Tour de poitrine</th><th>Tour de taille</th><th>Tour de hanches</th><th>Longueur dos</th></tr></thead>
+          <tbody>
+            <tr><td>XS</td><td>80 – 83</td><td>60 – 63</td><td>86 – 89</td><td>38</td></tr>
+            <tr><td>S</td><td>84 – 87</td><td>64 – 67</td><td>90 – 93</td><td>39</td></tr>
+            <tr><td>M</td><td>88 – 92</td><td>68 – 72</td><td>94 – 98</td><td>40</td></tr>
+            <tr><td>L</td><td>93 – 98</td><td>73 – 78</td><td>99 – 104</td><td>41</td></tr>
+            <tr><td>XL</td><td>99 – 105</td><td>79 – 85</td><td>105 – 111</td><td>42</td></tr>
+            <tr><td>XXL</td><td>106 – 113</td><td>86 – 93</td><td>112 – 119</td><td>43</td></tr>
+          </tbody>
+        </table>
+        <div class="sg-tip">
+          <strong>Comment prendre vos mesures :</strong><br>
+          · <strong>Poitrine</strong> — Mesurez au point le plus fort, sous les bras, sans serrer.<br>
+          · <strong>Taille</strong> — À la partie la plus fine du buste, généralement 2–3 cm au-dessus du nombril.<br>
+          · <strong>Hanches</strong> — Au point le plus large, environ 20 cm sous la taille.<br>
+          · En cas de doute entre deux tailles, choisissez la taille supérieure — toutes nos pièces peuvent être ajustées à la demande.
+        </div>
+        <p style="font-size:.6rem;color:rgba(201,169,110,.5);margin-top:1rem;font-style:italic;font-family:var(--fd)">Besoin d'une pièce sur mesure ? Contactez-nous via WhatsApp — nos artisans créent selon vos mesures exactes.</p>
+      </div>
+      <!-- Accessoires -->
+      <div id="sg-accessoires" class="sg-section">
+        <p style="font-size:.62rem;color:rgba(250,246,240,.4);line-height:1.8;margin-bottom:.5rem">Sacs, bijoux et objets d'art — dimensions indicatives pour vous aider à visualiser chaque pièce dans votre espace ou sur vous.</p>
+        <table class="sg-table">
+          <thead><tr><th>Catégorie</th><th>Dimensions (L × H × P)</th><th>Poids approx.</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Petit sac</td><td>20 × 15 × 8 cm</td><td>~400 g</td><td>Clutch / pochette de soirée</td></tr>
+            <tr><td>Sac moyen</td><td>30 × 25 × 12 cm</td><td>~700 g</td><td>Usage quotidien</td></tr>
+            <tr><td>Grand sac</td><td>40 × 35 × 15 cm</td><td>~1,1 kg</td><td>Cabas / weekend</td></tr>
+            <tr><td>Bracelet</td><td>Ø 6 – 7 cm intérieur</td><td>—</td><td>Ajustable sur demande</td></tr>
+            <tr><td>Collier court</td><td>40 – 45 cm</td><td>—</td><td>Longueur ras du cou</td></tr>
+            <tr><td>Collier long</td><td>65 – 80 cm</td><td>—</td><td>Peut se porter double</td></tr>
+            <tr><td>Plateau déco</td><td>30 – 60 cm Ø</td><td>~0,8 – 2,5 kg</td><td>Selon modèle</td></tr>
+          </tbody>
+        </table>
+        <div class="sg-tip">
+          <strong>Bon à savoir :</strong> Les dimensions indiquées sont des valeurs approximatives. Chaque pièce étant fabriquée à la main, de légères variations sont inhérentes à la nature artisanale de la création — elles témoignent de son authenticité.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="search-overlay" role="search" aria-label="Recherche">
   <div id="search-wrap">
     <input id="search-input" type="search" placeholder="Rechercher une pièce…" autocomplete="off" oninput="runSearch(this.value)" onkeydown="searchKey(event)">
