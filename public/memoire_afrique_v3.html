@@ -647,6 +647,7 @@ body.light #loader{background:var(--noir)}
 /* ─── WISHLIST MODAL ──────────────────────────── */
 #wlModal{position:fixed;inset:0;background:rgba(10,8,6,.88);z-index:310;display:none;align-items:flex-end;justify-content:center}
 #wlModal.open{display:flex}
+#account-modal.open{display:flex}
 .wl-box{background:#0c0907;border:1px solid rgba(201,169,110,.2);border-bottom:none;width:100%;max-width:460px;max-height:85vh;display:flex;flex-direction:column}
 
 /* ─── ORDERS MODAL ────────────────────────────── */
@@ -752,14 +753,22 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nic">
-    <button class="ni" onclick="openWishlist()" aria-label="Mes favoris" title="Mes favoris" style="position:relative">♡<span id="wl-badge" style="display:none;position:absolute;top:-3px;right:-4px;background:#e74c3c;color:#fff;font-size:.44rem;font-weight:700;min-width:14px;height:14px;border-radius:50%;align-items:center;justify-content:center;padding:0 2px"></span></button>
-    <button class="ni" onclick="openOrders()" aria-label="Mes commandes" title="Mes commandes" id="orders-nav-btn" style="position:relative">◫<span id="orders-badge" style="display:none;position:absolute;top:-3px;right:-4px;background:var(--or);color:var(--noir);font-size:.44rem;font-weight:700;min-width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 2px"></span></button>
-    <button class="ni" onclick="openDocs()" aria-label="Mes Documents" title="Mes Documents" id="docs-nav-btn">⬚</button>
-    <button class="ni" onclick="openAI()" aria-label="Agents IA" title="Agents IA">◈</button>
-    <button class="ni" onclick="openLogin()" aria-label="Connexion" title="Connexion">◯</button>
-    <button class="ni" id="admin-btn" onclick="openAdmin()" aria-label="Administration" title="Admin" style="display:none">⬡</button>
-    <button class="ni" onclick="openCart()" aria-label="Panier" title="Panier" style="position:relative">▢<span class="cbadge" id="cc" aria-label="2 articles">2</span></button>
-    <button class="ni nmob" onclick="openMNav()" aria-label="Menu">☰</button>
+    <!-- Wishlist : cœur -->
+    <button class="ni" onclick="openWishlist()" aria-label="Mes favoris" title="Mes favoris" style="position:relative"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span id="wl-badge" style="display:none;position:absolute;top:-3px;right:-4px;background:#e74c3c;color:#fff;font-size:.44rem;font-weight:700;min-width:14px;height:14px;border-radius:50%;align-items:center;justify-content:center;padding:0 2px"></span></button>
+    <!-- Commandes : colis -->
+    <button class="ni" onclick="openOrders()" aria-label="Mes commandes" title="Mes commandes" id="orders-nav-btn" style="position:relative"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><span id="orders-badge" style="display:none;position:absolute;top:-3px;right:-4px;background:var(--or);color:var(--noir);font-size:.44rem;font-weight:700;min-width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 2px"></span></button>
+    <!-- Documents : fichier -->
+    <button class="ni" onclick="openDocs()" aria-label="Mes Documents" title="Mes Documents" id="docs-nav-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></button>
+    <!-- Agents IA : étincelle -->
+    <button class="ni" onclick="openAI()" aria-label="Agents IA" title="Agents IA"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></button>
+    <!-- Connexion : profil -->
+    <button class="ni" onclick="openLogin()" aria-label="Connexion" title="Connexion"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+    <!-- Admin : clé -->
+    <button class="ni" id="admin-btn" onclick="openAdmin()" aria-label="Administration" title="Admin" style="display:none"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg></button>
+    <!-- Panier : sac -->
+    <button class="ni" onclick="openCart()" aria-label="Panier" title="Panier" style="position:relative"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cbadge" id="cc" aria-label="2 articles">2</span></button>
+    <!-- Menu mobile : hamburger -->
+    <button class="ni nmob" onclick="openMNav()" aria-label="Menu"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
     <div class="ntoggle">
       <button class="nbtn-lang" onclick="toggleLang()" aria-label="Changer de langue" title="Switch language">
         <span id="lang-fr" class="active">FR</span>
@@ -1592,15 +1601,15 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
   <div class="ph"><div class="pt" id="adm-title">Administration</div><button class="pc2" onclick="closeAdmin()" aria-label="Fermer">✕</button></div>
   <div class="au"><div class="abg">⬡ Super Admin</div><div class="an">Amadou Binta Diallo</div><div class="aid2">ID : #MBA-001 — Fondatrice &amp; Directrice Générale</div></div>
   <div class="anav">
-    <div class="ani act" onclick="setAdSec(this,'dashboard')" tabindex="0"><span class="aico">▦</span>Tableau de bord</div>
-    <div class="ani" onclick="setAdSec(this,'catalogue')" tabindex="0"><span class="aico">◈</span>Catalogue produits</div>
-    <div class="ani" onclick="setAdSec(this,'commandes')" tabindex="0"><span class="aico">◉</span>Commandes</div>
-    <div class="ani" onclick="setAdSec(this,'clients')" tabindex="0"><span class="aico">◎</span>Clients</div>
-    <div class="ani" onclick="setAdSec(this,'collections')" tabindex="0"><span class="aico">◑</span>Collections</div>
-    <div class="ani" onclick="setAdSec(this,'analytics')" tabindex="0"><span class="aico">◐</span>Analytics</div>
-    <div class="ani" onclick="setAdSec(this,'rapports')" tabindex="0"><span class="aico">⬚</span>Rapports & Exports</div>
-    <div class="ani" onclick="openAI();closeAdmin()" tabindex="0"><span class="aico">◈</span>Agents IA</div>
-    <div class="ani" onclick="setAdSec(this,'parametres')" tabindex="0"><span class="aico">◻</span>Paramètres</div>
+    <div class="ani act" onclick="setAdSec(this,'dashboard')" tabindex="0"><span class="aico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>Tableau de bord</div>
+    <div class="ani" onclick="setAdSec(this,'catalogue')" tabindex="0"><span class="aico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>Catalogue produits</div>
+    <div class="ani" onclick="setAdSec(this,'commandes')" tabindex="0"><span class="aico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>Commandes</div>
+    <div class="ani" onclick="setAdSec(this,'clients')" tabindex="0"><span class="aico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Clients</div>
+    <div class="ani" onclick="setAdSec(this,'collections')" tabindex="0"><span class="aico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span>Collections</div>
+    <div class="ani" onclick="setAdSec(this,'analytics')" tabindex="0"><span class="aico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>Analytics</div>
+    <div class="ani" onclick="setAdSec(this,'rapports')" tabindex="0"><span class="aico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>Rapports & Exports</div>
+    <div class="ani" onclick="openAI();closeAdmin()" tabindex="0"><span class="aico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>Agents IA</div>
+    <div class="ani" onclick="setAdSec(this,'parametres')" tabindex="0"><span class="aico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>Paramètres</div>
   </div>
   <div id="adm-content" style="flex:1;overflow-y:auto;padding:1.2rem 1.8rem"></div>
 </aside>
@@ -2354,6 +2363,13 @@ const admSections = {
         <div style="color:rgba(250,246,240,.6);max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${prod}</div>
         <div style="text-align:right"><div style="color:var(--ivoire)">${prix} F</div><div style="font-size:.55rem">${status}</div></div>
       </div>`).join('')}
+      <!-- Alertes stock faible -->
+      <div style="font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:#e07070;opacity:.9;margin:.9rem 0 .5rem">⚠ Alertes stock faible</div>
+      ${prods.filter(p=>p.stock<=2).map(p=>`
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:.5rem .7rem;background:rgba(224,112,112,.06);border:1px solid rgba(224,112,112,.18);margin-bottom:.4rem">
+        <div style="font-size:.65rem;color:var(--ivoire)">${p.n}</div>
+        <span style="font-size:.58rem;color:#e07070;background:rgba(224,112,112,.12);padding:.15rem .5rem;border:1px solid rgba(224,112,112,.25)">Plus que ${p.stock} en stock</span>
+      </div>`).join('')}
       <div style="display:flex;gap:.6rem;margin-top:1.2rem">
         <button class="bp" style="flex:1;font-size:.57rem;padding:.75rem" onclick="setAdSec(document.querySelector('.ani:nth-child(3)'),'commandes')">Toutes les commandes</button>
         <button class="bs" style="flex:1;font-size:.57rem;padding:.75rem;cursor:pointer" onclick="setAdSec(document.querySelector('.ani:nth-child(2)'),'catalogue')">Catalogue</button>
@@ -2481,6 +2497,46 @@ const admSections = {
           <div style="font-family:var(--fd);font-size:1.1rem;color:var(--or);font-style:italic;margin:.3rem 0">${v}</div>
           <div style="font-size:.6rem;color:#7ecb8a">${ev} ce mois</div>
         </div>`).join('')}
+      </div>
+      <!-- Graphique revenus 6 mois -->
+      <div style="font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or);opacity:.7;margin-bottom:.8rem">Revenus — 6 derniers mois (FCFA)</div>
+      <div style="background:rgba(201,169,110,.03);border:1px solid rgba(201,169,110,.1);padding:1rem;margin-bottom:1.2rem">
+        <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+          <defs>
+            <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#c9a96e" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#c9a96e" stop-opacity="0.15"/>
+            </linearGradient>
+          </defs>
+          <!-- Grille -->
+          <line x1="0" y1="100" x2="300" y2="100" stroke="rgba(201,169,110,.15)" stroke-width="0.5"/>
+          <line x1="0" y1="75" x2="300" y2="75" stroke="rgba(201,169,110,.08)" stroke-width="0.5" stroke-dasharray="3,3"/>
+          <line x1="0" y1="50" x2="300" y2="50" stroke="rgba(201,169,110,.08)" stroke-width="0.5" stroke-dasharray="3,3"/>
+          <line x1="0" y1="25" x2="300" y2="25" stroke="rgba(201,169,110,.08)" stroke-width="0.5" stroke-dasharray="3,3"/>
+          <!-- Barres : données en milliers FCFA normalisées sur 100px -->
+          <!-- Avr:1.2M Mai:1.8M Juin:1.5M Juil:2.1M Août:1.9M Sept:2.3M -->
+          <rect x="8"   y="48" width="30" height="52" fill="url(#barGrad)" rx="2"/>
+          <rect x="58"  y="24" width="30" height="76" fill="url(#barGrad)" rx="2"/>
+          <rect x="108" y="35" width="30" height="65" fill="url(#barGrad)" rx="2"/>
+          <rect x="158" y="9"  width="30" height="91" fill="url(#barGrad)" rx="2"/>
+          <rect x="208" y="17" width="30" height="83" fill="url(#barGrad)" rx="2"/>
+          <rect x="258" y="0"  width="30" height="100" fill="#c9a96e" rx="2" fill-opacity="0.9"/>
+          <!-- Labels mois -->
+          <text x="23"  y="115" text-anchor="middle" font-size="7" fill="rgba(250,246,240,0.4)">Avr</text>
+          <text x="73"  y="115" text-anchor="middle" font-size="7" fill="rgba(250,246,240,0.4)">Mai</text>
+          <text x="123" y="115" text-anchor="middle" font-size="7" fill="rgba(250,246,240,0.4)">Juin</text>
+          <text x="173" y="115" text-anchor="middle" font-size="7" fill="rgba(250,246,240,0.4)">Juil</text>
+          <text x="223" y="115" text-anchor="middle" font-size="7" fill="rgba(250,246,240,0.4)">Août</text>
+          <text x="273" y="115" text-anchor="middle" font-size="7" fill="#c9a96e" font-weight="bold">Sept</text>
+          <!-- Valeurs -->
+          <text x="23"  y="44" text-anchor="middle" font-size="6.5" fill="rgba(201,169,110,.6)">1.2M</text>
+          <text x="73"  y="20" text-anchor="middle" font-size="6.5" fill="rgba(201,169,110,.6)">1.8M</text>
+          <text x="123" y="31" text-anchor="middle" font-size="6.5" fill="rgba(201,169,110,.6)">1.5M</text>
+          <text x="173" y="5"  text-anchor="middle" font-size="6.5" fill="rgba(201,169,110,.6)">2.1M</text>
+          <text x="223" y="13" text-anchor="middle" font-size="6.5" fill="rgba(201,169,110,.6)">1.9M</text>
+          <text x="273" y="-4" text-anchor="middle" font-size="6.5" fill="#c9a96e" font-weight="bold">2.3M</text>
+        </svg>
+        <div style="font-size:.58rem;color:rgba(250,246,240,.35);text-align:right;margin-top:.3rem">↗ +18% vs période précédente</div>
       </div>
       <div style="font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or);opacity:.7;margin-bottom:.8rem">Top produits</div>
       ${[['Boubou Brodé d\'Or','47 ventes','1 339 500 F'],['Robe Kenté Royale','38 ventes','12 160 000 F'],['Parure Berbère','29 ventes','4 205 000 F'],['Masque Baoulé','22 ventes','4 290 000 F']].map(([n,v,ca],i)=>`
@@ -2898,10 +2954,85 @@ function toggleLoginMode(){
 
 function handleLogin(e){
   e.preventDefault();
-  const email=document.getElementById('lemail').value;
+  const email = document.getElementById('lemail').value.trim();
+  const name  = document.getElementById('lname')?.value.trim() || email.split('@')[0];
   if(!email){ toast('Veuillez saisir votre email'); return; }
-  toast(loginIsRegister?'Compte créé avec succès ✦':'Connexion en cours...');
-  setTimeout(closeLogin, 800);
+  // Sauvegarder l'état connecté
+  const user = { email, name: loginIsRegister ? name : (JSON.parse(localStorage.getItem('mda_user')||'{}').name || email.split('@')[0]), since: new Date().toLocaleDateString('fr-FR',{year:'numeric',month:'long'}) };
+  try{ localStorage.setItem('mda_user', JSON.stringify(user)); }catch(e){}
+  toast(loginIsRegister ? 'Compte créé — Bienvenue ✦' : `Bienvenue, ${user.name.split(' ')[0]} ✦`);
+  setTimeout(()=>{ closeLogin(); updateAccountUI(); }, 600);
+}
+
+function updateAccountUI(){
+  let user = null;
+  try{ user = JSON.parse(localStorage.getItem('mda_user')||'null'); }catch(e){}
+  const loginBtn = document.querySelector('.ni[onclick="openLogin()"]');
+  if(!loginBtn) return;
+  if(user){
+    loginBtn.setAttribute('onclick','openAccount()');
+    loginBtn.setAttribute('title','Mon Compte');
+    loginBtn.setAttribute('aria-label','Mon Compte');
+    loginBtn.style.color = 'var(--or)';
+  } else {
+    loginBtn.setAttribute('onclick','openLogin()');
+    loginBtn.setAttribute('title','Connexion');
+    loginBtn.setAttribute('aria-label','Connexion');
+    loginBtn.style.color = '';
+  }
+}
+document.addEventListener('DOMContentLoaded', updateAccountUI);
+
+function openAccount(){
+  let user = null, orders = [];
+  try{ user = JSON.parse(localStorage.getItem('mda_user')||'null'); orders = JSON.parse(localStorage.getItem('mda_orders')||'[]'); }catch(e){}
+  if(!user){ openLogin(); return; }
+  const wlCount = JSON.parse(localStorage.getItem('mda_wl')||'[]').length;
+  const orderTotal = orders.reduce((s,o)=>s+(o.total||0),0);
+  const badge = orderTotal >= 500000 ? 'VIP' : orderTotal >= 200000 ? 'Premium' : 'Membre';
+  const badgeColor = badge==='VIP'?'#c9a96e':badge==='Premium'?'#a0c0d0':'rgba(201,169,110,.6)';
+  document.getElementById('account-body').innerHTML = `
+    <div style="text-align:center;padding:2rem 1.5rem 1.5rem">
+      <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,rgba(201,169,110,.3),rgba(201,169,110,.08));border:1px solid rgba(201,169,110,.35);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:var(--fd);font-size:1.8rem;color:var(--or);font-style:italic">${user.name[0].toUpperCase()}</div>
+      <div style="font-family:var(--fd);font-size:1.3rem;font-style:italic;color:var(--ivoire);margin-bottom:.3rem">${user.name}</div>
+      <div style="font-size:.58rem;color:rgba(250,246,240,.4);margin-bottom:.7rem">${user.email}</div>
+      <span style="font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:${badgeColor};border:1px solid ${badgeColor}44;background:${badgeColor}11;padding:.25rem .7rem">${badge}</span>
+      <div style="font-size:.55rem;color:rgba(250,246,240,.3);margin-top:.5rem">Membre depuis ${user.since||'2025'}</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.7rem;padding:0 1.5rem 1.5rem">
+      <div style="text-align:center;background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.12);padding:.9rem .5rem;cursor:pointer" onclick="closeAccount();openOrders()">
+        <div style="font-family:var(--fd);font-size:1.4rem;color:var(--or);font-style:italic">${orders.length}</div>
+        <div style="font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,246,240,.35);margin-top:.25rem">Commandes</div>
+      </div>
+      <div style="text-align:center;background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.12);padding:.9rem .5rem;cursor:pointer" onclick="closeAccount();openWishlist()">
+        <div style="font-family:var(--fd);font-size:1.4rem;color:var(--or);font-style:italic">${wlCount}</div>
+        <div style="font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,246,240,.35);margin-top:.25rem">Favoris</div>
+      </div>
+      <div style="text-align:center;background:rgba(201,169,110,.05);border:1px solid rgba(201,169,110,.12);padding:.9rem .5rem">
+        <div style="font-family:var(--fd);font-size:1.4rem;color:var(--or);font-style:italic">${orderTotal>0?(orderTotal/1000).toFixed(0)+'K':'0'}</div>
+        <div style="font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,246,240,.35);margin-top:.25rem">FCFA dépensés</div>
+      </div>
+    </div>
+    <div style="padding:0 1.5rem 1.5rem;display:flex;flex-direction:column;gap:.7rem">
+      <button class="bp" style="width:100%;font-size:.6rem;padding:.9rem" onclick="closeAccount();openOrders()">Mes commandes</button>
+      <button class="bs" style="width:100%;font-size:.6rem;padding:.85rem;cursor:pointer" onclick="closeAccount();openWishlist()">Mes favoris</button>
+      <button style="width:100%;font-size:.6rem;padding:.85rem;cursor:pointer;background:transparent;border:1px solid rgba(255,80,80,.25);color:rgba(255,100,100,.6);font-family:var(--fb);letter-spacing:.1em;text-transform:uppercase" onclick="logoutAccount()">Se déconnecter</button>
+    </div>`;
+  const m = document.getElementById('account-modal');
+  m.classList.add('open');
+  setAriaHidden('account-modal', false);
+  document.body.style.overflow = 'hidden';
+}
+function closeAccount(){
+  document.getElementById('account-modal').classList.remove('open');
+  setAriaHidden('account-modal', true);
+  document.body.style.overflow = '';
+}
+function logoutAccount(){
+  try{ localStorage.removeItem('mda_user'); }catch(e){}
+  closeAccount();
+  updateAccountUI();
+  toast('Déconnexion réussie');
 }
 
 function handleForm(e){
@@ -6345,6 +6476,16 @@ function closeArticle(){
 </div>
 
 <!-- ── Wishlist Modal ────────────────────────────────────────────────── -->
+<!-- ── Account Modal ──────────────────────────────────────────────────── -->
+<div id="account-modal" role="dialog" aria-modal="true" aria-label="Mon Compte" aria-hidden="true"
+  style="display:none;position:fixed;inset:0;background:rgba(10,8,6,.88);z-index:320;align-items:center;justify-content:center"
+  onclick="if(event.target===this)closeAccount()">
+  <div style="background:var(--noir);border:1px solid rgba(201,169,110,.18);width:min(340px,92vw);max-height:85vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.2) transparent;position:relative">
+    <button onclick="closeAccount()" style="position:absolute;top:.8rem;right:.9rem;background:none;border:none;color:rgba(250,246,240,.35);font-size:1rem;cursor:pointer;z-index:1;padding:.3rem" aria-label="Fermer">✕</button>
+    <div id="account-body"></div>
+  </div>
+</div>
+
 <div id="wlModal" role="dialog" aria-modal="true" aria-label="Mes favoris" aria-hidden="true"
   onclick="if(event.target===this)closeWishlist()">
   <div class="wl-box">
