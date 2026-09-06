@@ -733,6 +733,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
   <a href="#products" onclick="closeMNav()">Boutique</a>
   <a href="#gallery" onclick="closeMNav()">Galerie</a>
   <a href="#histoire" onclick="closeMNav()">Maison</a>
+  <a href="#journal" onclick="closeMNav();gotoSec('journal')">Journal</a>
   <a href="#contact" onclick="closeMNav()">Contact</a>
 </nav>
 
@@ -747,6 +748,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     <li><a href="#products">Boutique</a></li>
     <li><a href="#gallery">Galerie</a></li>
     <li><a href="#histoire">Maison</a></li>
+    <li><a href="#journal" onclick="gotoSec('journal')">Journal</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nic">
@@ -1371,6 +1373,76 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     <a href="#produits" onclick="gotoSec('produits')" class="bp" style="display:inline-block;padding:1rem 2.5rem;font-size:.62rem;letter-spacing:.18em;text-decoration:none">Découvrir la collection</a>
   </div>
 </section>
+
+<!-- JOURNAL / BLOG -->
+<section id="journal" style="background:#0a0806;padding:5rem 1rem" aria-label="Journal de la maison">
+  <div class="rv" style="text-align:center;margin-bottom:3.5rem">
+    <p class="sl">Récits &amp; savoir-faire</p>
+    <h2 class="st">Le Journal de <em>la Maison</em></h2>
+    <div class="sd" style="margin:0 auto"></div>
+    <p style="font-size:.8rem;color:rgba(250,246,240,.45);margin-top:1.2rem;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.75">Des histoires vivantes sur l'artisanat africain — les hommes et femmes qui perpétuent des techniques millénaires, les matières nobles, les territoires inspirants.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;max-width:1100px;margin:0 auto">
+
+    <!-- Article 1 -->
+    <article style="background:rgba(201,169,110,.03);border:1px solid rgba(201,169,110,.1);cursor:pointer;transition:border-color .3s,transform .3s" onclick="openArticle(0)" onmouseenter="this.style.borderColor='rgba(201,169,110,.35)';this.style.transform='translateY(-4px)'" onmouseleave="this.style.borderColor='rgba(201,169,110,.1)';this.style.transform=''">
+      <div style="background:linear-gradient(160deg,#2d1a0e,#1a0f07);height:180px;display:flex;align-items:center;justify-content:center;padding:2rem">
+        <div style="font-family:var(--fd);font-size:2.5rem;color:rgba(201,169,110,.2);font-style:italic;text-align:center;line-height:1.1">Kente<br>Royal</div>
+      </div>
+      <div style="padding:1.6rem">
+        <div style="display:flex;gap:.6rem;margin-bottom:1rem;align-items:center">
+          <span style="font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:var(--or);border:1px solid rgba(201,169,110,.3);padding:.2rem .6rem">Tissage</span>
+          <span style="font-size:.55rem;color:rgba(250,246,240,.3);letter-spacing:.06em">5 min de lecture · Août 2025</span>
+        </div>
+        <h3 style="font-family:var(--fd);font-size:1.3rem;font-style:italic;color:var(--ivoire);margin-bottom:.7rem;line-height:1.3">L'art du Kente : quand le tissu parle pour le roi</h3>
+        <p style="font-size:.75rem;color:rgba(250,246,240,.5);line-height:1.75;margin-bottom:1.2rem">Au Ghana, le tissu kente n'est pas un simple vêtement — c'est un langage codé, réservé aux souverains et aux grandes cérémonies. Kwame Osei perpétue cette tradition depuis quarante ans dans son atelier d'Accra.</p>
+        <div style="font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or)">Lire l'article →</div>
+      </div>
+    </article>
+
+    <!-- Article 2 -->
+    <article style="background:rgba(201,169,110,.03);border:1px solid rgba(201,169,110,.1);cursor:pointer;transition:border-color .3s,transform .3s" onclick="openArticle(1)" onmouseenter="this.style.borderColor='rgba(201,169,110,.35)';this.style.transform='translateY(-4px)'" onmouseleave="this.style.borderColor='rgba(201,169,110,.1)';this.style.transform=''">
+      <div style="background:linear-gradient(160deg,#1a2e1a,#0a1a0a);height:180px;display:flex;align-items:center;justify-content:center;padding:2rem">
+        <div style="font-family:var(--fd);font-size:2.5rem;color:rgba(201,169,110,.2);font-style:italic;text-align:center;line-height:1.1">Cuir<br>Maasaï</div>
+      </div>
+      <div style="padding:1.6rem">
+        <div style="display:flex;gap:.6rem;margin-bottom:1rem;align-items:center">
+          <span style="font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:var(--or);border:1px solid rgba(201,169,110,.3);padding:.2rem .6rem">Maroquinerie</span>
+          <span style="font-size:.55rem;color:rgba(250,246,240,.3);letter-spacing:.06em">7 min de lecture · Août 2025</span>
+        </div>
+        <h3 style="font-family:var(--fd);font-size:1.3rem;font-style:italic;color:var(--ivoire);margin-bottom:.7rem;line-height:1.3">Les secrets du maroquinage maasaï</h3>
+        <p style="font-size:.75rem;color:rgba(250,246,240,.5);line-height:1.75;margin-bottom:1.2rem">Dans les savanes du Kenya, les femmes maasaï transmettent de mère en fille l'art du tannage végétal et des broderies de perles. Un savoir-faire qui porte en lui l'identité d'un peuple entier.</p>
+        <div style="font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or)">Lire l'article →</div>
+      </div>
+    </article>
+
+    <!-- Article 3 -->
+    <article style="background:rgba(201,169,110,.03);border:1px solid rgba(201,169,110,.1);cursor:pointer;transition:border-color .3s,transform .3s" onclick="openArticle(2)" onmouseenter="this.style.borderColor='rgba(201,169,110,.35)';this.style.transform='translateY(-4px)'" onmouseleave="this.style.borderColor='rgba(201,169,110,.1)';this.style.transform=''">
+      <div style="background:linear-gradient(160deg,#2e1a1a,#1a0a0a);height:180px;display:flex;align-items:center;justify-content:center;padding:2rem">
+        <div style="font-family:var(--fd);font-size:2.5rem;color:rgba(201,169,110,.2);font-style:italic;text-align:center;line-height:1.1">Bogo<br>lan</div>
+      </div>
+      <div style="padding:1.6rem">
+        <div style="display:flex;gap:.6rem;margin-bottom:1rem;align-items:center">
+          <span style="font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:var(--or);border:1px solid rgba(201,169,110,.3);padding:.2rem .6rem">Teinture</span>
+          <span style="font-size:.55rem;color:rgba(250,246,240,.3);letter-spacing:.06em">6 min de lecture · Sept. 2025</span>
+        </div>
+        <h3 style="font-family:var(--fd);font-size:1.3rem;font-style:italic;color:var(--ivoire);margin-bottom:.7rem;line-height:1.3">Le Bogolan : l'étoffe de la résistance africaine</h3>
+        <p style="font-size:.75rem;color:rgba(250,246,240,.5);line-height:1.75;margin-bottom:1.2rem">Né au Mali, le bogolan — tissu teint à la boue — est devenu le symbole d'une identité revendiquée. Des chasseurs dogons aux podiums internationaux, voici l'odyssée d'une étoffe sacrée.</p>
+        <div style="font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or)">Lire l'article →</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- MODAL ARTICLE BLOG -->
+<div id="article-modal" style="display:none;opacity:0;position:fixed;inset:0;background:rgba(10,8,6,.92);z-index:450;overflow-y:auto;transition:opacity .3s;padding:2rem 1rem" onclick="if(event.target===this)closeArticle()">
+  <div style="max-width:720px;margin:0 auto;background:#0e0b08;border:1px solid rgba(201,169,110,.15);padding:2.5rem 2rem;position:relative" id="article-body">
+    <button onclick="closeArticle()" style="position:sticky;top:0;float:right;background:none;border:none;color:rgba(250,246,240,.3);font-size:1.1rem;cursor:pointer;margin-bottom:1rem" aria-label="Fermer">✕</button>
+    <div id="article-content"></div>
+  </div>
+</div>
 
 <!-- CONTACT -->
 <section id="contact" style="background:linear-gradient(180deg,#080605,#0a0806)" aria-label="Contact">
@@ -6113,6 +6185,66 @@ function claimExitOffer(){
 
 // Init badge on load
 document.addEventListener('DOMContentLoaded', updateOrdersBadge);
+
+// ─── G : JOURNAL / BLOG ──────────────────────────────────────────────────────
+const articles = [
+  {
+    tag:'Tissage', date:'Août 2025', read:'5 min',
+    title:"L'art du Kente : quand le tissu parle pour le roi",
+    content:`
+      <p style="color:var(--or);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.5rem">Tissage · Août 2025 · 5 min de lecture</p>
+      <h2 style="font-family:var(--fd);font-size:2rem;font-style:italic;color:var(--ivoire);margin-bottom:1.4rem;line-height:1.2">L'art du Kente : quand le tissu parle pour le roi</h2>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65);margin-bottom:1.2rem">Au cœur de l'atelier de <strong style="color:var(--ivoire)">Kwame Osei</strong> à Accra, le métier à tisser claque comme un battement de cœur. Les doigts de l'artisan glissent entre les fils de soie et de coton avec une précision que quarante années de pratique ont rendue instinctive. Il tisse du kente — le tissu royal des Ashanti du Ghana.</p>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65);margin-bottom:1.2rem">Le kente n'est pas un tissu ordinaire. Chaque motif, chaque combinaison de couleurs constitue un message codé, lisible par ceux qui en connaissent la grammaire. L'or symbolise la royauté et la richesse ; le vert, la croissance et le renouveau ; le rouge, le sang versé pour la patrie. Une robe kente portée par un Ashanti raconte son histoire, sa lignée, le rang de sa famille.</p>
+      <p style="font-family:var(--fd);font-size:1.15rem;font-style:italic;color:var(--or);border-left:3px solid var(--or);padding-left:1.2rem;margin:1.8rem 0;line-height:1.6">"Chaque bande que je tisse est une phrase. Une robe kente complète est un poème."<br><span style="font-size:.65rem;color:rgba(201,169,110,.6)">— Kwame Osei, maître tisserand, Accra</span></p>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65);margin-bottom:1.2rem">Le processus de fabrication est fascinant dans sa complexité. Le tisserand commence par créer des bandes étroites d'environ dix centimètres de large sur son métier traditionnel — un kete. Ces bandes, parfois plusieurs dizaines, sont ensuite cousues bord à bord pour former la pièce finale. Le motif ne peut jamais être reproduit à l'identique d'une bande à l'autre sans l'expertise acquise sur des décennies.</p>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65);margin-bottom:1.2rem">Longtemps réservé à la cour des Asantehene — les rois Ashanti — le kente s'est progressivement démocratisé, tout en conservant son aura de prestige. Aujourd'hui, une robe kente de qualité peut prendre plusieurs semaines à réaliser et vaut son pesant de savoir-faire transmis de génération en génération.</p>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65)">Chez Mémoire d'Afrique, notre <em style="color:var(--ivoire)">Robe Kente Royale</em> est tissée par Kwame Osei lui-même, selon les motifs exclusifs du royaume Ashanti. Chaque pièce est unique, numérotée, et accompagnée de son certificat d'authenticité.</p>
+    `
+  },
+  {
+    tag:'Maroquinerie', date:'Août 2025', read:'7 min',
+    title:"Les secrets du maroquinage maasaï",
+    content:`
+      <p style="color:var(--or);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.5rem">Maroquinerie · Août 2025 · 7 min de lecture</p>
+      <h2 style="font-family:var(--fd);font-size:2rem;font-style:italic;color:var(--ivoire);margin-bottom:1.4rem;line-height:1.2">Les secrets du maroquinage maasaï</h2>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65);margin-bottom:1.2rem">Dans les plaines infinies du Kenya, entre le lac Nakuru et le Serengeti, le peuple <strong style="color:var(--ivoire)">Maasaï</strong> a développé au fil des siècles une relation unique avec le cuir. Pour ces éleveurs nomades, le bétail est à la fois richesse, nourriture et matière première d'un artisanat d'exception.</p>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65);margin-bottom:1.2rem">Le tannage maasaï est végétal — une technique qui préserve la souplesse naturelle du cuir sans recourir aux produits chimiques modernes. Les peaux de buffle sont d'abord trempées dans des bains d'écorces d'acacia, puis grattées, étirées et séchées au soleil pendant plusieurs jours. Le résultat est un cuir d'une résistance et d'une douceur incomparables, qui se bonifie avec les années comme un bois noble.</p>
+      <p style="font-family:var(--fd);font-size:1.15rem;font-style:italic;color:var(--or);border-left:3px solid var(--or);padding-left:1.2rem;margin:1.8rem 0;line-height:1.6">"Mes mains connaissent le cuir comme elles connaissent la terre. Ce savoir vient de ma mère, et de sa mère avant elle."<br><span style="font-size:.65rem;color:rgba(201,169,110,.6)">— Siokapu Ole, artisane maasaï, Nairobi</span></p>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65);margin-bottom:1.2rem">Mais c'est la <strong style="color:var(--ivoire)">broderie de perles</strong> qui constitue la véritable signature maasaï. Chaque couleur, chaque motif géométrique a une signification précise : rouge pour le courage, bleu pour le ciel et la pluie, blanc pour la pureté, vert pour les terres fertiles. Réservées jadis aux cérémonies de passage, ces ornements racontent aujourd'hui leur histoire sur nos sacs.</p>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65);margin-bottom:1.2rem"><strong style="color:var(--ivoire)">Siokapu Ole</strong>, notre artisane partenaire à Nairobi, travaille avec un collectif de femmes maasaï qui transmettent ce savoir aux plus jeunes générations. Chaque sac qu'elle crée finance directement la formation de deux apprenties — un modèle économique qui perpétue la tradition tout en garantissant son avenir.</p>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65)">Notre <em style="color:var(--ivoire)">Sac Cuir Maasaï</em> est le fruit de ce savoir-faire millénaire. Taille parfaite pour le quotidien, structure semi-rigide, fermeture magnétique dorée — une pièce qui traverse les années avec une élégance qui s'approfondit à chaque usage.</p>
+    `
+  },
+  {
+    tag:'Teinture', date:'Sept. 2025', read:'6 min',
+    title:"Le Bogolan : l'étoffe de la résistance africaine",
+    content:`
+      <p style="color:var(--or);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.5rem">Teinture · Septembre 2025 · 6 min de lecture</p>
+      <h2 style="font-family:var(--fd);font-size:2rem;font-style:italic;color:var(--ivoire);margin-bottom:1.4rem;line-height:1.2">Le Bogolan : l'étoffe de la résistance africaine</h2>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65);margin-bottom:1.2rem">Il y a quelque chose de paradoxal dans la beauté du <strong style="color:var(--ivoire)">bogolan</strong>. Ce tissu né dans les villages dogons et bambara du Mali doit son esthétique distinctive à la boue — de la terre, de l'eau, du temps. Et pourtant, chaque pièce rayonne d'une élégance brute qui a conquis les maisons de couture parisiennes et les galeries new-yorkaises.</p>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65);margin-bottom:1.2rem">La technique est ancienne et précise. Le tisserand commence par produire un coton tissé à la main — le <em>finimougou</em> — en bandes étroites cousues ensemble. Ce tissu est ensuite plongé dans un bain de feuilles de <em>n'gallama</em> fermentées qui lui donnent une teinte jaune pâle. Puis, les artisanes — car c'est traditionnellement un art féminin — appliquent la boue riche en fer prélevée dans les rizières et les marigots. Là où la boue rencontre le tissu imprégné, elle réagit chimiquement et fixe un brun profond, presque noir.</p>
+      <p style="font-family:var(--fd);font-size:1.15rem;font-style:italic;color:var(--or);border-left:3px solid var(--or);padding-left:1.2rem;margin:1.8rem 0;line-height:1.6">"Le bogolan parle à ceux qui savent écouter. Chaque motif est une prière, une protection, une mémoire."<br><span style="font-size:.65rem;color:rgba(201,169,110,.6)">— Kadiatou Coulibaly, tisserande, Bamako</span></p>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65);margin-bottom:1.2rem">Ce qui fait la singularité du bogolan, c'est que les motifs clairs sur fond sombre ne sont pas peints — ils sont <strong style="color:var(--ivoire)">réservés</strong>. L'artisane dessine d'abord ses motifs au couteau ou à la spatule, empêchant la boue de pénétrer ces zones. Puis elle enlève l'enduit de n'gallama dans les parties non boueuses, révélant le blanc naturel du coton. Un processus inversé qui demande une maîtrise totale du négatif.</p>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65);margin-bottom:1.2rem">Des chasseurs maliens qui portaient le bogolan comme camouflage et protection spirituelle aux défilés de <em>Chris Seydou</em> dans les années 1970, l'étoffe a traversé les siècles en portant en elle un message de résistance identitaire. Aujourd'hui, elle est inscrite au patrimoine culturel immatériel de l'UNESCO.</p>
+      <p style="line-height:1.9;font-size:.82rem;color:rgba(250,246,240,.65)">Les sacs bogolan de notre collection <em style="color:var(--ivoire)">Sac Cuir Maasaï</em> intègrent des pièces de bogolan authentique fabriquées par des coopératives féminines du Mali. Porter l'un de ces sacs, c'est porter une histoire — une étoffe de résistance devenue étoffe de lumière.</p>
+    `
+  }
+];
+
+function openArticle(i){
+  const a = articles[i];
+  document.getElementById('article-content').innerHTML = a.content;
+  const m = document.getElementById('article-modal');
+  m.style.display='flex'; m.style.alignItems='flex-start'; m.style.justifyContent='center';
+  requestAnimationFrame(()=>{ m.style.opacity='1'; });
+  document.body.style.overflow='hidden';
+}
+function closeArticle(){
+  const m = document.getElementById('article-modal');
+  m.style.opacity='0';
+  setTimeout(()=>{ m.style.display='none'; document.body.style.overflow=''; }, 300);
+}
 
 // ─── A : GALERIE SWIPE SUR CARTES PRODUIT ─────────────────────────────────
 (function initCardGalleries(){
