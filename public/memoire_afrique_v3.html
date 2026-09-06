@@ -221,6 +221,23 @@ section{padding:7rem 5%}
 .gb7{background:linear-gradient(135deg,#0d0a1a,#2d1a4a)}
 .gb8{background:linear-gradient(135deg,#0a1a0a,#1a4a2a)}
 
+/* ─── ARTISANS ───────────────────────────────────── */
+#artisans{background:linear-gradient(180deg,#070503,#0a0806)}
+.arti-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;margin-top:3.5rem}
+.arti-card{position:relative;overflow:hidden;border:1px solid rgba(201,169,110,.1);cursor:default;transition:border-color .35s}
+.arti-card:hover{border-color:rgba(201,169,110,.3)}
+.arti-img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;display:block;filter:grayscale(30%);transition:filter .5s,transform .6s var(--ease-lux)}
+.arti-card:hover .arti-img{filter:grayscale(0);transform:scale(1.04)}
+.arti-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,6,.92) 0%,rgba(10,8,6,.3) 55%,transparent 100%)}
+.arti-info{position:absolute;bottom:0;left:0;right:0;padding:1.4rem 1.2rem}
+.arti-country{font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,169,110,.55);margin-bottom:.35rem}
+.arti-name{font-family:var(--fd);font-size:1.15rem;font-style:italic;color:var(--ivoire);line-height:1.2;margin-bottom:.3rem}
+.arti-craft{font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,169,110,.65)}
+.arti-bio{font-size:.6rem;color:rgba(250,246,240,.5);line-height:1.75;margin-top:.7rem;max-height:0;overflow:hidden;transition:max-height .5s var(--ease-out),opacity .4s}
+.arti-card:hover .arti-bio{max-height:120px;opacity:1}
+.arti-years{position:absolute;top:.9rem;right:.9rem;font-family:var(--fd);font-size:1.6rem;font-style:italic;color:rgba(201,169,110,.25);line-height:1}
+/* ─── SCROLL CASCADE ─────────────────────────────── */
+.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}.rv-d4{transition-delay:.4s}
 /* ─── GUIDE TAILLES ─────────────────────────────── */
 #size-guide{position:fixed;inset:0;background:rgba(10,8,6,.93);z-index:420;display:none;align-items:center;justify-content:center}
 #size-guide.open{display:flex}
@@ -824,6 +841,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     <li><a href="#products">Boutique</a></li>
     <li><a href="#gallery">Galerie</a></li>
     <li><a href="#histoire">Maison</a></li>
+    <li><a href="#artisans" onclick="gotoSec('artisans')">Artisans</a></li>
     <li><a href="#journal" onclick="gotoSec('journal')">Journal</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -1531,6 +1549,67 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     <div id="article-content"></div>
   </div>
 </div>
+
+<!-- ARTISANS -->
+<section id="artisans" aria-label="Nos artisans">
+  <div class="rv" style="text-align:center;max-width:580px;margin:0 auto">
+    <p class="sl">Nos Artisans</p>
+    <h2 class="st">Les mains derrière <em>chaque pièce</em></h2>
+    <div class="sd" style="margin:1.4rem auto 0"></div>
+    <p style="font-size:.72rem;color:rgba(250,246,240,.38);max-width:470px;margin:.9rem auto 0;line-height:1.95;font-weight:300">Ces femmes et ces hommes perpétuent des savoir-faire ancestraux. Chaque pièce que vous acquérez porte leur nom, leur territoire, leur vie.</p>
+  </div>
+  <div class="arti-grid rv rv-d1">
+
+    <div class="arti-card">
+      <img class="arti-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80&auto=format&fit=crop&crop=faces" alt="Kofi Mensah — Tisserand Kente" loading="lazy">
+      <div class="arti-overlay"></div>
+      <div class="arti-years">32</div>
+      <div class="arti-info">
+        <div class="arti-country">🇬🇭 Ghana · Kumasi</div>
+        <div class="arti-name">Kofi Mensah</div>
+        <div class="arti-craft">Tisserand Kente — Maître Artisan</div>
+        <div class="arti-bio">Héritier d'une lignée de tisserands Ashanti, Kofi perpétue depuis 32 ans l'art du Kente royal. Son métier à tisser, transmis par son père, produit des bandes de soie et de coton dont la complexité des motifs raconte l'histoire de son peuple.</div>
+      </div>
+    </div>
+
+    <div class="arti-card">
+      <img class="arti-img" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80&auto=format&fit=crop&crop=faces" alt="Amina Traoré — Teinturière Bogolan" loading="lazy">
+      <div class="arti-overlay"></div>
+      <div class="arti-years">18</div>
+      <div class="arti-info">
+        <div class="arti-country">🇲🇱 Mali · Ségou</div>
+        <div class="arti-name">Amina Traoré</div>
+        <div class="arti-craft">Teinturière Bogolan — Artisane d'Exception</div>
+        <div class="arti-bio">Amina maîtrise l'art ancestral du Bogolan — cette teinture à la boue fermentée qui produit des motifs géométriques uniques. Chaque tissu lui demande plusieurs semaines de travail, entre applications, séchages et lavages répétés au soleil de Ségou.</div>
+      </div>
+    </div>
+
+    <div class="arti-card">
+      <img class="arti-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format&fit=crop&crop=faces" alt="Lemasoloi Ole Sapit — Maroquinier Maasaï" loading="lazy">
+      <div class="arti-overlay"></div>
+      <div class="arti-years">24</div>
+      <div class="arti-info">
+        <div class="arti-country">🇰🇪 Kenya · Narok</div>
+        <div class="arti-name">Lemasoloi Ole Sapit</div>
+        <div class="arti-craft">Maroquinier Maasaï — Brodeur de Perles</div>
+        <div class="arti-bio">Lemasoloi travaille le cuir tanné naturellement et le rehausse de broderies de perles selon les codes chromatiques Maasaï. Chaque sac qu'il produit est une pièce unique qui demande entre deux et quatre semaines de fabrication minutieuse.</div>
+      </div>
+    </div>
+
+    <div class="arti-card">
+      <img class="arti-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&auto=format&fit=crop&crop=faces" alt="Fatou Diaw — Sculptrice Sénégalaise" loading="lazy">
+      <div class="arti-overlay"></div>
+      <div class="arti-years">27</div>
+      <div class="arti-info">
+        <div class="arti-country">🇸🇳 Sénégal · Thiès</div>
+        <div class="arti-name">Fatou Diaw</div>
+        <div class="arti-craft">Sculptrice — Bois et Bronze</div>
+        <div class="arti-bio">Première femme de sa région à maîtriser la sculpture sur bois de Caïlcédrat, Fatou crée des masques et objets décoratifs qui mêlent tradition Sérère et sensibilité contemporaine. Ses œuvres sont collectionnées dans plusieurs galeries africaines et européennes.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <!-- CONTACT -->
 <section id="contact" style="background:linear-gradient(180deg,#080605,#0a0806)" aria-label="Contact">
@@ -2359,9 +2438,21 @@ function initGSAP(){
 
 // ─── SCROLL REVEAL ────────────────────────────────────────────────────────────
 function initReveal(){
+  // Cascade automatique sur les enfants directs de grilles
+  document.querySelectorAll('.arti-grid,.pgrid,.lgrid,.cmgr,.tgrid').forEach(grid=>{
+    Array.from(grid.children).forEach((child,i)=>{
+      child.classList.add('rv');
+      child.style.transitionDelay = (i*0.12)+'s';
+    });
+  });
+  // Cards produit en cascade
+  document.querySelectorAll('#products .pc').forEach((card,i)=>{
+    card.classList.add('rv');
+    card.style.transitionDelay = (i*0.08)+'s';
+  });
   const obs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});
-  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  },{threshold:.08,rootMargin:'0px 0px -30px 0px'});
   document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
   document.querySelectorAll('.rv').forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight)el.classList.add('vis')});
 }
