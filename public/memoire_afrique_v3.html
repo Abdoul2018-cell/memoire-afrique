@@ -265,6 +265,65 @@ body.light .notif-title{color:var(--ivoire)}
 .cmp-add-btn{font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;background:var(--or);border:none;color:var(--noir);font-family:var(--fb);padding:.35rem .8rem;cursor:pointer;margin-top:.4rem;width:100%}
 body.light #compare-bar{background:#f2ece2;border-top-color:rgba(201,169,110,.25)}
 body.light #cmp-box{background:#f2ece2}
+/* ─── LOOKBOOK (AA) ─────────────────────────────── */
+#lookbook{background:#050402;padding:6rem 0;overflow:hidden}
+.lk-wrap{position:relative;max-width:960px;margin:0 auto;aspect-ratio:16/9;border:1px solid rgba(201,169,110,.1)}
+.lk-slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;pointer-events:none}
+.lk-slide.active{opacity:1;pointer-events:auto}
+.lk-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.lk-hotspot{position:absolute;width:28px;height:28px;border-radius:50%;background:rgba(201,169,110,.15);border:1.5px solid var(--or);cursor:pointer;transform:translate(-50%,-50%);transition:background .2s,transform .2s;z-index:5}
+.lk-hotspot::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(201,169,110,.3);animation:lk-pulse 2s ease-out infinite}
+@keyframes lk-pulse{0%{transform:scale(.8);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+.lk-hotspot:hover,.lk-hotspot.open{background:rgba(201,169,110,.35);transform:translate(-50%,-50%) scale(1.1)}
+.lk-tip{position:absolute;z-index:10;background:rgba(10,8,6,.95);border:1px solid rgba(201,169,110,.2);padding:.8rem 1rem;min-width:180px;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
+.lk-tip.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.lk-tip-name{font-family:var(--fd);font-style:italic;color:var(--ivoire);font-size:.85rem;margin-bottom:.2rem}
+.lk-tip-price{color:var(--or);font-size:.62rem;letter-spacing:.12em;margin-bottom:.6rem}
+.lk-tip-btn{display:block;width:100%;background:var(--or);border:none;color:var(--noir);font-family:var(--fb);font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;padding:.45rem;cursor:pointer}
+.lk-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.2);color:var(--or);width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;z-index:6;transition:background .2s}
+.lk-nav:hover{background:rgba(201,169,110,.25)}
+#lk-prev{left:.75rem}#lk-next{right:.75rem}
+.lk-dots{display:flex;gap:.5rem;justify-content:center;margin-top:1rem}
+.lk-dot{width:8px;height:8px;border-radius:50%;background:rgba(201,169,110,.2);border:none;cursor:pointer;transition:background .2s;padding:0}
+.lk-dot.active{background:var(--or)}
+.lk-caption{text-align:center;margin-top:1.2rem;font-family:var(--fd);font-style:italic;color:rgba(250,246,240,.5);font-size:.85rem}
+body.light #lookbook{background:#f8f4ee}
+body.light .lk-tip{background:rgba(242,236,226,.97);border-color:rgba(201,169,110,.3)}
+body.light .lk-tip-name{color:var(--cacao)}
+/* ─── CONFIGURATEUR CADEAU (AB) ─────────────────── */
+#gift-modal{position:fixed;inset:0;background:rgba(10,8,6,.92);z-index:410;display:none;align-items:center;justify-content:center;padding:1rem}
+#gift-modal.open{display:flex}
+#gift-box{background:var(--noir);border:1px solid rgba(201,169,110,.18);max-width:520px;width:100%;max-height:90dvh;overflow-y:auto;position:relative}
+#gift-close{position:absolute;top:.8rem;right:1rem;background:none;border:none;color:rgba(250,246,240,.3);font-size:1.1rem;cursor:pointer;z-index:2}
+.gift-header{padding:1.4rem 1.6rem 1rem;border-bottom:1px solid rgba(201,169,110,.1)}
+.gift-title{font-family:var(--fd);font-style:italic;font-size:1.3rem;color:var(--ivoire)}
+.gift-sub{font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,169,110,.45);margin-top:.2rem}
+.gift-steps{display:flex;gap:0;border-bottom:1px solid rgba(201,169,110,.1)}
+.gift-step-tab{flex:1;padding:.6rem;font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:none;color:rgba(250,246,240,.3);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;font-family:var(--fb)}
+.gift-step-tab.active{color:var(--or);border-bottom-color:var(--or)}
+.gift-pane{display:none;padding:1.4rem 1.6rem}
+.gift-pane.active{display:block}
+.gift-wrap-options{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1.2rem}
+.gift-wrap-opt{border:1px solid rgba(201,169,110,.15);padding:.8rem .5rem;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
+.gift-wrap-opt:hover,.gift-wrap-opt.sel{border-color:var(--or);background:rgba(201,169,110,.06)}
+.gift-wrap-ico{font-size:1.8rem;margin-bottom:.4rem}
+.gift-wrap-lbl{font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,246,240,.6)}
+.gift-wrap-price{font-size:.5rem;color:var(--or);margin-top:.2rem}
+.gift-msg-area{width:100%;background:rgba(201,169,110,.04);border:1px solid rgba(201,169,110,.15);color:var(--ivoire);font-family:var(--fb);font-size:.7rem;padding:.8rem;resize:none;height:110px;outline:none;line-height:1.6}
+.gift-msg-area:focus{border-color:rgba(201,169,110,.4)}
+.gift-del-options{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.gift-del-opt{border:1px solid rgba(201,169,110,.15);padding:1rem;cursor:pointer;transition:border-color .2s,background .2s}
+.gift-del-opt:hover,.gift-del-opt.sel{border-color:var(--or);background:rgba(201,169,110,.06)}
+.gift-del-ico{font-size:1.4rem;margin-bottom:.4rem}
+.gift-del-name{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ivoire);margin-bottom:.25rem}
+.gift-del-desc{font-size:.55rem;color:rgba(250,246,240,.4);line-height:1.5}
+.gift-del-price{font-size:.55rem;color:var(--or);margin-top:.4rem;font-family:var(--fd);font-style:italic}
+.gift-summary{background:rgba(201,169,110,.04);border:1px solid rgba(201,169,110,.1);padding:1rem;margin-bottom:1.2rem;font-size:.62rem;line-height:1.8;color:rgba(250,246,240,.6)}
+.gift-summary strong{color:var(--or)}
+.gift-cta{display:block;width:100%;background:var(--or);border:none;color:var(--noir);font-family:var(--fb);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;padding:.9rem;cursor:pointer;transition:opacity .2s}
+.gift-cta:hover{opacity:.85}
+body.light #gift-box{background:#f2ece2}
+body.light .gift-msg-area{background:rgba(201,169,110,.06);color:var(--cacao)}
 /* ─── LIGHTBOX GALERIE ───────────────────────────── */
 #lightbox{position:fixed;inset:0;background:rgba(5,4,2,.97);z-index:450;display:none;align-items:center;justify-content:center;flex-direction:column}
 #lightbox.open{display:flex}
@@ -1399,6 +1458,23 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="gov"></div>
       <div class="gcap">Collection capsule</div>
     </div>
+  </div>
+</section>
+
+<!-- LOOKBOOK (AA) -->
+<section id="lookbook" aria-label="Lookbook interactif">
+  <div class="rv" style="text-align:center;margin-bottom:2.5rem;padding:0 1rem">
+    <p class="sl">Lookbook</p>
+    <h2 class="st">Les pièces <em>en situation</em></h2>
+    <div class="sd"></div>
+    <p style="font-size:.72rem;color:rgba(250,246,240,.45);margin-top:.8rem;letter-spacing:.05em">Cliquez sur les points dorés pour découvrir chaque pièce portée</p>
+  </div>
+  <div style="padding:0 1.5rem;max-width:1100px;margin:0 auto">
+    <div class="lk-wrap rv" id="lk-wrap">
+      <!-- slides injectés par JS -->
+    </div>
+    <div class="lk-dots rv" id="lk-dots"></div>
+    <div class="lk-caption rv" id="lk-caption"></div>
   </div>
 </section>
 
@@ -4582,6 +4658,183 @@ function submitNLPopup(){
   setTimeout(()=>closeNLPopup(false), 4000);
 }
 
+// ─── LOOKBOOK INTERACTIF (AA) ─────────────────────────────────────────────────
+const LK_SLIDES = [
+  {
+    img: 'Robe Kenté Royale.png',
+    caption: 'Look Cérémonie — Ghana',
+    hotspots: [
+      { x:50, y:35, prodIdx:2, tip:'top' },
+    ]
+  },
+  {
+    img: 'sac à main bogolan noir 1.jpg',
+    caption: 'Look Quotidien Chic — Mali',
+    hotspots: [
+      { x:48, y:55, prodIdx:6, tip:'top' },
+      { x:35, y:72, prodIdx:4, tip:'top' },
+    ]
+  },
+  {
+    img: 'Plateau Africain DG4.jpg',
+    caption: 'Art de Vivre — Niger',
+    hotspots: [
+      { x:55, y:40, prodIdx:0, tip:'top' },
+      { x:30, y:60, prodIdx:7, tip:'top' },
+    ]
+  },
+];
+let lkCurrent = 0;
+let lkTipOpen = null;
+
+function initLookbook(){
+  const wrap = document.getElementById('lk-wrap');
+  const dots = document.getElementById('lk-dots');
+  const cap  = document.getElementById('lk-caption');
+  if(!wrap) return;
+
+  // Navigation buttons
+  wrap.insertAdjacentHTML('beforeend',`
+    <button class="lk-nav" id="lk-prev" onclick="lkNav(-1)" aria-label="Look précédent">&#8592;</button>
+    <button class="lk-nav" id="lk-next" onclick="lkNav(1)" aria-label="Look suivant">&#8594;</button>
+  `);
+
+  LK_SLIDES.forEach((slide, si) => {
+    const div = document.createElement('div');
+    div.className = 'lk-slide' + (si===0?' active':'');
+    div.id = `lk-slide-${si}`;
+
+    let hotHTML = slide.hotspots.map((h,hi) => {
+      const p = prods[h.prodIdx];
+      const tipPos = h.tip==='top'
+        ? 'bottom:calc(100% + 8px);left:50%;transform:translateX(-50%)'
+        : 'top:calc(100% + 8px);left:50%;transform:translateX(-50%)';
+      return `
+        <button class="lk-hotspot" style="left:${h.x}%;top:${h.y}%"
+          aria-label="${p.n}" onclick="lkToggleTip(${si},${hi},event)">
+          <div class="lk-tip" id="lk-tip-${si}-${hi}" style="${tipPos}">
+            <div class="lk-tip-name">${p.n}</div>
+            <div class="lk-tip-price">${p.p}</div>
+            <button class="lk-tip-btn" onclick="event.stopPropagation();lkOpenProd(${h.prodIdx})">Voir la pièce →</button>
+          </div>
+        </button>`;
+    }).join('');
+
+    div.innerHTML = `<img src="${slide.img}" alt="${slide.caption}" loading="lazy">${hotHTML}`;
+    wrap.insertBefore(div, wrap.querySelector('#lk-prev'));
+  });
+
+  // Dots
+  dots.innerHTML = LK_SLIDES.map((_,i) =>
+    `<button class="lk-dot${i===0?' active':''}" onclick="lkGoTo(${i})" aria-label="Look ${i+1}"></button>`
+  ).join('');
+
+  cap.textContent = LK_SLIDES[0].caption;
+}
+
+function lkNav(dir){
+  lkGoTo((lkCurrent + dir + LK_SLIDES.length) % LK_SLIDES.length);
+}
+function lkGoTo(idx){
+  lkCloseTips();
+  document.getElementById(`lk-slide-${lkCurrent}`).classList.remove('active');
+  document.querySelectorAll('.lk-dot')[lkCurrent].classList.remove('active');
+  lkCurrent = idx;
+  document.getElementById(`lk-slide-${lkCurrent}`).classList.add('active');
+  document.querySelectorAll('.lk-dot')[lkCurrent].classList.add('active');
+  document.getElementById('lk-caption').textContent = LK_SLIDES[lkCurrent].caption;
+}
+function lkToggleTip(si, hi, e){
+  e.stopPropagation();
+  const tip = document.getElementById(`lk-tip-${si}-${hi}`);
+  const btn = tip.parentElement;
+  if(tip.classList.contains('show')){
+    tip.classList.remove('show'); btn.classList.remove('open'); lkTipOpen=null;
+  } else {
+    lkCloseTips();
+    tip.classList.add('show'); btn.classList.add('open'); lkTipOpen=tip;
+  }
+}
+function lkCloseTips(){
+  document.querySelectorAll('.lk-tip.show').forEach(t=>{ t.classList.remove('show'); t.parentElement.classList.remove('open'); });
+  lkTipOpen=null;
+}
+function lkOpenProd(idx){ lkCloseTips(); openPDP(idx); }
+document.addEventListener('click', ()=>lkCloseTips());
+document.addEventListener('DOMContentLoaded', initLookbook);
+
+// ─── CONFIGURATEUR CADEAU (AB) ─────────────────────────────────────────────────
+let _giftIdx = null;
+let _giftWrap = { type:'standard', price:0 };
+let _giftDel  = { type:'standard', price:0 };
+
+function openGift(idx){
+  _giftIdx = idx;
+  _giftWrap = { type:'standard', price:0 };
+  _giftDel  = { type:'standard', price:0 };
+  // Reset UI
+  document.querySelectorAll('.gift-wrap-opt').forEach(el=>el.classList.remove('sel'));
+  document.querySelector('.gift-wrap-opt[data-wrap="standard"]').classList.add('sel');
+  document.querySelectorAll('.gift-del-opt').forEach(el=>el.classList.remove('sel'));
+  document.querySelector('.gift-del-opt[data-del="standard"]').classList.add('sel');
+  document.getElementById('gift-msg').value='';
+  document.getElementById('gift-msg-count').textContent='0 / 200';
+  giftGoStep(0, document.querySelectorAll('.gift-step-tab')[0]);
+  document.getElementById('gift-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeGift(){
+  document.getElementById('gift-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function giftGoStep(idx, tabEl){
+  document.querySelectorAll('.gift-step-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.gift-pane').forEach(p=>p.classList.remove('active'));
+  if(tabEl) tabEl.classList.add('active');
+  document.getElementById(`gift-pane-${idx}`).classList.add('active');
+  if(idx===2) updateGiftSummary();
+}
+function selectGiftWrap(el, type, price){
+  document.querySelectorAll('.gift-wrap-opt').forEach(e=>e.classList.remove('sel'));
+  el.classList.add('sel');
+  _giftWrap = { type, price };
+}
+function selectGiftDel(el, type, price){
+  document.querySelectorAll('.gift-del-opt').forEach(e=>e.classList.remove('sel'));
+  el.classList.add('sel');
+  _giftDel = { type, price };
+}
+function updateGiftSummary(){
+  const p = prods[_giftIdx];
+  const msg = document.getElementById('gift-msg').value.trim();
+  const wrapLabel = {standard:'Signature (offert)', premium:'Premium (+3 500 F)', luxe:'Luxe Coffret (+7 500 F)'}[_giftWrap.type];
+  const delLabel  = {standard:'Standard (5-7j)', express:'Express 48h (+12 000 F)'}[_giftDel.type];
+  const total = (p ? parseInt(p.p.replace(/\D/g,'')) : 0) + _giftWrap.price + _giftDel.price;
+  document.getElementById('gift-summary').innerHTML = `
+    <div style="margin-bottom:.4rem">🎁 <strong>${p?p.n:'—'}</strong></div>
+    <div>Emballage : <strong>${wrapLabel}</strong></div>
+    <div>Livraison : <strong>${delLabel}</strong></div>
+    ${msg?`<div style="margin-top:.4rem;font-style:italic;color:rgba(201,169,110,.6)">"${msg}"</div>`:''}
+    <div style="margin-top:.8rem;font-size:.65rem;color:var(--or);font-family:var(--fd);font-style:italic">Total estimé : ${total.toLocaleString('fr-FR')} FCFA</div>
+  `;
+}
+function confirmGift(){
+  const p = prods[_giftIdx];
+  if(!p) return;
+  const existing = cartItems.find(i=>i.idx===_giftIdx&&!i.size);
+  if(existing){ existing.qty++; existing.gift=true; existing.giftWrap=_giftWrap; existing.giftDel=_giftDel; existing.giftMsg=document.getElementById('gift-msg').value.trim(); }
+  else cartItems.push({ idx:_giftIdx, qty:1, size:null, gift:true, giftWrap:_giftWrap, giftDel:_giftDel, giftMsg:document.getElementById('gift-msg').value.trim() });
+  saveCart(); renderCart();
+  closeGift();
+  toast('Cadeau configuré & ajouté au panier 🎁');
+  setTimeout(openCart, 400);
+}
+// Compteur message
+document.addEventListener('DOMContentLoaded',()=>{
+  const area = document.getElementById('gift-msg');
+  if(area) area.addEventListener('input',()=>{ document.getElementById('gift-msg-count').textContent=`${area.value.length} / 200`; });
+});
+
 // ─── NOTIFICATIONS (Z) ────────────────────────────────────────────────────────
 const NOTIF_KEY = 'mda_notifs_read';
 const NOTIF_DATA = [
@@ -7550,6 +7803,7 @@ function closeArticle(){
         </div>
         <div id="pdp-cta">
           <button class="bp" id="pdp-add-btn" style="font-size:.6rem;padding:1rem">Ajouter au panier</button>
+          <button class="bs" id="pdp-gift-btn" style="font-size:.6rem;padding:.95rem;display:flex;align-items:center;justify-content:center;gap:.4rem" onclick="openGift(_pdpIdx)">🎁 Offrir cette pièce</button>
           <button class="bs" id="pdp-wl-btn" style="font-size:.6rem;padding:.95rem">Ajouter aux favoris</button>
         </div>
       </div>
@@ -7596,6 +7850,77 @@ function closeArticle(){
     </div>
     <!-- Body -->
     <div id="orders-body" style="overflow-y:auto;padding:1rem 1.2rem;flex:1;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.2) transparent"></div>
+  </div>
+</div>
+
+<!-- ── Modal Configurateur Cadeau (AB) ──────────────────────────────────── -->
+<div id="gift-modal" role="dialog" aria-modal="true" aria-label="Offrir cette pièce" onclick="if(event.target===this)closeGift()">
+  <div id="gift-box">
+    <button id="gift-close" onclick="closeGift()" aria-label="Fermer">✕</button>
+    <div class="gift-header">
+      <div class="gift-title">Offrir cette pièce</div>
+      <div class="gift-sub">Configurez votre cadeau en 3 étapes</div>
+    </div>
+    <div class="gift-steps">
+      <button class="gift-step-tab active" onclick="giftGoStep(0,this)">① Emballage</button>
+      <button class="gift-step-tab" onclick="giftGoStep(1,this)">② Message</button>
+      <button class="gift-step-tab" onclick="giftGoStep(2,this)">③ Livraison</button>
+    </div>
+    <!-- Étape 1 : Emballage -->
+    <div class="gift-pane active" id="gift-pane-0">
+      <p style="font-size:.6rem;color:rgba(250,246,240,.4);margin-bottom:1rem;letter-spacing:.08em">Choisissez votre emballage</p>
+      <div class="gift-wrap-options">
+        <div class="gift-wrap-opt sel" onclick="selectGiftWrap(this,'standard',0)" data-wrap="standard">
+          <div class="gift-wrap-ico">🎀</div>
+          <div class="gift-wrap-lbl">Signature</div>
+          <div class="gift-wrap-price">Offert</div>
+        </div>
+        <div class="gift-wrap-opt" onclick="selectGiftWrap(this,'premium',3500)" data-wrap="premium">
+          <div class="gift-wrap-ico">✦</div>
+          <div class="gift-wrap-lbl">Premium</div>
+          <div class="gift-wrap-price">+ 3 500 F</div>
+        </div>
+        <div class="gift-wrap-opt" onclick="selectGiftWrap(this,'luxe',7500)" data-wrap="luxe">
+          <div class="gift-wrap-ico">👑</div>
+          <div class="gift-wrap-lbl">Luxe Coffret</div>
+          <div class="gift-wrap-price">+ 7 500 F</div>
+        </div>
+      </div>
+      <button class="gift-cta" onclick="giftGoStep(1,document.querySelectorAll('.gift-step-tab')[1])">Suivant →</button>
+    </div>
+    <!-- Étape 2 : Message -->
+    <div class="gift-pane" id="gift-pane-1">
+      <p style="font-size:.6rem;color:rgba(250,246,240,.4);margin-bottom:.8rem;letter-spacing:.08em">Votre message personnalisé (optionnel)</p>
+      <textarea class="gift-msg-area" id="gift-msg" placeholder="Un mot du cœur… (max 200 caractères)" maxlength="200"></textarea>
+      <p id="gift-msg-count" style="font-size:.52rem;color:rgba(201,169,110,.4);text-align:right;margin-top:.3rem">0 / 200</p>
+      <div style="display:flex;gap:.8rem;margin-top:1rem">
+        <button class="gift-cta" style="flex:1;background:rgba(201,169,110,.1);color:rgba(250,246,240,.5)" onclick="giftGoStep(0,document.querySelectorAll('.gift-step-tab')[0])">← Retour</button>
+        <button class="gift-cta" style="flex:2" onclick="giftGoStep(2,document.querySelectorAll('.gift-step-tab')[2])">Suivant →</button>
+      </div>
+    </div>
+    <!-- Étape 3 : Livraison + Récap -->
+    <div class="gift-pane" id="gift-pane-2">
+      <p style="font-size:.6rem;color:rgba(250,246,240,.4);margin-bottom:.8rem;letter-spacing:.08em">Option de livraison</p>
+      <div class="gift-del-options" style="margin-bottom:1.2rem">
+        <div class="gift-del-opt sel" onclick="selectGiftDel(this,'standard',0)" data-del="standard">
+          <div class="gift-del-ico">📦</div>
+          <div class="gift-del-name">Standard</div>
+          <div class="gift-del-desc">5-7 jours ouvrables<br>Suivi en temps réel</div>
+          <div class="gift-del-price">Offert dès 200 000 F</div>
+        </div>
+        <div class="gift-del-opt" onclick="selectGiftDel(this,'express',12000)" data-del="express">
+          <div class="gift-del-ico">⚡</div>
+          <div class="gift-del-name">Express Prioritaire</div>
+          <div class="gift-del-desc">48h chrono<br>Livraison à domicile</div>
+          <div class="gift-del-price">+ 12 000 F</div>
+        </div>
+      </div>
+      <div class="gift-summary" id="gift-summary">Résumé du cadeau</div>
+      <div style="display:flex;gap:.8rem">
+        <button class="gift-cta" style="flex:1;background:rgba(201,169,110,.1);color:rgba(250,246,240,.5)" onclick="giftGoStep(1,document.querySelectorAll('.gift-step-tab')[1])">← Retour</button>
+        <button class="gift-cta" style="flex:2" onclick="confirmGift()">Ajouter au panier ✦</button>
+      </div>
+    </div>
   </div>
 </div>
 
