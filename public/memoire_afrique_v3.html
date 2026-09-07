@@ -242,7 +242,11 @@ section{padding:7rem 5%}
 #notif-badge.show{display:flex}
 body.light #notif-panel{background:#f2ece2;border-left-color:rgba(201,169,110,.2)}
 body.light #notif-header{background:#f2ece2}
-body.light .notif-title{color:var(--ivoire)}
+body.light .notif-title{color:var(--cacao)}
+body.light .notif-sub{color:rgba(45,26,14,.55)}
+body.light .notif-time{color:rgba(45,26,14,.4)}
+body.light .notif-item{border-bottom-color:rgba(201,169,110,.12)}
+body.light .notif-item:hover{background:rgba(201,169,110,.07)}
 /* ─── COMPARATEUR ────────────────────────────────── */
 #compare-bar{position:fixed;bottom:0;left:0;right:0;background:var(--noir);border-top:1px solid rgba(201,169,110,.2);z-index:300;transform:translateY(100%);transition:transform .4s cubic-bezier(.22,.68,0,1.2);display:flex;align-items:center;gap:1rem;padding:.75rem 1.5rem;flex-wrap:wrap}
 #compare-bar.show{transform:translateY(0)}
@@ -292,6 +296,12 @@ body.light #cmp-box{background:#f2ece2}
 body.light #lookbook{background:#f8f4ee}
 body.light .lk-tip{background:rgba(242,236,226,.97);border-color:rgba(201,169,110,.3)}
 body.light .lk-tip-name{color:var(--cacao)}
+body.light .lk-tip-price{color:var(--or)}
+body.light .lk-caption{color:rgba(45,26,14,.4)}
+body.light .lk-dot{background:rgba(201,169,110,.25)}
+body.light #recently-viewed-section{background:#f0ebe2!important}
+body.light #pdp-recommendations{border-top-color:rgba(201,169,110,.15)}
+body.light #pdp-recommendations div[style*="color:var(--ivoire)"]{color:var(--cacao)!important}
 /* ─── CONFIGURATEUR CADEAU (AB) ─────────────────── */
 #gift-modal{position:fixed;inset:0;background:rgba(10,8,6,.92);z-index:410;display:none;align-items:center;justify-content:center;padding:1rem}
 #gift-modal.open{display:flex}
@@ -325,7 +335,16 @@ body.light .lk-tip-name{color:var(--cacao)}
 .gift-cta{display:block;width:100%;background:var(--or);border:none;color:var(--noir);font-family:var(--fb);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;padding:.9rem;cursor:pointer;transition:opacity .2s}
 .gift-cta:hover{opacity:.85}
 body.light #gift-box{background:#f2ece2}
-body.light .gift-msg-area{background:rgba(201,169,110,.06);color:var(--cacao)}
+body.light .gift-title{color:var(--cacao)}
+body.light .gift-sub{color:rgba(45,26,14,.4)}
+body.light .gift-step-tab{color:rgba(45,26,14,.4)}
+body.light .gift-step-tab.active{color:var(--or)}
+body.light .gift-wrap-lbl{color:rgba(45,26,14,.55)}
+body.light .gift-wrap-opt{border-color:rgba(201,169,110,.2)}
+body.light .gift-del-name{color:var(--cacao)}
+body.light .gift-del-desc{color:rgba(45,26,14,.4)}
+body.light .gift-msg-area{background:rgba(201,169,110,.06);color:var(--cacao);border-color:rgba(201,169,110,.2)}
+body.light .gift-summary{background:rgba(201,169,110,.06);border-color:rgba(201,169,110,.15);color:rgba(45,26,14,.55)}
 /* ─── AVIS CLIENTS (AC) ─────────────────────────── */
 .rev-stars{display:inline-flex;gap:2px;color:var(--or)}
 .rev-stars span{font-size:.85rem}
@@ -348,7 +367,19 @@ body.light .gift-msg-area{background:rgba(201,169,110,.06);color:var(--cacao)}
 .rev-filter-btn.active{border-color:var(--or);color:var(--or)}
 #pdp-reviews{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(201,169,110,.1)}
 body.light .rev-item-text{color:rgba(45,26,14,.6)}
+body.light .rev-item-name{color:var(--cacao)}
+body.light .rev-avg{color:var(--or)}
+body.light .rev-count{color:rgba(45,26,14,.4)}
 body.light .rev-bar-bg{background:rgba(201,169,110,.2)}
+body.light .rev-bar-lbl{color:rgba(45,26,14,.4)}
+body.light .rev-bar-cnt{color:rgba(45,26,14,.3)}
+body.light .rev-filter-btn{color:rgba(45,26,14,.4);border-color:rgba(201,169,110,.2)}
+body.light .rev-filter-btn.active{color:var(--or);border-color:var(--or)}
+body.light .rev-item{border-bottom-color:rgba(201,169,110,.12)}
+body.light #pdp-reviews{border-top-color:rgba(201,169,110,.15)}
+body.light #cmp-box{background:#f2ece2}
+body.light .cmp-table th{color:rgba(45,26,14,.4)}
+body.light .cmp-table td{color:rgba(45,26,14,.6);border-color:rgba(201,169,110,.12)}
 /* ─── SUIVI COMMANDE (AD) ───────────────────────── */
 #track-modal{position:fixed;inset:0;background:rgba(10,8,6,.92);z-index:420;display:none;align-items:center;justify-content:center;padding:1rem}
 #track-modal.open{display:flex}
@@ -373,6 +404,13 @@ body.light .rev-bar-bg{background:rgba(201,169,110,.2)}
 .track-prod-img{width:54px;height:66px;object-fit:cover}
 body.light #track-box{background:#f2ece2}
 body.light .track-ico{background:#f2ece2}
+body.light .track-num{color:rgba(201,169,110,.6)}
+body.light .track-name{color:var(--cacao)}
+body.light .track-label{color:rgba(45,26,14,.4)}
+body.light .track-step.done .track-label,body.light .track-step.current .track-label{color:var(--or)}
+body.light .track-desc{color:rgba(45,26,14,.5)}
+body.light .track-date{color:rgba(45,26,14,.4)}
+body.light .track-step:not(:last-child)::before{background:rgba(201,169,110,.2)}
 /* ─── CERTIFICAT AUTHENTICITE (AE) ──────────────── */
 #cert-modal{position:fixed;inset:0;background:rgba(10,8,6,.92);z-index:420;display:none;align-items:center;justify-content:center;padding:1rem}
 #cert-modal.open{display:flex}
@@ -392,6 +430,14 @@ body.light .track-ico{background:#f2ece2}
 .cert-dl-btn{display:block;width:calc(100% - 3.2rem);margin:.6rem 1.6rem 1.2rem;background:none;border:1px solid rgba(201,169,110,.25);color:rgba(201,169,110,.7);font-family:var(--fb);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;padding:.65rem;cursor:pointer;transition:all .2s}
 .cert-dl-btn:hover{border-color:var(--or);color:var(--or)}
 body.light #cert-box{background:#f2ece2}
+body.light .cert-logo{color:var(--or)}
+body.light .cert-tagline{color:rgba(45,26,14,.4)}
+body.light .cert-title{color:rgba(45,26,14,.5)}
+body.light .cert-piece{color:var(--cacao)}
+body.light .cert-serial{color:rgba(45,26,14,.45)}
+body.light .cert-verify{color:rgba(45,26,14,.45)}
+body.light .cert-seal{color:rgba(45,26,14,.4);border-top-color:rgba(201,169,110,.2)}
+body.light .cert-dl-btn{color:rgba(45,26,14,.5);border-color:rgba(201,169,110,.3)}
 /* ─── LISTE DE CADEAUX (AF) ─────────────────────── */
 #giftlist-modal{position:fixed;inset:0;background:rgba(10,8,6,.92);z-index:415;display:none;align-items:center;justify-content:center;padding:1rem}
 #giftlist-modal.open{display:flex}
@@ -419,7 +465,15 @@ body.light #cert-box{background:#f2ece2}
 .gl-cta-sec{background:rgba(201,169,110,.08);border:1px solid rgba(201,169,110,.2);color:rgba(201,169,110,.7)}
 .gl-empty{text-align:center;padding:2rem;font-size:.65rem;color:rgba(250,246,240,.3);font-family:var(--fd);font-style:italic}
 body.light #giftlist-box{background:#f2ece2}
-body.light .gl-input{color:var(--cacao)}
+body.light .gl-input{color:var(--cacao);background:rgba(201,169,110,.06);border-color:rgba(201,169,110,.2)}
+body.light .gl-title{color:var(--cacao)}
+body.light .gl-sub{color:rgba(45,26,14,.45)}
+body.light .gl-tab{color:rgba(45,26,14,.4)}
+body.light .gl-tab.active{color:var(--or)}
+body.light .gl-item-name{color:var(--cacao)}
+body.light .gl-rm{color:rgba(45,26,14,.3)}
+body.light .gl-share-box{color:rgba(45,26,14,.5);background:rgba(201,169,110,.06);border-color:rgba(201,169,110,.15)}
+body.light .gl-empty{color:rgba(45,26,14,.35)}
 /* ─── MODE DÉFILÉ (AG) ──────────────────────────── */
 #defilé-modal{position:fixed;inset:0;background:#000;z-index:500;display:none;flex-direction:column;align-items:center;justify-content:center}
 #defilé-modal.open{display:flex}
@@ -476,7 +530,11 @@ body.light #insta-feed{background:#e8e0d0}
 .rs-success-ico{font-size:1.8rem;margin-bottom:.5rem}
 .rs-success-txt{font-family:var(--fd);font-style:italic;color:var(--or);font-size:.9rem}
 body.light #restock-box{background:#f2ece2}
-body.light .rs-input{color:var(--cacao)}
+body.light .rs-input{color:var(--cacao);background:rgba(201,169,110,.06);border-color:rgba(201,169,110,.2)}
+body.light .rs-title{color:var(--cacao)}
+body.light .rs-piece{color:rgba(45,26,14,.5)}
+body.light .rs-note{color:rgba(45,26,14,.35)}
+body.light .rs-success-txt{color:var(--or)}
 /* ─── LIGHTBOX GALERIE ───────────────────────────── */
 #lightbox{position:fixed;inset:0;background:rgba(5,4,2,.97);z-index:450;display:none;align-items:center;justify-content:center;flex-direction:column}
 #lightbox.open{display:flex}
