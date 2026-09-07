@@ -324,6 +324,53 @@ body.light .lk-tip-name{color:var(--cacao)}
 .gift-cta:hover{opacity:.85}
 body.light #gift-box{background:#f2ece2}
 body.light .gift-msg-area{background:rgba(201,169,110,.06);color:var(--cacao)}
+/* ─── AVIS CLIENTS (AC) ─────────────────────────── */
+.rev-stars{display:inline-flex;gap:2px;color:var(--or)}
+.rev-stars span{font-size:.85rem}
+.rev-avg{font-family:var(--fd);font-style:italic;font-size:1.5rem;color:var(--or)}
+.rev-count{font-size:.55rem;letter-spacing:.12em;color:rgba(250,246,240,.4);text-transform:uppercase}
+.rev-bar-row{display:flex;align-items:center;gap:.5rem;margin:.15rem 0}
+.rev-bar-bg{flex:1;height:4px;background:rgba(201,169,110,.12);border-radius:2px}
+.rev-bar-fill{height:4px;background:var(--or);border-radius:2px;transition:width .6s}
+.rev-bar-lbl{font-size:.5rem;color:rgba(201,169,110,.5);width:10px;text-align:right}
+.rev-bar-cnt{font-size:.5rem;color:rgba(250,246,240,.35);width:12px}
+.rev-item{padding:.9rem 0;border-bottom:1px solid rgba(201,169,110,.07)}
+.rev-item:last-child{border-bottom:none}
+.rev-item-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.3rem;flex-wrap:wrap}
+.rev-item-name{font-size:.62rem;color:var(--ivoire);font-family:var(--fd);font-style:italic}
+.rev-item-badge{font-size:.44rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(201,169,110,.1);color:rgba(201,169,110,.7);padding:.15rem .5rem}
+.rev-item-date{font-size:.5rem;color:rgba(250,246,240,.3);margin-left:auto}
+.rev-item-text{font-size:.65rem;color:rgba(250,246,240,.55);line-height:1.7}
+.rev-filter{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.8rem}
+.rev-filter-btn{background:none;border:1px solid rgba(201,169,110,.15);color:rgba(250,246,240,.4);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .7rem;cursor:pointer;font-family:var(--fb);transition:all .2s}
+.rev-filter-btn.active{border-color:var(--or);color:var(--or)}
+#pdp-reviews{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid rgba(201,169,110,.1)}
+body.light .rev-item-text{color:rgba(45,26,14,.6)}
+body.light .rev-bar-bg{background:rgba(201,169,110,.2)}
+/* ─── SUIVI COMMANDE (AD) ───────────────────────── */
+#track-modal{position:fixed;inset:0;background:rgba(10,8,6,.92);z-index:420;display:none;align-items:center;justify-content:center;padding:1rem}
+#track-modal.open{display:flex}
+#track-box{background:var(--noir);border:1px solid rgba(201,169,110,.18);max-width:500px;width:100%;max-height:88dvh;overflow-y:auto;position:relative}
+#track-close{position:absolute;top:.8rem;right:1rem;background:none;border:none;color:rgba(250,246,240,.3);font-size:1.1rem;cursor:pointer}
+.track-header{padding:1.4rem 1.6rem 1rem;border-bottom:1px solid rgba(201,169,110,.1)}
+.track-num{font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,169,110,.45);margin-bottom:.3rem}
+.track-name{font-family:var(--fd);font-style:italic;font-size:1.1rem;color:var(--ivoire)}
+.track-timeline{padding:1.4rem 1.6rem}
+.track-step{display:flex;gap:1rem;position:relative}
+.track-step:not(:last-child)::before{content:'';position:absolute;left:15px;top:30px;width:1px;height:calc(100% - 10px);background:rgba(201,169,110,.15)}
+.track-step.done::before{background:rgba(201,169,110,.4)}
+.track-ico{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(201,169,110,.2);display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;background:var(--noir);position:relative;z-index:1}
+.track-step.done .track-ico{border-color:var(--or);background:rgba(201,169,110,.1)}
+.track-step.current .track-ico{border-color:var(--or);background:var(--or);color:var(--noir)}
+.track-info{padding-bottom:1.4rem}
+.track-label{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,246,240,.35);margin-bottom:.2rem}
+.track-step.done .track-label,.track-step.current .track-label{color:var(--or)}
+.track-desc{font-size:.65rem;color:rgba(250,246,240,.45);line-height:1.6}
+.track-date{font-size:.52rem;color:rgba(201,169,110,.4);margin-top:.2rem;font-family:var(--fd);font-style:italic}
+.track-prod-row{display:flex;gap:.8rem;align-items:center;padding:1rem 1.6rem;border-top:1px solid rgba(201,169,110,.08);background:rgba(201,169,110,.03)}
+.track-prod-img{width:54px;height:66px;object-fit:cover}
+body.light #track-box{background:#f2ece2}
+body.light .track-ico{background:#f2ece2}
 /* ─── LIGHTBOX GALERIE ───────────────────────────── */
 #lightbox{position:fixed;inset:0;background:rgba(5,4,2,.97);z-index:450;display:none;align-items:center;justify-content:center;flex-direction:column}
 #lightbox.open{display:flex}
@@ -4658,6 +4705,171 @@ function submitNLPopup(){
   setTimeout(()=>closeNLPopup(false), 4000);
 }
 
+// ─── AVIS CLIENTS (AC) ────────────────────────────────────────────────────────
+const REVIEWS = {
+  0: [ // Boubou Brodé d'Or
+    { name:'Aminata D.', country:'🇸🇳', rating:5, text:'Une pièce d\'une élégance absolue. Le fil d\'or est d\'une finesse rare — j\'ai reçu des compliments toute la soirée lors de la cérémonie. L\'emballage était somptueux.', date:'12 août 2026', verified:true },
+    { name:'Rokhaya B.', country:'🇫🇷', rating:5, text:'Commandé pour une occasion spéciale, livré en parfait état dans un beau coffret. La broderie est un vrai travail d\'artisan.', date:'3 juil. 2026', verified:true },
+    { name:'Fatou N.', country:'🇸🇳', rating:4, text:'Très belle pièce, conforme à la description. J\'aurais aimé plus de choix de couleurs, mais la qualité est irréprochable.', date:'18 juin 2026', verified:false },
+  ],
+  1: [ // Masque Baoulé
+    { name:'Olivier M.', country:'🇫🇷', rating:5, text:'Un objet d\'art extraordinaire. La sculpture est d\'une précision remarquable, chaque détail raconte une histoire. Certificat d\'authenticité inclus — parfait.', date:'20 août 2026', verified:true },
+    { name:'Kofi A.', country:'🇨🇮', rating:5, text:'Pièce de collection magnifique, le bois est d\'une qualité exceptionnelle. La patine est authentique. Je recommande vivement.', date:'5 août 2026', verified:true },
+    { name:'Marie-Claire P.', country:'🇧🇪', rating:4, text:'Très satisfaite de mon achat. Le masque est encore plus beau en vrai que sur les photos. Livraison soignée.', date:'29 juil. 2026', verified:true },
+  ],
+  2: [ // Robe Kente
+    { name:'Adwoa S.', country:'🇬🇭', rating:5, text:'La Robe Kente est un véritable chef-d\'œuvre. Les couleurs sont vibrantes et le tissu est d\'une douceur incroyable. Je me sens royale quand je la porte.', date:'8 sept. 2026', verified:true },
+    { name:'Nadia K.', country:'🇨🇦', rating:5, text:'Commandé pour un mariage — absolument parfait. Tout le monde voulait savoir d\'où venait ma robe.', date:'1 sept. 2026', verified:true },
+    { name:'Ama O.', country:'🇬🇭', rating:4, text:'Tissu authentique, coupe magnifique. Attention aux tailles, j\'aurais dû prendre une taille au-dessus.', date:'15 août 2026', verified:false },
+  ],
+  3: [ // Parure Berbère
+    { name:'Leila B.', country:'🇲🇦', rating:5, text:'La parure est d\'une finesse absolue. L\'argent est pur, le travail filigrane est époustouflant. Un vrai bijou de famille.', date:'22 août 2026', verified:true },
+    { name:'Sophie L.', country:'🇫🇷', rating:5, text:'Cadeau d\'anniversaire parfait. Ma mère a fondu en larmes tellement c\'était beau. L\'emballage premium a rendu l\'instant encore plus magique.', date:'10 août 2026', verified:true },
+    { name:'Yasmine A.', country:'🇩🇿', rating:4, text:'Très belle pièce, argent de qualité. Délai de livraison un peu long mais ça valait l\'attente.', date:'3 août 2026', verified:true },
+  ],
+  4: [ // Sac Cuir Maasaï
+    { name:'Wanjiru M.', country:'🇰🇪', rating:5, text:'Le sac est magnifique et les perles maasaï sont cousues avec un soin extrême. Je l\'utilise au quotidien, il garde parfaitement sa forme.', date:'11 sept. 2026', verified:true },
+    { name:'Chloé D.', country:'🇫🇷', rating:5, text:'Un sac unique qui attire tous les regards. Le cuir est souple et robuste à la fois. Très satisfaite de mon achat.', date:'28 août 2026', verified:true },
+    { name:'Amira T.', country:'🇹🇳', rating:4, text:'Belle pièce artisanale, les couleurs sont encore plus vives qu\'en photo. Bon rapport qualité/prix pour du cuir véritable.', date:'15 août 2026', verified:false },
+  ],
+  5: [ // Djellaba Brodée
+    { name:'Fatima Z.', country:'🇲🇦', rating:5, text:'La djellaba est d\'un confort exceptionnel et la broderie est un travail d\'orfèvre. Je la porte pour toutes mes occasions importantes.', date:'7 sept. 2026', verified:true },
+    { name:'Hassan R.', country:'🇫🇷', rating:4, text:'Très belle pièce, bien confectionnée. Le fil de soie est d\'une finesse remarquable. Je recommande pour un cadeau.', date:'24 août 2026', verified:true },
+  ],
+  6: [ // Boubou Festif
+    { name:'Mariam C.', country:'🇲🇱', rating:5, text:'Le boubou est splendide, les couleurs sont éclatantes. La coupe met parfaitement en valeur la silhouette. Un achat que je ne regrette absolument pas.', date:'3 sept. 2026', verified:true },
+    { name:'Bintou D.', country:'🇸🇳', rating:5, text:'Reçu pour un baptême, absolument magnifique. Le tissu est de très haute qualité, les broderies sont impeccables.', date:'18 août 2026', verified:true },
+    { name:'Claudine A.', country:'🇨🇮', rating:4, text:'Très joli boubou, conforme à la description. La livraison était rapide et l\'emballage soigné.', date:'9 août 2026', verified:false },
+  ],
+  7: [ // Plateau Africain
+    { name:'Moussa K.', country:'🇳🇪', rating:5, text:'Un plateau d\'une beauté rare. La sculpture sur bois est un travail d\'exception, chaque motif raconte un pan de notre histoire.', date:'14 sept. 2026', verified:true },
+    { name:'Pierre A.', country:'🇫🇷', rating:5, text:'Offert à des amis pour leur pendaison de crémaillère — ils sont tombés amoureux. Une pièce unique qui orne désormais leur salon.', date:'2 sept. 2026', verified:true },
+    { name:'Aïcha M.', country:'🇳🇪', rating:4, text:'Très belle pièce de décoration, le bois est noble et bien traité. L\'objet est plus grand que je ne l\'imaginais — encore mieux !', date:'25 août 2026', verified:true },
+  ],
+};
+
+let _revFilter = 0; // 0 = tous
+
+function renderReviews(idx){
+  const reviews = REVIEWS[idx] || [];
+  if(!reviews.length){ document.getElementById('pdp-reviews').innerHTML=''; return; }
+  const avg = reviews.reduce((s,r)=>s+r.rating,0)/reviews.length;
+  const dist = [5,4,3,2,1].map(s=>({ s, n: reviews.filter(r=>r.rating===s).length }));
+  const filtered = _revFilter===0 ? reviews : reviews.filter(r=>r.rating===_revFilter);
+
+  const starsHTML = n => [1,2,3,4,5].map(i=>`<span style="color:${i<=n?'var(--or)':'rgba(201,169,110,.2)'}">${i<=n?'★':'★'}</span>`).join('');
+
+  document.getElementById('pdp-reviews').innerHTML = `
+    <div style="font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,169,110,.45);margin-bottom:.8rem">Avis clients</div>
+    <div style="display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:1rem;flex-wrap:wrap">
+      <div style="text-align:center;min-width:70px">
+        <div class="rev-avg">${avg.toFixed(1)}</div>
+        <div class="rev-stars">${starsHTML(Math.round(avg))}</div>
+        <div class="rev-count" style="margin-top:.3rem">${reviews.length} avis</div>
+      </div>
+      <div style="flex:1;min-width:140px">
+        ${dist.map(({s,n})=>`
+          <div class="rev-bar-row">
+            <div class="rev-bar-lbl">${s}</div>
+            <div class="rev-bar-bg"><div class="rev-bar-fill" style="width:${reviews.length?n/reviews.length*100:0}%"></div></div>
+            <div class="rev-bar-cnt">${n}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="rev-filter">
+      ${[0,5,4,3].map(s=>`<button class="rev-filter-btn${_revFilter===s?' active':''}" onclick="filterRevs(${idx},${s})">${s===0?'Tous':`${s} ★`}</button>`).join('')}
+    </div>
+    ${filtered.map(r=>`
+      <div class="rev-item">
+        <div class="rev-item-head">
+          <div class="rev-stars" style="font-size:.7rem">${starsHTML(r.rating)}</div>
+          <div class="rev-item-name">${r.country} ${r.name}</div>
+          ${r.verified?'<div class="rev-item-badge">Achat vérifié</div>':''}
+          <div class="rev-item-date">${r.date}</div>
+        </div>
+        <div class="rev-item-text">${r.text}</div>
+      </div>`).join('')}
+  `;
+}
+function filterRevs(idx, stars){
+  _revFilter = stars;
+  renderReviews(idx);
+}
+
+// Hook dans openPDP pour afficher les avis
+const _origOpenPDP = openPDP;
+openPDP = function(idx){
+  _revFilter = 0;
+  _origOpenPDP(idx);
+  renderReviews(idx);
+};
+
+// ─── SUIVI COMMANDE (AD) ──────────────────────────────────────────────────────
+const TRACK_STATUSES = ['confirmed','preparing','shipped','delivered'];
+const TRACK_LABELS   = ['Commande confirmée','En préparation','Expédiée','Livrée'];
+const TRACK_ICONS    = ['✓','◎','→','✦'];
+const TRACK_DESCS    = [
+  'Votre commande a été reçue et validée par notre équipe.',
+  'Votre pièce est soigneusement préparée et emballée par nos artisans.',
+  'Votre colis est en route — suivi en temps réel disponible.',
+  'Votre pièce vous a été remise. Bonne réception !'
+];
+
+function openTrack(order){
+  // order peut être un objet commande ou un index dans mda_orders
+  let ord = order;
+  if(typeof order === 'number'){
+    try{ const orders = JSON.parse(localStorage.getItem('mda_orders')||'[]'); ord = orders[order]; }catch(e){}
+  }
+  if(!ord) return;
+
+  // Simuler un statut selon l'âge de la commande
+  const placed = new Date(ord.date || Date.now());
+  const ageH   = (Date.now() - placed.getTime()) / 3600000;
+  let stepIdx  = ageH < 1 ? 0 : ageH < 12 ? 1 : ageH < 48 ? 2 : 3;
+
+  const num = ord.id || ('MDA-' + Math.random().toString(36).slice(2,8).toUpperCase());
+  document.getElementById('track-num').textContent = '№ ' + num;
+  document.getElementById('track-name').textContent = ord.items && ord.items[0] ? prods[ord.items[0].idx]?.n || 'Votre commande' : 'Votre commande';
+
+  // Image produit
+  const firstIdx = ord.items && ord.items[0] ? ord.items[0].idx : null;
+  const p = firstIdx !== null ? prods[firstIdx] : null;
+  document.getElementById('track-prod-row').innerHTML = p ? `
+    <img class="track-prod-img" src="${p.img}" alt="${p.n}">
+    <div>
+      <div style="font-family:var(--fd);font-style:italic;color:var(--ivoire);font-size:.85rem">${p.n}</div>
+      <div style="font-size:.55rem;color:var(--or);margin-top:.2rem">${p.p}</div>
+      <div style="font-size:.52rem;color:rgba(250,246,240,.35);margin-top:.2rem">${ord.items.length > 1 ? `+ ${ord.items.length-1} autre(s) pièce(s)` : ''}</div>
+    </div>` : '';
+
+  // Timeline
+  const now = new Date();
+  const fmt  = d => d.toLocaleDateString('fr-FR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+  const stepDates = [
+    placed,
+    new Date(placed.getTime() + 2*3600000),
+    new Date(placed.getTime() + 24*3600000),
+    new Date(placed.getTime() + 5*24*3600000),
+  ];
+  document.getElementById('track-timeline').innerHTML = TRACK_LABELS.map((lbl,i)=>`
+    <div class="track-step ${i<stepIdx?'done':i===stepIdx?'current':''}">
+      <div class="track-ico">${TRACK_ICONS[i]}</div>
+      <div class="track-info">
+        <div class="track-label">${lbl}</div>
+        <div class="track-desc">${TRACK_DESCS[i]}</div>
+        ${i<=stepIdx?`<div class="track-date">${fmt(stepDates[i])}</div>`:`<div class="track-date" style="opacity:.4">Estimé : ${fmt(stepDates[i])}</div>`}
+      </div>
+    </div>`).join('');
+
+  document.getElementById('track-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeTrack(){
+  document.getElementById('track-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
 // ─── LOOKBOOK INTERACTIF (AA) ─────────────────────────────────────────────────
 const LK_SLIDES = [
   {
@@ -7319,6 +7531,7 @@ function renderOrders(){
             </div>
             ${cancelled ? `<div style="font-size:.58rem;color:#e74c3c;text-align:center;margin-top:.7rem;padding:.5rem;background:rgba(231,76,60,.06);border:1px solid rgba(231,76,60,.15)">${isFr?'Cette commande a été annulée':'This order was cancelled'}</div>` : ''}`;
           })()}
+          ${!o.status || o.status!=='cancelled' ? `<button onclick="openTrack(${idx})" style="display:block;width:100%;margin-top:.9rem;background:rgba(201,169,110,.08);border:1px solid rgba(201,169,110,.2);color:rgba(201,169,110,.8);font-family:var(--fb);font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;padding:.55rem;cursor:pointer;transition:background .2s" onmouseover="this.style.background='rgba(201,169,110,.15)'" onmouseout="this.style.background='rgba(201,169,110,.08)'">${isFr?'Suivi détaillé →':'Detailed tracking →'}</button>` : ''}
         </div>
       </div>
     </div>`;
@@ -7797,6 +8010,7 @@ function closeArticle(){
         <p id="pdp-desc"></p>
         <div class="pdp-sep"></div>
         <div id="pdp-details"></div>
+        <div id="pdp-reviews"></div>
         <div id="pdp-sizes-wrap" style="display:none">
           <div style="font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,169,110,.45)">Taille</div>
           <div id="pdp-sizes"></div>
@@ -7850,6 +8064,19 @@ function closeArticle(){
     </div>
     <!-- Body -->
     <div id="orders-body" style="overflow-y:auto;padding:1rem 1.2rem;flex:1;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.2) transparent"></div>
+  </div>
+</div>
+
+<!-- ── Modal Suivi Commande (AD) ────────────────────────────────────────── -->
+<div id="track-modal" role="dialog" aria-modal="true" aria-label="Suivi de commande" onclick="if(event.target===this)closeTrack()">
+  <div id="track-box">
+    <button id="track-close" onclick="closeTrack()" aria-label="Fermer">✕</button>
+    <div class="track-header">
+      <div class="track-num" id="track-num"></div>
+      <div class="track-name" id="track-name"></div>
+    </div>
+    <div class="track-prod-row" id="track-prod-row"></div>
+    <div class="track-timeline" id="track-timeline"></div>
   </div>
 </div>
 
