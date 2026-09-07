@@ -82,9 +82,9 @@ img{display:block;max-width:100%}
 @keyframes lfill{0%{width:0}100%{width:100%}}
 
 /* ─── NAV ─────────────────────────────────────── */
-nav{position:sticky;top:0;width:100%;z-index:100;padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:70px;background:rgba(10,8,6,.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(201,169,110,.12);transition:height .3s}
+nav{position:sticky;top:0;width:100%;z-index:100;padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:82px;background:rgba(10,8,6,.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(201,169,110,.12);transition:height .3s}
 .nlogo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
-.nlogo-img{height:54px;width:auto;object-fit:contain;mix-blend-mode:screen;filter:brightness(1.1) contrast(1.05)}
+.nlogo-img{height:72px;width:auto;object-fit:contain;mix-blend-mode:screen;filter:brightness(1.15) contrast(1.08) saturate(1.1)}
 .nlogo-img.loaded ~ .nlogo-text{display:none}
 .nlogo-text{font-family:var(--fd);font-size:1.42rem;font-weight:300;letter-spacing:.1em;color:var(--or);font-style:italic}
 body.light .nlogo-img{mix-blend-mode:multiply;filter:brightness(.95) contrast(1.1)}
@@ -1544,11 +1544,16 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
   </div>
 </section>
 
-<!-- VUS RÉCEMMENT -->
+<!-- VUS RÉCEMMENT (AL enrichi) -->
 <section id="recently-viewed-section" style="background:#080605;padding:3.5rem 1rem;display:none">
   <div class="rv" style="max-width:1200px;margin:0 auto">
-    <p class="sl" style="font-size:.58rem;letter-spacing:.22em">Vos Dernières Consultations</p>
-    <h3 style="font-family:var(--fd);font-size:1.4rem;font-weight:300;font-style:italic;color:var(--ivoire);margin-bottom:2rem">Pièces <em>récemment vues</em></h3>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:.5rem">
+      <div>
+        <p class="sl" style="font-size:.58rem;letter-spacing:.22em">Vos Dernières Consultations</p>
+        <h3 style="font-family:var(--fd);font-size:1.4rem;font-weight:300;font-style:italic;color:var(--ivoire);margin:0">Pièces <em>récemment vues</em></h3>
+      </div>
+      <button onclick="clearRecentlyViewed()" style="background:none;border:none;color:rgba(201,169,110,.35);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;font-family:var(--fb);transition:color .2s" onmouseover="this.style.color='rgba(201,169,110,.7)'" onmouseout="this.style.color='rgba(201,169,110,.35)'">Tout effacer</button>
+    </div>
     <div id="recently-viewed-grid" style="display:flex;gap:1.2rem;overflow-x:auto;padding-bottom:.5rem;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.2) transparent"></div>
   </div>
 </section>
@@ -4810,6 +4815,54 @@ function submitNLPopup(){
   document.getElementById('nl-form-wrap').style.display = 'none';
   document.getElementById('nl-success').style.display = 'block';
   setTimeout(()=>closeNLPopup(false), 4000);
+}
+
+// ─── RECOMMANDATIONS (AK) ─────────────────────────────────────────────────────
+function renderRecommendations(idx){
+  const wrap = document.getElementById('pdp-recommendations');
+  if(!wrap) return;
+  const p = prods[idx];
+  const cat = (p['data-cat'] || document.querySelector(`.pc[onclick*="openPDP(${idx})"]`)?.dataset?.cat || '');
+  // Score par similarité : même catégorie ou même matière, exclure le produit actuel
+  const scored = prods.map((q,i)=>{
+    if(i===idx) return null;
+    let score = 0;
+    if(q.m && p.m && q.m.split(' ').some(m=>p.m.split(' ').includes(m))) score+=2;
+    // Vus récemment → boost
+    try{ const rv=JSON.parse(sessionStorage.getItem('mda_rv')||'[]'); if(rv.includes(i)) score+=1; }catch(e){}
+    return {i, score};
+  }).filter(Boolean).sort((a,b)=>b.score-a.score).slice(0,4);
+
+  if(!scored.length){ wrap.innerHTML=''; return; }
+  wrap.innerHTML = `
+    <div style="font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,169,110,.4);margin-bottom:1rem">Vous aimerez aussi</div>
+    <div style="display:flex;gap:.8rem;overflow-x:auto;padding-bottom:.4rem;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.15) transparent">
+      ${scored.map(({i})=>{
+        const q=prods[i];
+        return `<div onclick="openPDP(${i})" style="flex-shrink:0;width:110px;cursor:pointer" onmouseover="this.querySelector('img').style.transform='scale(1.05)'" onmouseout="this.querySelector('img').style.transform=''">
+          <div style="aspect-ratio:3/4;overflow:hidden;background:var(--cacao);margin-bottom:.5rem">
+            <img src="${q.img}" alt="${q.n}" style="width:100%;height:100%;object-fit:cover;transition:transform .4s" loading="lazy">
+          </div>
+          <div style="font-family:var(--fd);font-style:italic;font-size:.72rem;color:var(--ivoire);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${q.n}</div>
+          <div style="font-size:.6rem;color:var(--or);font-family:var(--fd);font-style:italic">${q.p}</div>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+// Hook dans openPDP pour afficher les recommandations
+const _origOpenPDPRecs = openPDP;
+openPDP = function(idx){
+  _origOpenPDPRecs(idx);
+  renderRecommendations(idx);
+};
+
+// ─── HISTORIQUE ENRICHI (AL) ──────────────────────────────────────────────────
+function clearRecentlyViewed(){
+  try{ sessionStorage.removeItem('mda_rv'); }catch(e){}
+  const section = document.getElementById('recently-viewed-section');
+  if(section) section.style.display='none';
+  toast('Historique effacé');
 }
 
 // ─── RECHERCHE VOCALE (AI) ────────────────────────────────────────────────────
@@ -8414,6 +8467,8 @@ function closeArticle(){
             <button class="bs" style="flex:1;font-size:.52rem;padding:.7rem" onclick="addToGiftlist(_pdpIdx)">♡ Liste cadeaux</button>
           </div>
         </div>
+        <!-- Vous aimerez aussi (AK) -->
+        <div id="pdp-recommendations" style="margin-top:1.8rem;padding-top:1.4rem;border-top:1px solid rgba(201,169,110,.1)"></div>
       </div>
     </div>
   </div>
