@@ -83,9 +83,11 @@ img{display:block;max-width:100%}
 
 /* ─── NAV ─────────────────────────────────────── */
 nav{position:sticky;top:0;width:100%;z-index:100;padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:70px;background:rgba(10,8,6,.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(201,169,110,.12);transition:height .3s}
-.nlogo{display:flex;align-items:center;gap:.9rem;text-decoration:none}
-.nlogo-img{height:38px;width:auto;object-fit:contain;filter:brightness(1.05)}
+.nlogo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.nlogo-img{height:54px;width:auto;object-fit:contain;mix-blend-mode:screen;filter:brightness(1.1) contrast(1.05)}
+.nlogo-img.loaded ~ .nlogo-text{display:none}
 .nlogo-text{font-family:var(--fd);font-size:1.42rem;font-weight:300;letter-spacing:.1em;color:var(--or);font-style:italic}
+body.light .nlogo-img{mix-blend-mode:multiply;filter:brightness(.95) contrast(1.1)}
 .nlinks{display:flex;gap:2.2rem;list-style:none}
 .nlinks a{font-size:.65rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--sable);text-decoration:none;transition:color .3s var(--ease-lux);position:relative;padding-bottom:2px}
 .nlinks a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--or);transition:width .45s var(--ease-out)}
@@ -453,6 +455,28 @@ body.light .gl-input{color:var(--cacao)}
 .insta-handle a{color:var(--or);text-decoration:none}
 @media(max-width:700px){.insta-grid{grid-template-columns:repeat(3,1fr)}.df-info{padding:1.5rem}}
 body.light #insta-feed{background:#e8e0d0}
+/* ─── RECHERCHE VOCALE (AI) ─────────────────────── */
+#voice-search-btn.listening{color:var(--or);animation:mic-pulse .7s ease-in-out infinite alternate}
+@keyframes mic-pulse{from{transform:scale(1);opacity:.7}to{transform:scale(1.25);opacity:1}}
+#voice-status{font-size:.55rem;letter-spacing:.12em;color:rgba(201,169,110,.5);text-align:center;min-height:1.2em;margin-top:.3rem}
+/* ─── ALERTE RETOUR STOCK (AJ) ──────────────────── */
+#restock-modal{position:fixed;inset:0;background:rgba(10,8,6,.88);z-index:420;display:none;align-items:center;justify-content:center;padding:1rem}
+#restock-modal.open{display:flex}
+#restock-box{background:var(--noir);border:1px solid rgba(201,169,110,.2);max-width:380px;width:100%;position:relative;padding:2rem 2rem 1.5rem}
+#restock-close{position:absolute;top:.8rem;right:1rem;background:none;border:none;color:rgba(250,246,240,.3);font-size:1rem;cursor:pointer}
+.rs-ico{font-size:2rem;text-align:center;margin-bottom:.8rem}
+.rs-title{font-family:var(--fd);font-style:italic;font-size:1.1rem;color:var(--ivoire);text-align:center;margin-bottom:.3rem}
+.rs-piece{font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,169,110,.5);text-align:center;margin-bottom:1.2rem}
+.rs-input{width:100%;background:rgba(201,169,110,.04);border:1px solid rgba(201,169,110,.15);color:var(--ivoire);font-family:var(--fb);font-size:.7rem;padding:.75rem;outline:none;margin-bottom:.8rem}
+.rs-input:focus{border-color:rgba(201,169,110,.4)}
+.rs-cta{display:block;width:100%;background:var(--or);border:none;color:var(--noir);font-family:var(--fb);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;padding:.85rem;cursor:pointer;transition:opacity .2s}
+.rs-cta:hover{opacity:.85}
+.rs-note{font-size:.5rem;color:rgba(250,246,240,.25);text-align:center;margin-top:.6rem;line-height:1.6}
+.rs-success{display:none;text-align:center;padding:.5rem 0}
+.rs-success-ico{font-size:1.8rem;margin-bottom:.5rem}
+.rs-success-txt{font-family:var(--fd);font-style:italic;color:var(--or);font-size:.9rem}
+body.light #restock-box{background:#f2ece2}
+body.light .rs-input{color:var(--cacao)}
 /* ─── LIGHTBOX GALERIE ───────────────────────────── */
 #lightbox{position:fixed;inset:0;background:rgba(5,4,2,.97);z-index:450;display:none;align-items:center;justify-content:center;flex-direction:column}
 #lightbox.open{display:flex}
@@ -1179,7 +1203,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
 <!-- NAV -->
 <nav role="navigation" aria-label="Navigation principale">
   <a href="#hero" class="nlogo" id="nlogo-link" aria-label="Mémoire d'Afrique — Accueil">
-    <img src="logo mémoires d'Afrique Canva.png" alt="Mémoire d'Afrique" class="nlogo-img" id="mdaLogoEl" onerror="this.style.display='none'">
+    <img src="logo mémoires d'Afrique Canva.png" alt="Mémoire d'Afrique" class="nlogo-img" id="mdaLogoEl" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
     <span class="nlogo-text">Mémoire d'Afrique</span>
   </a>
   <ul class="nlinks" role="list">
@@ -4788,6 +4812,87 @@ function submitNLPopup(){
   setTimeout(()=>closeNLPopup(false), 4000);
 }
 
+// ─── RECHERCHE VOCALE (AI) ────────────────────────────────────────────────────
+function startVoiceSearch(){
+  const btn = document.getElementById('voice-search-btn');
+  const status = document.getElementById('voice-status');
+  const input = document.getElementById('search-input');
+  if(!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)){
+    status.textContent = 'Recherche vocale non supportée sur ce navigateur.';
+    return;
+  }
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const rec = new SR();
+  rec.lang = 'fr-FR'; rec.interimResults = true; rec.maxAlternatives = 1;
+  btn.classList.add('listening');
+  status.textContent = 'Écoute en cours…';
+  rec.onresult = e => {
+    const transcript = e.results[0][0].transcript;
+    input.value = transcript;
+    runSearch(transcript);
+    if(e.results[0].isFinal){
+      status.textContent = `"${transcript}"`;
+      btn.classList.remove('listening');
+    }
+  };
+  rec.onerror = () => { status.textContent = 'Impossible d\'accéder au micro.'; btn.classList.remove('listening'); };
+  rec.onend = () => { btn.classList.remove('listening'); if(!status.textContent.startsWith('"')) status.textContent=''; };
+  rec.start();
+}
+
+// ─── ALERTE RETOUR EN STOCK (AJ) ──────────────────────────────────────────────
+const RS_KEY = 'mda_restock_alerts';
+let _rsIdx = null;
+
+function openRestock(idx){
+  _rsIdx = idx;
+  const p = prods[idx];
+  document.getElementById('rs-piece-name').textContent = p.n;
+  document.getElementById('rs-email').value = '';
+  document.getElementById('rs-form-wrap').style.display = 'block';
+  document.getElementById('rs-success').style.display = 'none';
+  // Pré-remplir si email connu
+  try{ const u = JSON.parse(localStorage.getItem('mda_user')||'null'); if(u&&u.email) document.getElementById('rs-email').value=u.email; }catch(e){}
+  document.getElementById('restock-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeRestock(){
+  document.getElementById('restock-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function submitRestock(){
+  const email = document.getElementById('rs-email').value.trim();
+  if(!email || !email.includes('@')){ toast('Entrez une adresse e-mail valide'); return; }
+  let alerts = [];
+  try{ alerts = JSON.parse(localStorage.getItem(RS_KEY)||'[]'); }catch(e){}
+  if(!alerts.find(a=>a.idx===_rsIdx&&a.email===email)){
+    alerts.push({ idx:_rsIdx, email, date:Date.now() });
+    try{ localStorage.setItem(RS_KEY, JSON.stringify(alerts)); }catch(e){}
+  }
+  document.getElementById('rs-form-wrap').style.display = 'none';
+  document.getElementById('rs-success').style.display = 'block';
+  setTimeout(closeRestock, 2500);
+}
+// Ajouter bouton "M'alerter" sur les fiches PDP pour les pièces rares (stock ≤ 3)
+const _origOpenPDPStock = openPDP;
+openPDP = function(idx){
+  _origOpenPDPStock(idx);
+  const p = prods[idx];
+  const cta = document.getElementById('pdp-cta');
+  // Retirer ancien bouton alerte si existant
+  const old = document.getElementById('pdp-restock-btn');
+  if(old) old.remove();
+  if(p.stock <= 3){
+    const alertBtn = document.createElement('button');
+    alertBtn.id = 'pdp-restock-btn';
+    alertBtn.className = 'bs';
+    alertBtn.style.cssText = 'font-size:.52rem;padding:.65rem;width:100%;margin-top:.3rem;border-color:rgba(231,76,60,.3);color:rgba(231,76,60,.7)';
+    alertBtn.innerHTML = '🔔 M\'alerter si restocké';
+    alertBtn.onclick = () => openRestock(idx);
+    cta.appendChild(alertBtn);
+  }
+};
+
 // ─── MODE DÉFILÉ (AG) ─────────────────────────────────────────────────────────
 let dfIdx = 0, dfPaused = false, dfTimer = null, dfBarTimer = null;
 const DF_DURATION = 5000;
@@ -8265,9 +8370,11 @@ function closeArticle(){
 <div id="search-overlay" role="search" aria-label="Recherche">
   <div id="search-wrap">
     <input id="search-input" type="search" placeholder="Rechercher une pièce…" autocomplete="off" oninput="runSearch(this.value)" onkeydown="searchKey(event)">
+    <button id="voice-search-btn" onclick="startVoiceSearch()" aria-label="Recherche vocale" title="Recherche vocale" style="background:none;border:none;color:rgba(201,169,110,.45);cursor:pointer;padding:.3rem;transition:color .2s;font-size:.9rem">🎙</button>
     <button id="search-close" onclick="closeSearch()" aria-label="Fermer">✕</button>
   </div>
-  <div id="search-hint">Tapez le nom, la matière ou l'origine</div>
+  <div id="voice-status"></div>
+  <div id="search-hint">Tapez le nom, la matière ou l'origine — ou utilisez le micro 🎙</div>
   <div id="search-results" role="listbox"></div>
   <div id="search-empty">Aucun résultat pour cette recherche</div>
 </div>
@@ -8363,6 +8470,26 @@ function closeArticle(){
   <button class="df-nav" id="df-prev" onclick="defiléNav(-1)">‹</button>
   <button class="df-nav" id="df-next" onclick="defiléNav(1)">›</button>
   <div class="df-progress"><div class="df-bar" id="df-bar"></div></div>
+</div>
+
+<!-- ── Modal Alerte Retour Stock (AJ) ───────────────────────────────────── -->
+<div id="restock-modal" role="dialog" aria-modal="true" aria-label="Alerte retour en stock" onclick="if(event.target===this)closeRestock()">
+  <div id="restock-box">
+    <button id="restock-close" onclick="closeRestock()">✕</button>
+    <div id="rs-form-wrap">
+      <div class="rs-ico">🔔</div>
+      <div class="rs-title">Être averti du retour en stock</div>
+      <div class="rs-piece" id="rs-piece-name"></div>
+      <input class="rs-input" id="rs-email" type="email" placeholder="Votre adresse e-mail">
+      <button class="rs-cta" onclick="submitRestock()">Me prévenir dès le retour ✦</button>
+      <div class="rs-note">Vous recevrez une notification unique dès que cette pièce sera disponible. Aucun spam.</div>
+    </div>
+    <div class="rs-success" id="rs-success">
+      <div class="rs-success-ico">✦</div>
+      <div class="rs-success-txt">Alerte enregistrée !</div>
+      <div style="font-size:.6rem;color:rgba(250,246,240,.4);margin-top:.5rem">Nous vous préviendrons dès que la pièce est disponible.</div>
+    </div>
+  </div>
 </div>
 
 <!-- ── Modal Certificat Authenticité (AE) ───────────────────────────────── -->
