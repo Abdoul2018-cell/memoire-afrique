@@ -371,6 +371,53 @@ body.light .rev-bar-bg{background:rgba(201,169,110,.2)}
 .track-prod-img{width:54px;height:66px;object-fit:cover}
 body.light #track-box{background:#f2ece2}
 body.light .track-ico{background:#f2ece2}
+/* ─── CERTIFICAT AUTHENTICITE (AE) ──────────────── */
+#cert-modal{position:fixed;inset:0;background:rgba(10,8,6,.92);z-index:420;display:none;align-items:center;justify-content:center;padding:1rem}
+#cert-modal.open{display:flex}
+#cert-box{background:var(--noir);border:1px solid rgba(201,169,110,.25);max-width:420px;width:100%;position:relative;overflow:hidden}
+#cert-box::before{content:'';position:absolute;inset:8px;border:1px solid rgba(201,169,110,.08);pointer-events:none;z-index:0}
+#cert-close{position:absolute;top:.8rem;right:1rem;background:none;border:none;color:rgba(250,246,240,.3);font-size:1.1rem;cursor:pointer;z-index:2}
+.cert-header{padding:1.6rem 1.6rem .8rem;text-align:center;position:relative;z-index:1;border-bottom:1px solid rgba(201,169,110,.1)}
+.cert-logo{font-family:var(--fd);font-size:1.3rem;font-style:italic;color:var(--or);margin-bottom:.2rem}
+.cert-tagline{font-size:.45rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(201,169,110,.4)}
+.cert-body{padding:1.2rem 1.6rem;position:relative;z-index:1;text-align:center}
+.cert-title{font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,169,110,.5);margin-bottom:.5rem}
+.cert-piece{font-family:var(--fd);font-style:italic;font-size:1.1rem;color:var(--ivoire);margin-bottom:.25rem}
+.cert-serial{font-size:.48rem;letter-spacing:.2em;color:rgba(201,169,110,.45);margin-bottom:1rem;font-family:monospace}
+#cert-qr{display:block;margin:0 auto .8rem;image-rendering:pixelated;border:3px solid rgba(201,169,110,.15)}
+.cert-verify{font-size:.5rem;letter-spacing:.1em;color:rgba(250,246,240,.3);line-height:1.7;margin-bottom:.8rem}
+.cert-seal{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.6rem;border-top:1px solid rgba(201,169,110,.1);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,169,110,.4)}
+.cert-dl-btn{display:block;width:calc(100% - 3.2rem);margin:.6rem 1.6rem 1.2rem;background:none;border:1px solid rgba(201,169,110,.25);color:rgba(201,169,110,.7);font-family:var(--fb);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;padding:.65rem;cursor:pointer;transition:all .2s}
+.cert-dl-btn:hover{border-color:var(--or);color:var(--or)}
+body.light #cert-box{background:#f2ece2}
+/* ─── LISTE DE CADEAUX (AF) ─────────────────────── */
+#giftlist-modal{position:fixed;inset:0;background:rgba(10,8,6,.92);z-index:415;display:none;align-items:center;justify-content:center;padding:1rem}
+#giftlist-modal.open{display:flex}
+#giftlist-box{background:var(--noir);border:1px solid rgba(201,169,110,.18);max-width:480px;width:100%;max-height:88dvh;overflow-y:auto;position:relative}
+#giftlist-close{position:absolute;top:.8rem;right:1rem;background:none;border:none;color:rgba(250,246,240,.3);font-size:1.1rem;cursor:pointer}
+.gl-header{padding:1.4rem 1.6rem 1rem;border-bottom:1px solid rgba(201,169,110,.1)}
+.gl-title{font-family:var(--fd);font-style:italic;font-size:1.2rem;color:var(--ivoire)}
+.gl-sub{font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,169,110,.4);margin-top:.2rem}
+.gl-tabs{display:flex;border-bottom:1px solid rgba(201,169,110,.1)}
+.gl-tab{flex:1;padding:.6rem;font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:none;color:rgba(250,246,240,.3);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;font-family:var(--fb)}
+.gl-tab.active{color:var(--or);border-bottom-color:var(--or)}
+.gl-pane{display:none;padding:1.2rem 1.6rem}
+.gl-pane.active{display:block}
+.gl-input{width:100%;background:rgba(201,169,110,.04);border:1px solid rgba(201,169,110,.15);color:var(--ivoire);font-family:var(--fb);font-size:.7rem;padding:.7rem;outline:none;margin-bottom:.8rem}
+.gl-input:focus{border-color:rgba(201,169,110,.4)}
+.gl-item{display:flex;gap:.8rem;align-items:center;padding:.6rem 0;border-bottom:1px solid rgba(201,169,110,.07)}
+.gl-item img{width:44px;height:54px;object-fit:cover}
+.gl-item-name{font-family:var(--fd);font-style:italic;font-size:.78rem;color:var(--ivoire)}
+.gl-item-price{font-size:.55rem;color:var(--or)}
+.gl-item-reserved{font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:#27ae60;margin-top:.2rem}
+.gl-rm{margin-left:auto;background:none;border:none;color:rgba(250,246,240,.25);cursor:pointer;font-size:.9rem;padding:.2rem}
+.gl-share-box{background:rgba(201,169,110,.04);border:1px solid rgba(201,169,110,.12);padding:.8rem;margin-bottom:.8rem;word-break:break-all;font-size:.55rem;color:rgba(201,169,110,.6);font-family:monospace}
+.gl-cta{display:block;width:100%;background:var(--or);border:none;color:var(--noir);font-family:var(--fb);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;padding:.85rem;cursor:pointer;transition:opacity .2s;margin-top:.6rem}
+.gl-cta:hover{opacity:.85}
+.gl-cta-sec{background:rgba(201,169,110,.08);border:1px solid rgba(201,169,110,.2);color:rgba(201,169,110,.7)}
+.gl-empty{text-align:center;padding:2rem;font-size:.65rem;color:rgba(250,246,240,.3);font-family:var(--fd);font-style:italic}
+body.light #giftlist-box{background:#f2ece2}
+body.light .gl-input{color:var(--cacao)}
 /* ─── LIGHTBOX GALERIE ───────────────────────────── */
 #lightbox{position:fixed;inset:0;background:rgba(5,4,2,.97);z-index:450;display:none;align-items:center;justify-content:center;flex-direction:column}
 #lightbox.open{display:flex}
@@ -1063,8 +1110,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
 
 <!-- BANDEAU PROMO -->
 <div id="promo-banner" style="background:linear-gradient(90deg,var(--cacao),#3d1f0a,var(--cacao));border-bottom:1px solid rgba(201,169,110,.2);padding:.45rem 1rem;text-align:center;position:relative;z-index:200;display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap">
-  <span style="font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,246,240,.75)">✦ Offre de lancement — <strong style="color:var(--or)">−15% avec le code LUXE15</strong> · Expire dans</span>
-  <span id="promo-countdown" style="font-family:var(--fb);font-size:.7rem;font-weight:500;color:var(--or);letter-spacing:.12em;background:rgba(201,169,110,.1);padding:.2rem .6rem;border:1px solid rgba(201,169,110,.25)">00:00:00</span>
+  <span style="font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,246,240,.75)">✦ Offre de lancement — <strong style="color:var(--or)">−15% avec le code LUXE15</strong> · Édition limitée</span>
   <button onclick="document.getElementById('promo-banner').style.display='none'" style="position:absolute;right:.8rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(250,246,240,.3);cursor:pointer;font-size:.75rem;line-height:1;padding:.2rem" aria-label="Fermer">✕</button>
 </div>
 
@@ -1305,17 +1351,6 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
   <!-- Filtres avancés : pays + matière -->
   <div id="adv-filters" class="rv">
     <div class="af-group">
-      <div class="af-label">Pays d'origine</div>
-      <div class="af-chips" id="af-pays">
-        <button class="af-chip" data-pays="Niger" onclick="toggleChip(this,'pays')">🇳🇪 Niger</button>
-        <button class="af-chip" data-pays="Ghana" onclick="toggleChip(this,'pays')">🇬🇭 Ghana</button>
-        <button class="af-chip" data-pays="Mali" onclick="toggleChip(this,'pays')">🇲🇱 Mali</button>
-        <button class="af-chip" data-pays="Kenya" onclick="toggleChip(this,'pays')">🇰🇪 Kenya</button>
-        <button class="af-chip" data-pays="Maroc" onclick="toggleChip(this,'pays')">🇲🇦 Maroc</button>
-        <button class="af-chip" data-pays="Côte d'Ivoire" onclick="toggleChip(this,'pays')">🇨🇮 Côte d'Ivoire</button>
-      </div>
-    </div>
-    <div class="af-group">
       <div class="af-label">Matière</div>
       <div class="af-chips" id="af-matiere">
         <button class="af-chip" data-mat="soie" onclick="toggleChip(this,'mat')">Soie</button>
@@ -1337,7 +1372,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
     <button onclick="resetAdvFilters()" style="font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:none;color:rgba(201,169,110,.4);cursor:pointer;font-family:var(--fb);padding:.3rem 0;text-decoration:underline;text-underline-offset:3px;align-self:flex-end">Réinitialiser</button>
   </div>
   <div class="pgrid rv">
-    <article class="pc" onclick="openPDP(0)" data-cat="mode-femme rare" data-price="285000" data-pays="Niger" data-mat="soie coton" aria-label="Boubou Brodé d'Or — 285 000 FCFA">
+    <article class="pc" onclick="openPDP(0)" data-cat="mode-femme rare" data-price="285000" data-mat="soie coton" aria-label="Boubou Brodé d'Or — 285 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#2d1a0e,#1a0f07)">
         <img src="Boubou brodé doré.png" alt="Boubou Brodé d'Or — Dakar, Sénégal" loading="lazy">
         <div class="pbrow"><span class="bk br">Rare</span></div>
@@ -1350,7 +1385,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Dakar, Sénégal</div>
       <div class="pp">285 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openPDP(1)" data-cat="artisanat" data-price="420000" data-pays="Côte d'Ivoire" data-mat="bois bronze" aria-label="Masque Sculpté Baoulé — 420 000 FCFA">
+    <article class="pc" onclick="openPDP(1)" data-cat="artisanat" data-price="420000" data-mat="bois bronze" aria-label="Masque Sculpté Baoulé — 420 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#1a1a2e,#0d0d1a)">
         <img src="Masque Baoulé sculpé.png" alt="Masque Sculpté Baoulé — Abidjan, Côte d'Ivoire" loading="lazy">
         <div class="pbrow"><span class="bk bn">Nouveau</span></div>
@@ -1363,7 +1398,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Abidjan, Côte d'Ivoire</div>
       <div class="pp">420 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openPDP(2)" data-cat="mode-femme rare" data-price="195000" data-pays="Ghana" data-mat="soie coton" aria-label="Robe Kente Royale — 195 000 FCFA">
+    <article class="pc" onclick="openPDP(2)" data-cat="mode-femme rare" data-price="195000" data-mat="soie coton" aria-label="Robe Kente Royale — 195 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#2e1a1a,#1a0d0d)">
         <img src="Robe Kenté Royale.png" alt="Robe Kente Royale — Accra, Ghana" loading="lazy">
         <div class="pbrow"><span class="bk br">Rare</span></div>
@@ -1376,7 +1411,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Accra, Ghana</div>
       <div class="pp">195 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openPDP(3)" data-cat="accessoires" data-price="145000" data-pays="Maroc" data-mat="argent" aria-label="Parure Berbère Argent — 145 000 FCFA">
+    <article class="pc" onclick="openPDP(3)" data-cat="accessoires" data-price="145000" data-mat="argent" aria-label="Parure Berbère Argent — 145 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#1a2e1a,#0d1a0d)">
         <img src="Parures argentées.png" alt="Parure Berbère Argent — Marrakech, Maroc" loading="lazy">
         <div class="pbrow"><span class="bk bn">Nouveau</span></div>
@@ -1389,7 +1424,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Marrakech, Maroc</div>
       <div class="pp">145 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openPDP(4)" data-cat="accessoires" data-price="98000" data-pays="Kenya" data-mat="cuir" aria-label="Sac Cuir Maasaï — 98 000 FCFA">
+    <article class="pc" onclick="openPDP(4)" data-cat="accessoires" data-price="98000" data-mat="cuir" aria-label="Sac Cuir Maasaï — 98 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#2e2a1a,#1a1507)">
         <img src="Sac en cuir Massai.png" alt="Sac Cuir Maasaï — Nairobi, Kenya" loading="lazy">
         <div class="pact">
@@ -1401,7 +1436,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Nairobi, Kenya</div>
       <div class="pp">98 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openPDP(5)" data-cat="artisanat rare" data-price="350000" data-pays="Maroc" data-mat="laine coton" aria-label="Tapis Berbère Ancestral — 350 000 FCFA">
+    <article class="pc" onclick="openPDP(5)" data-cat="artisanat rare" data-price="350000" data-mat="laine coton" aria-label="Tapis Berbère Ancestral — 350 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#1a1a1a,#0d0d0d)">
         <img src="Tapis berber ancestral.png" alt="Tapis Berbère Ancestral — Fès, Maroc" loading="lazy">
         <div class="pbrow"><span class="bk br">Rare</span></div>
@@ -1414,7 +1449,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Fès, Maroc</div>
       <div class="pp">350 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openPDP(6)" data-cat="mode-femme mode-homme" data-price="175000" data-pays="Mali" data-mat="coton soie" aria-label="Djellaba Brodée — 175 000 FCFA">
+    <article class="pc" onclick="openPDP(6)" data-cat="mode-femme mode-homme" data-price="175000" data-mat="coton soie" aria-label="Djellaba Brodée — 175 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#1a1a2e,#0d0d1a)">
         <img src="Djellaba Brodée.png" alt="Djellaba Brodée — Tunis, Tunisie" loading="lazy">
         <div class="pbrow"><span class="bk bn">Nouveau</span></div>
@@ -1427,7 +1462,7 @@ body.light .pay-confirm-msg{color:rgba(26,15,7,.5)}
       <div class="po">Tunis, Tunisie</div>
       <div class="pp">175 000 FCFA</div>
     </article>
-    <article class="pc" onclick="openPDP(7)" data-cat="artisanat rare" data-price="680000" data-pays="Niger" data-mat="bois bronze" aria-label="Plateau Africain Signature — 680 000 FCFA">
+    <article class="pc" onclick="openPDP(7)" data-cat="artisanat rare" data-price="680000" data-mat="bois bronze" aria-label="Plateau Africain Signature — 680 000 FCFA">
       <div class="pi" style="background:linear-gradient(160deg,#2e2e1a,#1a1a0d)">
         <img src="Plateau Africain DG.jpg" alt="Plateau Africain Signature — Niamey, Niger" loading="lazy">
         <div class="pbrow"><span class="bk br">Rare</span></div>
@@ -3396,7 +3431,7 @@ function renderWishlist(){
       </div>
       <div style="flex:1;min-width:0">
         <div style="font-family:var(--fd);font-size:.95rem;font-style:italic;color:var(--ivoire);margin-bottom:.2rem">${p.n}</div>
-        <div style="font-size:.58rem;letter-spacing:.12em;color:rgba(201,169,110,.5);margin-bottom:.4rem">${p.o}</div>
+        <div style="font-size:.58rem;letter-spacing:.12em;color:rgba(201,169,110,.5);margin-bottom:.4rem">${p.m}</div>
         <div style="font-family:var(--fd);font-size:1rem;color:var(--or)">${p.p}</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end">
@@ -3558,7 +3593,7 @@ function openPDP(idx){
   else badge.style.display='none';
   // Textes
   document.getElementById('pdp-name').textContent=p.n;
-  document.getElementById('pdp-origin').textContent=p.o||'';
+  document.getElementById('pdp-origin').textContent='';
   document.getElementById('pdp-price').textContent=p.p;
   document.getElementById('pdp-desc').textContent=p.d;
   // Stock
@@ -4705,6 +4740,133 @@ function submitNLPopup(){
   setTimeout(()=>closeNLPopup(false), 4000);
 }
 
+// ─── CERTIFICAT AUTHENTICITÉ (AE) ─────────────────────────────────────────────
+const CERT_SERIALS = ['MDA-2026-AU001','MDA-2026-AU002','MDA-2026-AU003','MDA-2026-AU004','MDA-2026-AU005','MDA-2026-AU006','MDA-2026-AU007','MDA-2026-AU008'];
+
+function openCert(idx){
+  const p = prods[idx];
+  document.getElementById('cert-piece-name').textContent = p.n;
+  const serial = CERT_SERIALS[idx] || ('MDA-2026-AU' + String(idx+1).padStart(3,'0'));
+  document.getElementById('cert-serial').textContent = serial;
+  drawQR(serial + '|' + p.n);
+  document.getElementById('cert-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCert(){
+  document.getElementById('cert-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function drawQR(data){
+  // QR minimaliste basé sur hash — visuel symbolique
+  const canvas = document.getElementById('cert-qr');
+  const ctx = canvas.getContext('2d');
+  const size = 120, cell = 5, cols = size/cell;
+  // Seed from data string
+  let seed = 0;
+  for(let i=0;i<data.length;i++) seed = (seed*31+data.charCodeAt(i))&0xffffffff;
+  const rng = ()=>{ seed = (seed*1664525+1013904223)&0xffffffff; return (seed>>>0)/4294967296; };
+  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--noir').trim()||'#0a0806';
+  ctx.fillRect(0,0,size,size);
+  ctx.fillStyle = '#c9a96e';
+  // Position markers (3 corners)
+  [[0,0],[cols-7,0],[0,cols-7]].forEach(([cx,cy])=>{
+    for(let r=0;r<7;r++) for(let c=0;c<7;c++){
+      if(r===0||r===6||c===0||c===6||(r>=2&&r<=4&&c>=2&&c<=4)) ctx.fillRect((cx+c)*cell,(cy+r)*cell,cell,cell);
+    }
+  });
+  // Data cells
+  for(let r=0;r<cols;r++) for(let c=0;c<cols;c++){
+    const inMarker=(r<8&&c<8)||(r<8&&c>=cols-8)||(r>=cols-8&&c<8);
+    if(!inMarker && rng()>0.5) ctx.fillRect(c*cell,r*cell,cell,cell);
+  }
+}
+function downloadCert(){
+  toast('Certificat en cours de génération… ✦');
+  // Simule un téléchargement (sans lib PDF, on ouvre la modale en impression)
+  setTimeout(()=>{ window.print(); }, 300);
+}
+
+// ─── LISTE DE CADEAUX (AF) ────────────────────────────────────────────────────
+const GL_KEY = 'mda_giftlist';
+
+function getGiftlist(){ try{ return JSON.parse(localStorage.getItem(GL_KEY)||'[]'); }catch(e){ return []; } }
+function saveGiftlist(list){ try{ localStorage.setItem(GL_KEY, JSON.stringify(list)); }catch(e){} }
+
+function addToGiftlist(idx){
+  let list = getGiftlist();
+  if(list.find(i=>i.idx===idx)){ toast('Déjà dans votre liste de cadeaux'); return; }
+  list.push({ idx, reserved:false, addedAt: Date.now() });
+  saveGiftlist(list);
+  toast('Ajouté à votre liste de cadeaux ♡');
+}
+function removeFromGiftlist(idx){
+  saveGiftlist(getGiftlist().filter(i=>i.idx!==idx));
+  renderGiftlistItems();
+}
+function openGiftlist(){
+  renderGiftlistItems();
+  glTab(0, document.querySelectorAll('.gl-tab')[0]);
+  document.getElementById('giftlist-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeGiftlist(){
+  document.getElementById('giftlist-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function glTab(idx, el){
+  document.querySelectorAll('.gl-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.gl-pane').forEach(p=>p.classList.remove('active'));
+  if(el) el.classList.add('active');
+  document.getElementById(`gl-pane-${idx}`).classList.add('active');
+  if(idx===1) renderGlShareUrl();
+}
+function renderGiftlistItems(){
+  const list = getGiftlist();
+  const wrap = document.getElementById('gl-items-wrap');
+  document.getElementById('gl-sub').textContent = list.length > 0 ? `${list.length} pièce${list.length>1?'s':''} dans votre liste` : 'Votre liste est vide';
+  if(!list.length){ wrap.innerHTML='<div class="gl-empty">Aucune pièce pour l\'instant.<br>Ajoutez des pièces depuis les fiches produit.</div>'; return; }
+  wrap.innerHTML = list.map(item=>{
+    const p = prods[item.idx];
+    return `<div class="gl-item">
+      <img src="${p.img}" alt="${p.n}" onclick="closeGiftlist();openPDP(${item.idx})" style="cursor:pointer">
+      <div style="flex:1;min-width:0">
+        <div class="gl-item-name">${p.n}</div>
+        <div class="gl-item-price">${p.p}</div>
+        ${item.reserved?'<div class="gl-item-reserved">✓ Réservé par un proche</div>':''}
+      </div>
+      <button class="gl-rm" onclick="removeFromGiftlist(${item.idx})" title="Retirer">✕</button>
+    </div>`;
+  }).join('');
+}
+function renderGlShareUrl(){
+  const name = document.getElementById('gl-name-input').value.trim() || 'Ma liste';
+  const list = getGiftlist();
+  const ids = list.map(i=>i.idx).join(',');
+  const url = `${location.origin}${location.pathname}?gl=${encodeURIComponent(name)}&items=${ids}`;
+  document.getElementById('gl-share-url').textContent = url;
+}
+function copyGlLink(){
+  renderGlShareUrl();
+  const url = document.getElementById('gl-share-url').textContent;
+  navigator.clipboard.writeText(url).then(()=>toast('Lien copié ! ✦')).catch(()=>toast('Lien généré — copiez-le manuellement'));
+}
+// Icône liste cadeaux dans la nav — ajouter au nav bar
+document.addEventListener('DOMContentLoaded',()=>{
+  // Détecter si une liste partagée est dans l'URL
+  const params = new URLSearchParams(location.search);
+  if(params.has('gl') && params.has('items')){
+    const name = params.get('gl');
+    const idxs = params.get('items').split(',').map(Number).filter(n=>!isNaN(n)&&n>=0&&n<prods.length);
+    if(idxs.length){
+      setTimeout(()=>{
+        const saved = idxs.map(idx=>({ idx, reserved:false, addedAt:Date.now() }));
+        saveGiftlist(saved);
+        toast(`Liste "${name}" chargée — ${idxs.length} pièce(s) ♡`);
+      }, 1500);
+    }
+  }
+});
+
 // ─── AVIS CLIENTS (AC) ────────────────────────────────────────────────────────
 const REVIEWS = {
   0: [ // Boubou Brodé d'Or
@@ -4783,7 +4945,7 @@ function renderReviews(idx){
       <div class="rev-item">
         <div class="rev-item-head">
           <div class="rev-stars" style="font-size:.7rem">${starsHTML(r.rating)}</div>
-          <div class="rev-item-name">${r.country} ${r.name}</div>
+          <div class="rev-item-name">${r.name}</div>
           ${r.verified?'<div class="rev-item-badge">Achat vérifié</div>':''}
           <div class="rev-item-date">${r.date}</div>
         </div>
@@ -6963,35 +7125,6 @@ document.addEventListener('keydown', e=>{
   if(e.key === 'Escape') closePayModal();
 }, true);
 
-// ─── BANDEAU PROMO COUNTDOWN ──────────────────────────────────────────────────
-(function initCountdown(){
-  const DURATION_H = 24;
-  let expiry;
-  try{
-    expiry = parseInt(localStorage.getItem('mda_promo_exp')||'0');
-    if(!expiry || Date.now() > expiry){
-      expiry = Date.now() + DURATION_H * 3600 * 1000;
-      localStorage.setItem('mda_promo_exp', String(expiry));
-    }
-  }catch(e){ expiry = Date.now() + DURATION_H * 3600 * 1000; }
-
-  const el = document.getElementById('promo-countdown');
-  const banner = document.getElementById('promo-banner');
-
-  function tick(){
-    const diff = expiry - Date.now();
-    if(diff <= 0){
-      if(banner) banner.style.display='none';
-      return;
-    }
-    const h = String(Math.floor(diff/3600000)).padStart(2,'0');
-    const m = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
-    const s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
-    if(el) el.textContent = `${h}:${m}:${s}`;
-  }
-  tick();
-  setInterval(tick, 1000);
-})();
 
 // ─── ESTIMATION LIVRAISON ─────────────────────────────────────────────────────
 const DELIVERY_ZONES = {
@@ -8019,6 +8152,10 @@ function closeArticle(){
           <button class="bp" id="pdp-add-btn" style="font-size:.6rem;padding:1rem">Ajouter au panier</button>
           <button class="bs" id="pdp-gift-btn" style="font-size:.6rem;padding:.95rem;display:flex;align-items:center;justify-content:center;gap:.4rem" onclick="openGift(_pdpIdx)">🎁 Offrir cette pièce</button>
           <button class="bs" id="pdp-wl-btn" style="font-size:.6rem;padding:.95rem">Ajouter aux favoris</button>
+          <div style="display:flex;gap:.5rem;margin-top:.3rem">
+            <button class="bs" style="flex:1;font-size:.52rem;padding:.7rem" onclick="openCert(_pdpIdx)">✦ Certificat</button>
+            <button class="bs" style="flex:1;font-size:.52rem;padding:.7rem" onclick="addToGiftlist(_pdpIdx)">♡ Liste cadeaux</button>
+          </div>
         </div>
       </div>
     </div>
@@ -8064,6 +8201,52 @@ function closeArticle(){
     </div>
     <!-- Body -->
     <div id="orders-body" style="overflow-y:auto;padding:1rem 1.2rem;flex:1;scrollbar-width:thin;scrollbar-color:rgba(201,169,110,.2) transparent"></div>
+  </div>
+</div>
+
+<!-- ── Modal Certificat Authenticité (AE) ───────────────────────────────── -->
+<div id="cert-modal" role="dialog" aria-modal="true" aria-label="Certificat d'authenticité" onclick="if(event.target===this)closeCert()">
+  <div id="cert-box">
+    <button id="cert-close" onclick="closeCert()" aria-label="Fermer">✕</button>
+    <div class="cert-header">
+      <div class="cert-logo">Mémoire d'Afrique</div>
+      <div class="cert-tagline">Maison de Mode & Artisanat d'Exception</div>
+    </div>
+    <div class="cert-body">
+      <div class="cert-title">Certificat d'authenticité</div>
+      <div class="cert-piece" id="cert-piece-name"></div>
+      <div class="cert-serial" id="cert-serial"></div>
+      <canvas id="cert-qr" width="120" height="120"></canvas>
+      <div class="cert-verify">Cette pièce a été fabriquée à la main par des artisans certifiés.<br>Son authenticité est garantie par Mémoire d'Afrique.</div>
+    </div>
+    <div class="cert-seal">✦ <span>Certifié Artisanat Africain Authentique</span> ✦</div>
+    <button class="cert-dl-btn" onclick="downloadCert()">Télécharger le certificat PDF</button>
+  </div>
+</div>
+
+<!-- ── Modal Liste de Cadeaux (AF) ──────────────────────────────────────── -->
+<div id="giftlist-modal" role="dialog" aria-modal="true" aria-label="Ma liste de cadeaux" onclick="if(event.target===this)closeGiftlist()">
+  <div id="giftlist-box">
+    <button id="giftlist-close" onclick="closeGiftlist()" aria-label="Fermer">✕</button>
+    <div class="gl-header">
+      <div class="gl-title">Ma Liste de Cadeaux</div>
+      <div class="gl-sub" id="gl-sub">Partagez vos envies avec vos proches</div>
+    </div>
+    <div class="gl-tabs">
+      <button class="gl-tab active" onclick="glTab(0,this)">Ma liste</button>
+      <button class="gl-tab" onclick="glTab(1,this)">Partager</button>
+    </div>
+    <div class="gl-pane active" id="gl-pane-0">
+      <div id="gl-items-wrap"></div>
+      <button class="gl-cta" onclick="glTab(1,document.querySelectorAll('.gl-tab')[1])">Partager ma liste →</button>
+    </div>
+    <div class="gl-pane" id="gl-pane-1">
+      <p style="font-size:.6rem;color:rgba(250,246,240,.4);margin-bottom:.7rem;letter-spacing:.08em">Donnez un nom à votre liste</p>
+      <input class="gl-input" id="gl-name-input" placeholder="Ex: Mon anniversaire, Mariage…" maxlength="50">
+      <div class="gl-share-box" id="gl-share-url"></div>
+      <button class="gl-cta" onclick="copyGlLink()">Copier le lien ✦</button>
+      <button class="gl-cta gl-cta-sec" style="margin-top:.5rem" onclick="glTab(0,document.querySelectorAll('.gl-tab')[0])">← Retour à ma liste</button>
+    </div>
   </div>
 </div>
 
